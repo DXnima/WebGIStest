@@ -1,0 +1,41 @@
+@import url(iconfont/iconfont.css);
+html,
+body,
+#map {
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden; }
+
+.query-box {
+  font-size: 12px;
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background-color: white;
+  border-radius: 4px;
+  box-shadow: 1px 1px 2px #ccc;
+  padding: 6px;
+  z-index: 9;
+  width: 300px; }
+  .query-box table {
+    width: 100%; }
+    .query-box table th,
+    .query-box table td {
+      padding: 5px;
+      text-align: left; }
+      .query-box table th span,
+      .query-box table td span {
+        text-decoration: underline;
+        display: inline-block;
+        padding: 3px 5px;
+        cursor: pointer; }
+        .query-box table th span.active,
+        .query-box table td span.active {
+          background-color: #da6300;
+          color: white; }
+    .query-box table th {
+      text-align: right; }
+
+/*# sourceMappingURL=demo20.css.map */

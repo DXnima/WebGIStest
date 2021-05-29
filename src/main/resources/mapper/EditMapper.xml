@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.webgistest.dao.EditMapper" >
+  <resultMap id="BaseResultMap" type="com.example.webgistest.pojo.Edit" >
+    <constructor >
+      <idArg column="id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="name" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="geom" jdbcType="OTHER" javaType="java.lang.Object" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, name, geom
+  </sql>
+  <select id="getEdit" resultType="java.util.HashMap">
+    select id, name,st_asewkt(geom) as geom
+    from layer_edit
+    <trim prefix="where 1=1 and " prefixOverrides="and">
+      <if test="name != null and name != ''">
+        name = #{name,jdbcType=VARCHAR}
+      </if>
+    </trim>
+  </select>
+  <insert id="addEdit">
+    insert into layer_edit (name, geom)
+    values (#{name,jdbcType=VARCHAR}, ST_GeomFromText(#{ geom, jdbcType = OTHER }))
+  </insert>
+  <update id="updateEdit">
+    update layer_edit
+    set name = #{name,jdbcType=VARCHAR},
+        geom = ST_GeomFromText(#{ geom, jdbcType = OTHER }))
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

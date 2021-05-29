@@ -1,0 +1,152 @@
+@charset "utf-8";
+
+@import "iconfont/iconfont.css";
+
+html,
+body,
+#map{
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+.ol-mouse-position{
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  top: auto;
+  background: rgba(255,255,255, .6);
+  padding: 10px;
+  border: 1px solid #ccc;
+  z-index: 9;
+  display: none;
+}
+
+.tool-box{
+  padding: 5px 10px;
+}
+
+.map{
+  width: 30%;
+  height: 80%;
+  float: left;
+  border: 1px solid red;
+  &:not(:first-child){
+    margin-left: 20px;
+  }
+}
+
+.map-tools{
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  padding: 5px;
+  background: white;
+  z-index: 9;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin: 0;
+  list-style: none;
+  li{
+    color: black;
+    float: left;
+    &:hover{
+      cursor: pointer;
+      color: #444;
+    }
+    &:not(:first-child){
+      margin-left: 10px;
+    }
+    span{
+      font-size: 28px;
+    }
+  }
+}
+
+.ol-popup {
+  display: none;
+  position: absolute;
+  background-color: white;
+  -moz-box-shadow: 0 1px 4px rgba(0,0,0,0.2);
+  -webkit-filter: drop-shadow(0 1px 4px rgba(0,0,0,0.2));
+  filter: drop-shadow(0 1px 4px rgba(0,0,0,0.2));
+  border: 1px solid #cccccc;
+  bottom: 12px;
+  left: -100px;
+  width: 200px;
+  &:after,
+  &:before{
+    top: 100%;
+    border: solid transparent;
+    content: " ";
+    height: 0;
+    width: 0;
+    position: absolute;
+    pointer-events: none;
+  }
+  &:after{
+    border-top-color: white;
+    border-width: 10px;
+    left: 100px;
+    margin-left: -10px;
+  }
+  &:before{
+    border-top-color: #cccccc;
+    border-width: 11px;
+    left: 100px;
+    margin-left: -11px;
+  }
+
+  .popup-title{
+    font-weight: bold;
+    border-bottom:1px solid #cccccc;
+    padding: 5px 8px;
+  }
+  .popup-content{
+    padding: 5px 8px;
+  }
+  .ol-popup-closer {
+    text-decoration: none;
+    position: absolute;
+    top: 6px;
+    right: 6px;
+    &:after {
+      content: "×";
+    }
+  }
+}
+
+.ol-name{
+  background: white;
+  padding: 3px 5px;
+  border-radius: 4px;
+  font-size: 12px;
+  box-shadow: 1px 1px 4px #ccc;
+  margin-bottom: 10px;
+  &:after, &:before{
+    top: 66%;
+    border: solid transparent;
+    content: " ";
+    height: 0;
+    width: 0;
+    position: absolute;
+    left: 50%;
+  }
+  &:after{
+    border-top-color: white;
+    border-width: 6px;
+    margin-left: -6px;
+  }
+  &:before{
+    border-top-color: #cccccc;
+    border-width: 8px;
+    margin-left: -8px;
+  }
+}
+
+.map-chart{
+  position: absolute;
+  width: 40px;
+  height: 40px;
+}

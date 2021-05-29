@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.webgistest.dao.UniversityMapper">
+  <resultMap id="BaseResultMap" type="com.example.webgistest.pojo.University">
+    <constructor>
+      <idArg column="gid" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="name" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="department" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="schoo1_lev" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="types" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="province" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="first_univ" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="first_disc" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="graduate" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="satisfacti" javaType="java.math.BigDecimal" jdbcType="NUMERIC" />
+      <arg column="lon" javaType="java.math.BigDecimal" jdbcType="NUMERIC" />
+      <arg column="lat" javaType="java.math.BigDecimal" jdbcType="NUMERIC" />
+      <arg column="geom" javaType="java.lang.Object" jdbcType="OTHER" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    gid, name, department, schoo1_lev, types, province, first_univ, first_disc, graduate,
+    satisfacti, lon, lat, geom
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from layer_university
+    where gid = #{gid,jdbcType=INTEGER}
+  </select>
+  <select id="getUniversity" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from layer_university
+    <trim prefix="where 1=1 and " prefixOverrides="and">
+      <if test="name != null and name != ''">
+        <bind name="pattern" value="'%'+name+'%'" />
+        name like #{pattern}
+      </if>
+      <if test="level !=null and level != ''">
+        <bind name="pattern" value="'%'+level+'%'" />
+        and schoo1_lev like #{pattern}
+      </if>
+      <if test="province !=null and province != ''">
+        and province = #{province,jdbcType=VARCHAR}
+      </if>
+      <if test="type !=null and type != ''">
+        and types = #{type}
+      </if>
+    </trim>
+  </select>
+</mapper>

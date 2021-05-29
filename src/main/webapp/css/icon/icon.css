@@ -1,0 +1,27 @@
+
+@font-face {font-family: "iconfont";
+  src: url('font.woff') format('woff');
+}
+
+.iconfont {
+  font-family:"iconfont" !important;
+  font-size:16px;
+  font-style:normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-satellite:before { content: "\e61c"; }
+
+.icon-wumai:before { content: "\e644"; }
+
+.icon-traffic:before { content: "\e61e"; }
+
+.icon-ranging:before { content: "\e621"; }
+
+.icon-subway:before { content: "\e622"; }
+
+.icon-fullscreen:before { content: "\e61f"; }
+
+.icon-search:before { content: "\e608"; }
+
