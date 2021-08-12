@@ -15,8 +15,9 @@ public class PostgisConfig {
     private String workspace;//待创建和发布图层的工作区名称workspace
     private String store; //待创建和发布图层的数据存储名称store
     private String table; // 数据库要发布的表名称,后面图层名称和表名保持一致
+    private String srs; //坐标系
 
-    public PostgisConfig(String host, int port, String user, String password, String database, String workspace, String store, String table) {
+    public PostgisConfig(String host, int port, String user, String password, String database, String workspace, String store, String table, String srs) {
         this.host = host;
         this.port = port;
         this.user = user;
@@ -25,6 +26,7 @@ public class PostgisConfig {
         this.workspace = workspace;
         this.store = store;
         this.table = table;
+        this.srs = srs;
     }
 
     public PostgisConfig() {
@@ -93,5 +95,13 @@ public class PostgisConfig {
 
     public void setTable(String table) {
         this.table = table;
+    }
+
+    public String getSrs() {
+        return srs;
+    }
+
+    public void setSrs(String srs) {
+        this.srs = srs;
     }
 }

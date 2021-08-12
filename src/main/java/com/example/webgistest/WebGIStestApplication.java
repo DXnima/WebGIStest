@@ -1,6 +1,7 @@
 package com.example.webgistest;
 
 import org.mybatis.spring.annotation.MapperScan;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -8,8 +9,24 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class WebGIStestApplication {
 
+    public static String port;
+
+    @Value("${server.port}")
+    public void setPort(String port) {
+        WebGIStestApplication.port = port;
+    }
+
+    private static void printServerUrl() {
+        String url = String.format("http://%s%s%s", "localhost" + ":",port, "");
+        System.err.println("-----------------------------------------------------------------");
+        System.err.println("##### WebGIStest程序启动成功！");
+        System.err.println("##### 接口URI : " + url);
+        System.err.println("-----------------------------------------------------------------");
+    }
+
     public static void main(String[] args) {
         SpringApplication.run(WebGIStestApplication.class, args);
+        printServerUrl();
     }
 
 }

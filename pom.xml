@@ -96,6 +96,11 @@
             <artifactId>gt-xml</artifactId>
             <version>${geotools.version}</version>
         </dependency>
+        <dependency>
+            <groupId>org.geotools</groupId>
+            <artifactId>gt-brewer</artifactId>
+            <version>${geotools.version}</version>
+        </dependency>
         <!-- 加载geotools end-->
         <!-- 加载fastjson-->
         <dependency>

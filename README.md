@@ -1,5 +1,6 @@
 # WebGIS Test
 ### java框架: Spring-Boot-mybaits-postgresSQL
+### 国内gitee地址：https://gitee.com/dxwangnima/WebGIStest.git
 ### 技术：
 OpenLayers  
 postGIS 
@@ -26,6 +27,11 @@ GeoServer REST
     - [x] 加载GeoJSON数据
     - [x] 加载wkts数据  
     - [x] 加载GeoServer发布的wms服务
+    - [x] GeoServer发布的WFS服务
+      - [x] 加载WFS服务
+      - [x] 添加WFS服务图层
+      - [x] 修改WFS服务图层
+      - [x] 删除WFS服务
     - [x] 点要素选中高亮
     - [x] 点线面要素在线绘制、编辑
     - [x] 点线面要素保存PostgesSQL数据库
@@ -37,6 +43,7 @@ GeoServer REST
     - [x] 读取Shapefile
     - [x] Shapefile进行Intersect计算
     - [x] Shapefile坐标转换
+    - [x] 创建XML格式的SLD
     - [x] 空间关系判断
     - [x] 空间分析
         - [x] 叠加分析
