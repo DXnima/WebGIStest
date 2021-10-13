@@ -14,7 +14,7 @@
 <script>
     var view = new ol.View({
         zoom: 4,
-        center:ol.proj.transform([110, 39],"EPSG:4326", "EPSG:3857")
+        center:ol.proj.transform([267, 38],"EPSG:4326", "EPSG:3857")
     });
 
     var osm = new ol.layer.Tile({
@@ -24,30 +24,27 @@
     var wms = new ol.layer.Image({
         source: new ol.source.ImageWMS({
             ratio: 1,
-            url: 'http://localhost:8085/geoserver/webgistest/wms',
+            url: 'http://localhost:8080/geoserver/wms',
             params: {
                 'FORMAT': 'image/png',
                 'VERSION': '1.1.1',
-                "LAYERS": 'webgistest:capital',
+                "LAYERS": 'topp:states',
             }
         })
     });
     var tileWms = new ol.layer.Tile({
         source: new ol.source.TileWMS({
-            url: 'http://localhost:8085/geoserver/webgistest/wms',
+            url: 'http://localhost:8080/geoserver/wms',
             params: {
                 'FORMAT': 'image/png',
                 tiled: true,
-                LAYERS: 'webgistest:capital',
-                tilesOrigin: 87.5761032104492 + "," + 19.9701385498047
+                LAYERS: 'topp:states',
+                tilesOrigin: -124.73142200000001 + "," + 24.955967
             }
         })
     });
 
     var map = new ol.Map({
-        controls: ol.control.defaults({
-            attribution: false
-        }).extend([]),
         target: "map",
         layers: [
             osm,

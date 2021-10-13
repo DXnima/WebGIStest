@@ -32,6 +32,7 @@ GeoServer REST
       - [x] 添加WFS服务图层
       - [x] 修改WFS服务图层
       - [x] 删除WFS服务
+    - [x] GeoServer实现最短路径分析（网络分析）
     - [x] 点要素选中高亮
     - [x] 点线面要素在线绘制、编辑
     - [x] 点线面要素保存PostgesSQL数据库
@@ -80,5 +81,9 @@ GeoServer REST
 #### 12. 综合例子：高校数据显示与查询
 ![输入图片说明](https://images.gitee.com/uploads/images/2021/0529/164200_0243af12_4939108.png "屏幕截图.png")
 ![输入图片说明](https://images.gitee.com/uploads/images/2021/0529/164329_d206d9ff_4939108.png "屏幕截图.png")
-
-
+#### 13. 网络分析（postgis+pgRouting+geoserver实现）
+网络分析参考资料：https://zhuanlan.zhihu.com/p/67232451 里面的”2.1.2、pgRouting“部分。
+![输入图片说明](https://images.gitee.com/uploads/images/2021/0902/235524_2bb91255_4939108.png "屏幕截图.png")
+#### 14. WFS属性查询和空间查询
+![输入图片说明](https://images.gitee.com/uploads/images/2021/1011/142400_56bf36d5_4939108.png "屏幕截图.png")
+![输入图片说明](https://images.gitee.com/uploads/images/2021/1011/142507_f1b722bb_4939108.png "屏幕截图.png")

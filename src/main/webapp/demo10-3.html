@@ -20,7 +20,7 @@
 <script>
     var view = new ol.View({
         zoom: 4,
-        center:ol.proj.transform([110, 39],"EPSG:4326", "EPSG:3857")
+        center:ol.proj.transform([110, 39],"EPSG:4326", "EPSG:3857");
     });
 
     var map = new ol.Map({
@@ -47,7 +47,7 @@
 
     function showCapitals(){
         $.get("./data/capital.geojson", function (result) {
-            result = JSON.parse(result).features;
+            result = result.features;
             for(var i=0,len=result.length;i<len;i++){
                 var _feat = result[i];
                 addCapital(_feat);

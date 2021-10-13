@@ -29,7 +29,7 @@
         }).extend([]),
         target: "map",
         layers: [
-            getTileLayer('webgistest:chinamap')
+            getTileLayer('topp:states')
         ],
         view: view
     });
@@ -37,7 +37,7 @@
     function getTileLayer(lyr){
         var gridsetName = 'EPSG:4326';
         var gridNames = ['EPSG:4326:0', 'EPSG:4326:1', 'EPSG:4326:2', 'EPSG:4326:3', 'EPSG:4326:4', 'EPSG:4326:5', 'EPSG:4326:6', 'EPSG:4326:7', 'EPSG:4326:8', 'EPSG:4326:9', 'EPSG:4326:10', 'EPSG:4326:11', 'EPSG:4326:12', 'EPSG:4326:13', 'EPSG:4326:14', 'EPSG:4326:15', 'EPSG:4326:16', 'EPSG:4326:17', 'EPSG:4326:18', 'EPSG:4326:19', 'EPSG:4326:20', 'EPSG:4326:21'];
-        var baseUrl = 'http://localhost:8085/geoserver/gwc/service/wmts';
+        var baseUrl = 'http://localhost:8080/geoserver/gwc/service/wmts';
         var format = 'application/x-protobuf;type=mapbox-vector';
         // var format = 'application/json;type=geojson';
         var layerName = lyr;

@@ -14,30 +14,16 @@
 
   // 服务配置，命名空间、图层、服务地址等
   var geoserverData = {
-    wsName: 'test',
-    uri: 'http://www.openplans.org/test',
-    wfsURL: 'http://localhost:8085/geoserver/wfs?',
-    layer: 'port'
+    wsName: 'topp',
+    uri: 'http://www.openplans.org/topp',
+    wfsURL: 'http://localhost:8080/geoserver/wfs?',
+    layer: 'states'
   }
-
-  let wfsLayer = new ol.layer.Vector({
-      title: 'add Layer',
-      source: new ol.source.Vector(),
-      style: new ol.style.Style({
-          image: new ol.style.Circle({
-              radius: 5,
-              fill: new ol.style.Fill({
-                  color: "#389BCD",
-                  opacity: 0.5,
-              }),
-          }),
-      })
-  })
 
   var layers = [
       new ol.layer.Tile({
           source: new ol.source.OSM()
-      }),wfsLayer
+      })
   ];
 
   var map = new ol.Map({
@@ -45,7 +31,7 @@
       layers: layers,
       view: new ol.View({
           projection: "EPSG:4326",
-          center: [114, 31],
+          center: [267, 38],
           zoom: 4
       })
   });
@@ -62,21 +48,33 @@
       var request = new ol.format.WFS().writeGetFeature(data);
       $.ajax({
           url: geoserverData.wfsURL,
-          type:"POST",
+          type: "POST",
           data: new XMLSerializer().serializeToString(request),
           contentType: 'text/xml',
           success: function (req) {
               console.log(JSON.stringify(req, null, "\t"))
-              var features = new ol.format.GeoJSON({
-                  geometryName: 'geom',
-              }).readFeatures(req)
-              if (wfsLayer) {
-                  wfsLayer.getSource().addFeatures(features);
-                  alert("加载成功！")
-              }
+              var features = new ol.format.GeoJSON().readFeatures(req)
+              let source = new ol.source.Vector();
+              source.addFeatures(features)
+              let wfsLayer = new ol.layer.Vector({
+                  title: 'add Layer',
+                  source: source,
+                  style: new ol.style.Style({
+                      stroke: new ol.style.Stroke({
+                          color: 'blue',
+                          lineDash: [4],
+                          width: 3,
+                      }),
+                      fill: new ol.style.Fill({
+                          color: 'rgba(0,0,255,0.47)',
+                      }),
+                  })
+              })
+              map.addLayer(wfsLayer)
+              alert("加载成功！")
           },
           error: function (e) {
-              alert("加载失败！"+e)
+              alert("加载失败！" + e)
           }
       });
   }

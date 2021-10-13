@@ -13,7 +13,7 @@
 <script>
   var view = new ol.View({
     zoom: 4,
-    center: [110, 39],
+    center: [267, 38],
     projection: "EPSG:4326"
   });
   var wms = new ol.layer.Image({
@@ -23,7 +23,7 @@
           params: {
               'FORMAT': 'image/png',
               'VERSION': '1.1.1',
-              LAYERS: 'webgistest:capital'
+              LAYERS: 'topp:states'
           }
       })
   });
