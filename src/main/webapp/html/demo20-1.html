@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>map demo</title>
+    <link rel="stylesheet" href="../js/lib/ol4.6.4/ol.css" type="text/css">
+    <link rel="stylesheet" href="../css/demo20.css" type="text/css">
+</head>
+<body>
+<div id="map">
+    <div class="query-box">
+        <table cellspacing="0" cellpadding="0">
+            <tr>
+                <th width=40">名称</th>
+                <td>
+                    <input id="name" type="text" placeholder="请输入大学名称..." style="width: 185px;">
+                    <input id="query" type="button" value="查询" style="float: right;">
+                </td>
+            </tr>
+            <tr>
+                <th>所属地</th>
+                <td class="province">
+                    <span class="active">全部</span>
+                </td>
+            </tr>
+            <tr>
+                <th>等级</th>
+                <td class="level">
+                    <span class="active">全部</span>
+                    <span>本科</span>
+                    <span>高职(专科)</span>
+                </td>
+            </tr>
+            <tr>
+                <th>类型</th>
+                <td class="isprivate">
+                    <span class="active">全部</span>
+                    <span>综合</span>
+                    <span>工科</span>
+                    <span>农业</span>
+                    <span>林业</span>
+                    <span>医药</span>
+                    <span>师范</span>
+                    <span>语言</span>
+                    <span>财经</span>
+                    <span>政法</span>
+                    <span>体育</span>
+                    <span>艺术</span>
+                    <span>民族</span>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+<script src="../js/lib/ol4.6.4/ol.js"></script>
+<script src="../js/lib/jquery/jquery-3.3.1.min.js"></script>
+<script>
+  var map, provinces = [];
+  var base = getTilelayer("img_w");
+
+  var source = new ol.source.Vector({
+    features: []
+  });
+
+  var vector = new ol.layer.Heatmap({
+    source: source,
+    blur: 20,
+    radius: 8,
+    opacity: .75,
+    shadow:500
+  });
+
+  var vector1 = new ol.layer.Vector({
+    source: source,
+    style: function (feat) {
+      var name = map.getView().getZoom()>10?feat.get("attr").name:"";
+      return new ol.style.Style({
+        image: new ol.style.Circle({
+          radius: 4,
+          fill: new ol.style.Fill({
+            color: '#5367ec'
+          })
+        }),
+        text: new ol.style.Text({
+          text:name,
+          fill: new ol.style.Fill({
+            color: '#ffffff'
+          }),
+          textAlign:"left",
+          offsetX:"6",
+          stroke: new ol.style.Stroke({
+            color: '#d7d7d7',
+            width: 1
+          })
+        })
+      })
+    }
+  });
+
+  map = new ol.Map({
+    controls: ol.control.defaults({
+      attribution: false
+    }),
+    target: 'map',
+    layers: [base, vector, vector1],
+    view: new ol.View({
+      center: ol.proj.fromLonLat([98.633, 31.607]),
+      zoom:4,
+      minZoom:0,
+      maxZoom:18
+    })
+  });
+
+  showUniversity();
+
+  function showUniversity() {
+    var url = "university/get";
+    var name = $("#name").val(),
+      level = $($("td.level").find("span.active")[0]).html(),
+      province = $($("td.province").find("span.active")[0]).html(),
+      isprivate = $($("td.isprivate").find("span.active")[0]).html();
+    level = level==="全部"?"":level;
+    province = province==="全部"?"":province;
+    isprivate = isprivate==="全部"?"":isprivate;
+
+    var paras = {
+      name:name,
+      level:level,
+      province:province,
+      type:isprivate
+    };
+
+    $.get(url, paras, function (result) {
+      var _provinces = {};
+      var undo = provinces.length===0;
+      source.clear();
+      var features = [];
+      for(var i=0;i<result.data.length;i++){
+        var _r = result.data[i];
+        var coord = ol.proj.fromLonLat([_r.lon, _r.lat]);
+        features.push(new ol.Feature({
+          geometry: new ol.geom.Point(coord),
+          attr: _r
+        }));
+
+        if(!_provinces[_r.province]) {
+          _provinces[_r.province] = 1;
+          if(undo) provinces.push(_r.province);
+        }
+      }
+      source.addFeatures(features);
+      if(undo) {
+        for(var i=0;i<provinces.length;i++){
+          $("td.province").append($("<span/>").html(provinces[i]));
+        }
+
+        $($(".province,.isprivate,.level").children()).click(function () {
+          $($(this).parent()).find('span').removeClass("active");
+          $(this).addClass("active");
+          showUniversity();
+        });
+
+        $("#query").on("click", showUniversity)
+      }
+    })
+  }
+
+  function getTilelayer(lyr){
+    var urls = [];
+    for(var i=0;i<8;i++){
+      urls.push("http://t"+i+".tianditu.com/DataServer?T="+lyr+"&X={x}&Y={y}&L={z}&tk=16c5722fed64bcdbb390cc21a5548cf9");
+    }
+    var layer = new ol.layer.Tile({
+      source: new ol.source.XYZ({
+        urls:urls
+      })
+    });
+    return layer;
+  }
+</script>
+</body>
+</html>

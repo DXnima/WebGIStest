@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>map demo</title>
+    <link rel="stylesheet" href="../js/lib/ol4.6.4/ol.css" type="text/css">
+    <link rel="stylesheet" href="../css/demo.css" type="text/css">
+</head>
+<body>
+<div id="map">
+    <div id="popup" class="ol-popup">
+        <a href="#" id="popup-closer" class="ol-popup-closer"></a>
+        <div id="popup-title" class="popup-title"></div>
+        <div id="popup-content" class="popup-content"></div>
+    </div>
+</div>
+<script src="../js/lib/ol4.6.4/ol.js"></script>
+<script src="../js/lib/jquery/jquery-3.3.1.min.js"></script>
+<script>
+    var view = new ol.View({
+        zoom: 4,
+        center:ol.proj.transform([110, 39],"EPSG:4326", "EPSG:3857")
+    });
+
+    var map = new ol.Map({
+        controls: ol.control.defaults({
+            attribution: false
+        }).extend([]),
+        target: "map",
+        layers: [
+            getTdtLayer("vec_w"),
+            getTdtLayer("cva_w")
+        ],
+        view: view
+    });
+
+    var container = document.getElementById('popup');
+    var content = document.getElementById('popup-content');
+    var title = document.getElementById('popup-title');
+    var closer = document.getElementById('popup-closer');
+
+    var overlay = new ol.Overlay({
+        element: container
+    });
+    map.addOverlay(overlay);
+    closer.onclick = function(){
+        container.style.display = 'none';
+        closer.blur();
+        return false;
+    };
+    map.on('click', function(evt) {
+        var hdms = ol.coordinate.toStringHDMS(ol.proj.transform(
+            evt.coordinate, 'EPSG:4326', 'EPSG:4326'));
+        var content = '<p>You clicked here:</p><code>' + hdms +'</code>';
+        showInfo(evt.coordinate, content);
+    });
+
+    function showInfo(coordinate, info){
+        title.innerHTML = "提示信息";
+        content.innerHTML = info;
+        title.style.display = "block";
+        container.style.display = "block";
+        overlay.setPosition(coordinate);
+    }
+
+    function getTdtLayer(lyr){
+        var url = "http://t0.tianditu.com/DataServer?T="+lyr+"&X={x}&Y={y}&L={z}&tk=16c5722fed64bcdbb390cc21a5548cf9";
+        var layer = new ol.layer.Tile({
+            source: new ol.source.XYZ({
+                url:url
+            })
+        });
+        return layer;
+    }
+</script>
+</body>
+</html>

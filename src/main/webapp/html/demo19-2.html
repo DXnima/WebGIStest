@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>通过wfs添加数据</title>
+  <link rel="stylesheet" href="../js/lib/ol4.6.4/ol.css" type="text/css">
+</head>
+<body>
+<button id="drawTool">添加</button>
+<div id="map"></div>
+</body>
+<script src="../js/lib/ol4.6.4/ol.js"></script>
+<script src="../js/lib/jquery/jquery-3.3.1.min.js"></script>
+<script>
+  // 服务配置，命名空间、图层、服务地址等
+  var geoserverData = {
+    wsName: 'test',
+    uri: 'http://www.openplans.org/test',
+    wfsURL: 'http://localhost:8085/geoserver/wfs?',
+    layer: 'port'
+  }
+
+  //测试数据 添加WFS数据  添加所有
+  var wfsSource = new ol.source.Vector({
+    format: new ol.format.GeoJSON(),
+    url: function (extent) {
+      return (
+              geoserverData.wfsURL + 'service=WFS&version=1.1.0&request=GetFeature&typeName=' +
+              geoserverData.wsName + ":" +
+              geoserverData.layer + '&' + 'outputFormat=application/json&srsname=EPSG:4326&bbox=' +
+              extent.join(',') + ',EPSG:4326');
+    },
+    strategy: ol.loadingstrategy.bbox
+  });
+
+  let wfsLayer = new ol.layer.Vector({
+    title: 'add Layer',
+    source: wfsSource
+  })
+
+  var layers = [
+    new ol.layer.Tile({
+      source: new ol.source.OSM()
+    }),wfsLayer
+  ];
+
+  var map = new ol.Map({
+    target: 'map',
+    layers: layers,
+    view: new ol.View({
+      projection: "EPSG:4326",
+      center: [114, 31],
+      zoom: 4
+    })
+  });
+
+  var draw = new ol.interaction.Draw({
+    source:new ol.source.Vector({
+      features:[]
+    }),
+    type:'Point',
+    freehand: false,//自由手绘,
+    stopClick: true
+  });
+  map.addInteraction(draw);
+  draw.setActive(false);
+
+  draw.on("drawend", function(e){
+    draw.setActive(false);
+    var feature = e.feature;
+    addFeature(feature);
+    wfsLayer.getSource().changed();
+  });
+
+  $("#drawTool").on("click", function () {
+    draw.setActive(true);
+  });
+
+  function addFeature(feature) {
+    // 1、构造Feature
+    let ft = feature.clone()
+    let properties = ft.getProperties()
+    console.log(Object.keys(wfsLayer.getSource().getFeatures()[0].getProperties()))
+    properties.address="测试要素添加"
+    properties.name="添加"
+    properties.porttype="wnm添加"
+    properties.province="wnm添加"
+    let coordinates = ft.getGeometry().getCoordinates()
+    properties.lng = coordinates[0]
+    properties.lat = coordinates[1]
+    ft.setProperties(properties)
+
+    let geom = ft.getGeometry().clone()
+    geom.applyTransform((flatCoordinates, flatCoordinates2, stride) => {
+      for (var j = 0; j < flatCoordinates.length; j += stride) {
+        var y = flatCoordinates[j]
+        var x = flatCoordinates[j + 1]
+        flatCoordinates[j] = x
+        flatCoordinates[j + 1] = y
+      }
+    })
+    ft.setGeometryName('geom') // postgis字段为geom、shp字段名为the_geom
+    ft.setGeometry(geom)
+
+    // 2、更新到后台
+    let WFSTSerializer = new ol.format.WFS();
+    var featObject = WFSTSerializer.writeTransaction([ft],
+            null, null, {
+              featureNS: geoserverData.uri,
+              featurePrefix: geoserverData.wsName,//工作空间名称
+              featureType: geoserverData.layer,//图层名称
+              srsName: 'EPSG:4326'
+            })
+    var serializer = new XMLSerializer()
+    var featString = serializer.serializeToString(featObject);
+    console.log(featString)
+    $.ajax({
+      url: geoserverData.wfsURL,
+      type:"POST",
+      data: featString,
+      contentType: 'text/xml',
+      success: function (req) {
+        console.log(req)
+        alert("添加成功！")
+        window.location.reload();
+      },
+      error: function (e) {
+        alert("添加失败！"+e)
+      }
+    });
+  }
+
+</script>
+</html>

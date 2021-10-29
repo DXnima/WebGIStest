@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>map demo</title>
+    <link rel="stylesheet" href="../js/lib/ol4.6.4/ol.css" type="text/css">
+    <link rel="stylesheet" href="../css/demo.css" type="text/css">
+</head>
+<body>
+<div id="map"></div>
+<script src="../js/lib/ol4.6.4/ol.js"></script>
+<script src="../js/lib/jquery/jquery-3.3.1.min.js"></script>
+<script>
+  var view = new ol.View({
+    zoom: 4,
+    center: [267, 38],
+    projection: "EPSG:4326"
+  });
+  var wms = new ol.layer.Image({
+      source: new ol.source.ImageWMS({
+          ratio: 1,
+          url: 'http://localhost:8080/geoserver/wms',
+          params: {
+              'FORMAT': 'image/png',
+              'VERSION': '1.1.1',
+              LAYERS: 'topp:states'
+          }
+      })
+  });
+  var map = new ol.Map({
+      controls: ol.control.defaults({
+          attribution: false
+      }).extend([]),
+      target: "map",
+      layers: [
+          wms
+      ],
+      view: view
+  });
+</script>
+</body>
+</html>

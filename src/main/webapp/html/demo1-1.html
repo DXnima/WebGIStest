@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>map demo</title>
+    <link rel="stylesheet" href="../js/lib/ol4.6.4/ol.css" type="text/css">
+    <link rel="stylesheet" href="../css/demo.css" type="text/css">
+</head>
+<body>
+<div id="map">
+    <div id="mousepos" class="ol-mouse-position"></div>
+</div>
+<script src="../js/lib/ol4.6.4/ol.js"></script>
+<script>
+    var map = new ol.Map({
+        controls: ol.control.defaults({
+            attribution: false
+        }).extend([]),
+        target: 'map',
+        layers: [
+            new ol.layer.Tile({
+                source: new ol.source.OSM()
+            })
+        ],
+        view: new ol.View({
+            zoom: 4,
+            center:ol.proj.transform([110, 39],"EPSG:4326", "EPSG:3857")//ol.proj.fromLonLat([110, 39])
+        })
+    });
+</script>
+</body>
+</html>
