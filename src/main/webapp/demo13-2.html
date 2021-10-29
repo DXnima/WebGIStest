@@ -1,0 +1,78 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link href='./css/mapbox-gl.css' rel='stylesheet'/>
+    <script src='./js/mapbox-gl.js'></script>
+    <title>PostGIS矢量切片</title>
+    <style type="text/css">
+        html, body {
+            height: 100%;
+            width: 100%;
+        }
+        #zoom{
+            position: absolute;
+            z-index: 999;
+            background: blanchedalmond;
+            font-size: 24px;
+        }
+    </style>
+</head>
+<body>
+<div id='map' style='width: 100%; height: 100%;'>
+    <div id="zoom"></div>
+</div>
+<script type="text/javascript">
+    mapboxgl.accessToken = 'pk.eyJ1IjoiZHhuaW1hIiwiYSI6ImNrbzA3YXM3YjBiM20yb21zd21hNmZ2YmkifQ.E-CP-z0iDN9RcMywNydpfA';
+    var map = new mapboxgl.Map({
+        container: 'map', // container id
+        style: {
+            "version": 8,
+            "name": "Empty Style",
+            "metadata": {"maputnik:renderer": "mbgljs"},
+            "sources": {
+                "mvt": {
+                    "type": "vector",
+                    "tiles": ["http://localhost:8080/mvt/{z}/{x}/{y}.pbf"],
+                    "minZoom": 0,
+                    "maxZoom": 14,
+                    "maxzoom": 14
+                }
+            },
+            "sprite": "",
+            "glyphs": "https://orangemug.github.io/font-glyphs/glyphs/{fontstack}/{range}.pbf",
+            "layers": [
+                {
+                    "id": "capital",
+                    "type": "circle",
+                    "source": "mvt",
+                    "source-layer": "capital"
+                },
+                {
+                    "id": "university",
+                    "type": "circle",
+                    "source": "mvt",
+                    "source-layer": "university"
+                },
+                {
+                    "id": "china",
+                    "type": "fill",
+                    "source": "mvt",
+                    "source-layer": "china"
+                }
+            ],
+            "id": "waigzs8za"
+        },
+        zoom: 4,
+        center: [108.438, 34.431]
+    });
+    //当鼠标滚动时，触发事件，获取当前地图缩放级别
+    map.on("wheel", function () {
+        var range = map.getZoom();
+        document.getElementById("zoom").innerHTML = "zoom:"+ parseInt(range);
+        console.log(range);
+    });
+</script>
+</body>
+</html>

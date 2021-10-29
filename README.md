@@ -36,6 +36,7 @@ GeoServer REST
     - [x] 点要素选中高亮
     - [x] 点线面要素在线绘制、编辑
     - [x] 点线面要素保存PostgesSQL数据库
+    - [x] PostGIS实现矢量切片
     - [x] 综合例子：高校数据显示与查询
 2. [GeoTools](http://docs.geotools.org/latest/userguide/tutorial/quickstart/maven.html)
     - [x] 启动Quickstart例子
