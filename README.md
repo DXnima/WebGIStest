@@ -7,6 +7,11 @@ postGIS
 GeoTools    
 GeoServer REST  
 
+### 准备：
+1.下载安装[Geoserver](http://geoserver.org/)
+
+2.下载安装[PostgreSQL](https://www.postgresql.org/) + [PostGIS](https://postgis.net/)
+
 ### 说明
 1. [OpenLayers](https://openlayers.org/en/latest/apidoc/)
     - [x] 实现图层切换
