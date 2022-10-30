@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <title>属性查询和空间查询</title>
+  <!-- import CSS -->
+  <link rel="stylesheet" href="../js/lib/ol4.6.4/ol.css" type="text/css">
+  <link href="https://cdn.bootcss.com/element-ui/2.4.5/theme-chalk/index.css" rel="stylesheet">
+  <style>
+    html,
+    body,
+    #map {
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      position: absolute;
+    }
+    .div_auto{
+      position: absolute;
+      z-index: 1;
+      left: 50px;
+    }
+    .div_button{
+      position: absolute;
+      z-index: 999;
+    }
+    .el-form-item__label{
+      width: 90px;
+      color: #2c2c2c;
+    }
+  </style>
+</head>
+<body>
+<div id="app">
+  <div class="div_auto">
+    <el-autocomplete
+            :fetch-suggestions="querySearchAsync"
+            placeholder="请输入搜索内容"
+            value-key="name"
+            style="width: 250px"
+            @select="handleSelect"
+            @change="handleInput"
+    ></el-autocomplete>
+  </div>
+  <div class="div_button" style="left: 500px">
+    <el-select v-model="type" placeholder="请选择查询的图层">
+      <el-option
+              v-for="item in selectLayer"
+              :key="item.value"
+              :label="item.name"
+              :value="item.name">
+      </el-option>
+    </el-select>
+  </div>
+  <div class="div_button" style="right: 200px">
+    <el-form ref="form" :model="nearForm" label-width="80px">
+      <el-form-item label="输入圆心">
+        <el-input v-model="nearForm.lnglat" placeholder="请输入经纬度" ></el-input>
+      </el-form-item>
+      <el-form-item label="输入半径">
+        <el-input v-model="nearForm.radius"></el-input>
+      </el-form-item>
+      <el-form-item label="地图显示">
+        <el-switch v-model="nearForm.show"></el-switch>
+      </el-form-item>
+      <el-form-item>
+        <el-button type="primary" @click="searchNearBy">周边搜索</el-button>
+      </el-form-item>
+    </el-form>
+  </div>
+  <div id="map"></div>
+</div>
+</body>
+<script src="../js/lib/ol4.6.4/ol.js"></script>
+<script src="../js/lib/jquery/jquery-3.3.1.min.js"></script>
+<!--查询js-->
+<script src="../js/search.js"></script>
+<!-- import Vue before Element -->
+<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+<!-- import JavaScript -->
+<script src="https://cdn.bootcss.com/element-ui/2.4.5/index.js"></script>
+<script>
+  new Vue({
+    el: '#app',
+    data() {
+      return {
+        url: 'http://localhost:28081',//BaseURL
+        map: null,//地图对象
+        restaurants: [],//搜素下拉数据存储
+        type:'查询所有信息',//选择查询类型
+        selectLayer: [
+          {name: '查询地名信息(poi)', value: 'poi'},
+          {name: '查询地标信息(landmarks)', value: 'landmarks'},
+          {name: '查询道路信息(roads)', value: 'roads'},
+          {name: '查询所有信息', value: ''}
+        ],
+        nearForm: {
+          lnglat: '-73.98,40.76',//圆心
+          radius: 500,//半径
+          show: true
+        },
+      }
+    },
+    mounted() {
+      this.init()
+    },
+    methods: {
+      init() {
+        let that = this;
+        let view = new ol.View({
+          zoom: 13,
+          projection: 'EPSG:4326',
+          center: [-73.98, 40.79],
+        });
+        //加载图层
+        let tileWms = new ol.layer.Tile({
+          source: new ol.source.TileWMS({
+            url: this.url + '/geoserver/wms',
+            params: {
+              'FORMAT': 'image/png',
+              tiled: true,
+              LAYERS: ['tiger:poly_landmarks', 'tiger:tiger_roads', 'tiger:poi'],
+              tilesOrigin: -74.047185 + "," + 40.679648
+            }
+          })
+        });
+        this.map = new ol.Map({
+          controls: ol.control.defaults({
+            attribution: false
+          }).extend([]),
+          target: "map",
+          layers: [
+            new ol.layer.Tile({
+              source: new ol.source.OSM()
+            }), tileWms
+          ],
+          view: view
+        });
+        this.map.on("singleclick", function (evt) {
+          //获取经纬度
+          that.nearForm.lnglat = evt.coordinate.toString();
+        });
+      },
+      querySearchAsync(queryString, cb) {
+        let that = this
+        //关键字搜索
+        getSearch(this.url, this.type, queryString, 5).then(data => {
+          console.log('关键字搜索结果', data)
+          that.restaurants = []
+          //整理GeoJSON数据
+          that.restaurants = getSearchData(data);
+          cb(that.restaurants)
+        })
+      },
+      //点击指定结果定位指定位置
+      handleSelect(item) {
+        addGeoJSON(this.map, item.id);
+      },
+      //输入事件
+      handleInput(str) {
+        this.querySearchAsync(str)
+      },
+      //根据中心点经纬度、半径以及关键字进行周边查询
+      searchNearBy() {
+        //绘制圆
+        //设置单位为M
+        let projection = new ol.proj.Projection({
+          code: 'EPSG:4326',
+          units: 'degrees',
+          global: true
+        });
+        let meters = projection.getMetersPerUnit();
+        let circle = new ol.geom.Circle(this.nearForm.lnglat.split(',').map(Number), this.nearForm.radius / meters);
+        let geometry = ol.geom.Polygon.fromCircle(circle);
+        spaceFilter(this.map, this.url, this.type, 10, geometry).then((data) => {
+          console.log('空间查询结果', data)
+          if (this.nearForm.show) addGeoJSON(this.map, '');
+        })
+      }
+    }
+  })
+</script>
+</html>

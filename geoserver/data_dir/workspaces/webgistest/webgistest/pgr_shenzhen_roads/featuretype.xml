@@ -1,0 +1,101 @@
+<featureType>
+  <id>FeatureTypeInfoImpl-76ccc7fc:184231a0bd9:-7fe4</id>
+  <name>pgr_shenzhen_roads</name>
+  <nativeName>pgr_shenzhen_roads</nativeName>
+  <namespace>
+    <id>NamespaceInfoImpl-76ccc7fc:184231a0bd9:-7ffe</id>
+  </namespace>
+  <title>深圳路网数据导航</title>
+  <abstract>深圳路网数据导航测试</abstract>
+  <keywords>
+    <string>features</string>
+    <string>pgr_shenzhen_roads</string>
+  </keywords>
+  <nativeCRS class="projected">PROJCS[&quot;WGS 84 / Pseudo-Mercator&quot;, &#xd;
+  GEOGCS[&quot;WGS 84&quot;, &#xd;
+    DATUM[&quot;World Geodetic System 1984&quot;, &#xd;
+      SPHEROID[&quot;WGS 84&quot;, 6378137.0, 298.257223563, AUTHORITY[&quot;EPSG&quot;,&quot;7030&quot;]], &#xd;
+      AUTHORITY[&quot;EPSG&quot;,&quot;6326&quot;]], &#xd;
+    PRIMEM[&quot;Greenwich&quot;, 0.0, AUTHORITY[&quot;EPSG&quot;,&quot;8901&quot;]], &#xd;
+    UNIT[&quot;degree&quot;, 0.017453292519943295], &#xd;
+    AXIS[&quot;Geodetic longitude&quot;, EAST], &#xd;
+    AXIS[&quot;Geodetic latitude&quot;, NORTH], &#xd;
+    AUTHORITY[&quot;EPSG&quot;,&quot;4326&quot;]], &#xd;
+  PROJECTION[&quot;Popular Visualisation Pseudo Mercator&quot;, AUTHORITY[&quot;EPSG&quot;,&quot;1024&quot;]], &#xd;
+  PARAMETER[&quot;semi_minor&quot;, 6378137.0], &#xd;
+  PARAMETER[&quot;latitude_of_origin&quot;, 0.0], &#xd;
+  PARAMETER[&quot;central_meridian&quot;, 0.0], &#xd;
+  PARAMETER[&quot;scale_factor&quot;, 1.0], &#xd;
+  PARAMETER[&quot;false_easting&quot;, 0.0], &#xd;
+  PARAMETER[&quot;false_northing&quot;, 0.0], &#xd;
+  UNIT[&quot;m&quot;, 1.0], &#xd;
+  AXIS[&quot;Easting&quot;, EAST], &#xd;
+  AXIS[&quot;Northing&quot;, NORTH], &#xd;
+  AUTHORITY[&quot;EPSG&quot;,&quot;3857&quot;]]</nativeCRS>
+  <srs>EPSG:3857</srs>
+  <nativeBoundingBox>
+    <minx>-2.0037508342789244E7</minx>
+    <maxx>2.0037508342789244E7</maxx>
+    <miny>-2.00489661040146E7</miny>
+    <maxy>2.0048966104014594E7</maxy>
+    <crs class="projected">EPSG:3857</crs>
+  </nativeBoundingBox>
+  <latLonBoundingBox>
+    <minx>-180.00000000000003</minx>
+    <maxx>180.00000000000003</maxx>
+    <miny>-85.05999999999999</miny>
+    <maxy>85.05999999999999</maxy>
+    <crs>EPSG:4326</crs>
+  </latLonBoundingBox>
+  <projectionPolicy>FORCE_DECLARED</projectionPolicy>
+  <enabled>true</enabled>
+  <metadata>
+    <entry key="JDBC_VIRTUAL_TABLE">
+      <virtualTable>
+        <name>pgr_shenzhen_roads</name>
+        <sql>SELECT * FROM wrk_fromAtoB(&apos;shenzhen_roads&apos;, %x1%, %y1%, %x2%, %y2%)
+</sql>
+        <escapeSql>false</escapeSql>
+        <geometry>
+          <name>geom</name>
+          <type>LineString</type>
+          <srid>3857</srid>
+        </geometry>
+        <parameter>
+          <name>y1</name>
+          <defaultValue>2578172.3</defaultValue>
+          <regexpValidator>^-?[\d.]+$</regexpValidator>
+        </parameter>
+        <parameter>
+          <name>x1</name>
+          <defaultValue>12677354.9</defaultValue>
+          <regexpValidator>^-?[\d.]+$</regexpValidator>
+        </parameter>
+        <parameter>
+          <name>y2</name>
+          <defaultValue>2577908.3</defaultValue>
+          <regexpValidator>^-?[\d.]+$</regexpValidator>
+        </parameter>
+        <parameter>
+          <name>x2</name>
+          <defaultValue>12677441.2</defaultValue>
+          <regexpValidator>^-?[\d.]+$</regexpValidator>
+        </parameter>
+      </virtualTable>
+    </entry>
+  </metadata>
+  <store class="dataStore">
+    <id>DataStoreInfoImpl-76ccc7fc:184231a0bd9:-7ffd</id>
+  </store>
+  <serviceConfiguration>false</serviceConfiguration>
+  <simpleConversionEnabled>false</simpleConversionEnabled>
+  <internationalTitle/>
+  <internationalAbstract/>
+  <maxFeatures>0</maxFeatures>
+  <numDecimals>0</numDecimals>
+  <padWithZeros>false</padWithZeros>
+  <forcedDecimal>false</forcedDecimal>
+  <overridingServiceSRS>false</overridingServiceSRS>
+  <skipNumberMatched>false</skipNumberMatched>
+  <circularArcPresent>false</circularArcPresent>
+</featureType>

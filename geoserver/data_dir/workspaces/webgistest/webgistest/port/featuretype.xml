@@ -1,0 +1,45 @@
+<featureType>
+  <id>FeatureTypeInfoImpl-76ccc7fc:184231a0bd9:-7ffc</id>
+  <name>port</name>
+  <nativeName>port</nativeName>
+  <namespace>
+    <id>NamespaceInfoImpl-76ccc7fc:184231a0bd9:-7ffe</id>
+  </namespace>
+  <title>测试port</title>
+  <abstract>测试WFS添加数据</abstract>
+  <keywords>
+    <string>features</string>
+    <string>port</string>
+  </keywords>
+  <srs>EPSG:4326</srs>
+  <nativeBoundingBox>
+    <minx>-180.0</minx>
+    <maxx>180.0</maxx>
+    <miny>-90.0</miny>
+    <maxy>90.0</maxy>
+    <crs>EPSG:4326</crs>
+  </nativeBoundingBox>
+  <latLonBoundingBox>
+    <minx>106.595642089844</minx>
+    <maxx>122.050559997559</maxx>
+    <miny>22.2231941223145</miny>
+    <maxy>39.9148826599121</maxy>
+    <crs>EPSG:4326</crs>
+  </latLonBoundingBox>
+  <projectionPolicy>FORCE_DECLARED</projectionPolicy>
+  <enabled>true</enabled>
+  <store class="dataStore">
+    <id>DataStoreInfoImpl-76ccc7fc:184231a0bd9:-7ffd</id>
+  </store>
+  <serviceConfiguration>false</serviceConfiguration>
+  <simpleConversionEnabled>false</simpleConversionEnabled>
+  <internationalTitle/>
+  <internationalAbstract/>
+  <maxFeatures>0</maxFeatures>
+  <numDecimals>0</numDecimals>
+  <padWithZeros>false</padWithZeros>
+  <forcedDecimal>false</forcedDecimal>
+  <overridingServiceSRS>false</overridingServiceSRS>
+  <skipNumberMatched>false</skipNumberMatched>
+  <circularArcPresent>false</circularArcPresent>
+</featureType>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <link rel="icon" href="<%= BASE_URL %>favicon.ico">
+    <title>
+        <%= htmlWebpackPlugin.options.isProd ? '' : 'dev - ' %>WebGISTest
+    </title>
+    <% if(htmlWebpackPlugin.options.isProd){ %>
+        <!-- nprogress 的样式表文件 -->
+        <link rel="stylesheet" href="https://cdn.staticfile.org/nprogress/0.2.0/nprogress.min.css" />
+        <!-- element-ui的样式表文件 -->
+        <link rel="stylesheet" href="https://cdn.staticfile.org/element-ui/2.13.0/theme-chalk/index.css" />
+        <!-- Openlayers的样式表文件 -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/openlayers@4.6.5/dist/ol.css" />
+        <!-- Vue Echarts的js文件 -->
+        <script src="https://cdn.staticfile.org/vue/2.6.11/vue.min.js"></script>
+        <script src="https://cdn.staticfile.org/vue-router/3.0.1/vue-router.min.js"></script>
+        <script src="https://cdn.staticfile.org/axios/0.19.2/axios.min.js"></script>
+        <script src="https://cdn.staticfile.org/lodash.js/4.17.15/lodash.min.js"></script>
+        <script src="https://cdn.staticfile.org/echarts/4.7.0/echarts.min.js"></script>
+        <script src="https://cdn.staticfile.org/nprogress/0.2.0/nprogress.min.js"></script>
+        <!-- Openlayers的js文件 -->
+        <script src="https://cdn.jsdelivr.net/npm/openlayers@4.6.5/dist/ol.js"></script>
+        <!-- element-ui的js文件 -->
+        <script src="https://cdn.staticfile.org/element-ui/2.13.0/index.js"></script>
+        <% } %>
+</head>
+
+<body>
+    <noscript>
+        <strong>We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work properly without JavaScript enabled.
+                Please enable it to continue.</strong>
+    </noscript>
+    <div id="app"></div>
+    <!-- built files will be auto injected -->
+</body>
+
+</html>

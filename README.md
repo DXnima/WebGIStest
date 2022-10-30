@@ -1,18 +1,17 @@
 # WebGIS Test
-### java框架: Spring-Boot-mybaits-postgresSQL
-### 国内gitee地址：https://gitee.com/dxwangnima/WebGIStest.git
-### 技术：
-OpenLayers  
-postGIS 
-GeoTools    
-GeoServer REST  
 
-### 准备：
-1.下载安装[Geoserver](http://geoserver.org/)
+- Gitee地址：https://gitee.com/dxwangnima/WebGIStest.git
+- Github地址：https://github.com/DXwangnima/WebGIStest.git
 
-2.下载安装[PostgreSQL](https://www.postgresql.org/) + [PostGIS](https://postgis.net/)
+## 技术：
 
-### 说明
+- 前端：Vue | Element | Axios | OpenLayers | Mapbox-GL | Echarts
+
+- 后端：SpringBoot | Mybaits | Postgres+PostGIS+PgRouting | GeoTools | GDAL
+
+- 地图服务端： GeoServer
+
+## 说明
 1. [OpenLayers](https://openlayers.org/en/latest/apidoc/)
     - [x] 实现图层切换
       - [x] openStreetMap
@@ -56,40 +55,135 @@ GeoServer REST
         - [x] 叠加分析
         - [x] 合并分析
         - [x] 差异分析
+        - [x] 缓冲区分析
+        - [x] 网络分析(路径导航)
 3. [Geoserver REST](https://docs.geoserver.org/stable/en/user/rest/)
     - [x] 实现PostGIS数据源地图发布
     - [x] 实现Shapefile数据源地图发布
     - [x] 实现SLD样式发布
 
-### 展示
-#### 1. 图层切换
-![输入图片说明](https://images.gitee.com/uploads/images/2021/0529/163501_8e7de448_4939108.png "屏幕截图.png")
-#### 2. 图层多选控件
-![输入图片说明](https://images.gitee.com/uploads/images/2021/0529/163533_30fd627e_4939108.png "屏幕截图.png")
-#### 3. 鼠标移动获取经纬度
-![输入图片说明](https://images.gitee.com/uploads/images/2021/0529/163646_8a4de5ee_4939108.png "屏幕截图.png")
-#### 4. 请求数据接口渲染点要素图层
-![输入图片说明](https://images.gitee.com/uploads/images/2021/0529/163702_c4ffd01c_4939108.png "屏幕截图.png")
-#### 5. 图层联动
-![输入图片说明](https://images.gitee.com/uploads/images/2021/0529/163807_39774057_4939108.png "屏幕截图.png")
-#### 6. 要素样式修改
-![输入图片说明](https://images.gitee.com/uploads/images/2021/0529/163827_a7184669_4939108.png "屏幕截图.png")
-#### 7. 地图悬浮窗体
-![输入图片说明](https://images.gitee.com/uploads/images/2021/0529/163846_8d1dc79f_4939108.png "屏幕截图.png")
-#### 8. 地图覆盖饼状图
-![输入图片说明](https://images.gitee.com/uploads/images/2021/0529/163950_86abe0f7_4939108.png "屏幕截图.png")
-#### 9. 加载wkts数据 
-![输入图片说明](https://images.gitee.com/uploads/images/2021/0529/164002_144d8fe4_4939108.png "屏幕截图.png")
-#### 10. 点要素选中高亮
-![输入图片说明](https://images.gitee.com/uploads/images/2021/0529/164021_dadcddaa_4939108.png "屏幕截图.png")
-#### 11. 点线面要素在线绘制、编辑、保存
-![输入图片说明](https://images.gitee.com/uploads/images/2021/0529/164111_88c6ef4f_4939108.png "屏幕截图.png")
-#### 12. 综合例子：高校数据显示与查询
-![输入图片说明](https://images.gitee.com/uploads/images/2021/0529/164200_0243af12_4939108.png "屏幕截图.png")
-![输入图片说明](https://images.gitee.com/uploads/images/2021/0529/164329_d206d9ff_4939108.png "屏幕截图.png")
-#### 13. 网络分析（postgis+pgRouting+geoserver实现）
-网络分析参考资料：https://zhuanlan.zhihu.com/p/67232451 里面的”2.1.2、pgRouting“部分。
-![输入图片说明](https://images.gitee.com/uploads/images/2021/0902/235524_2bb91255_4939108.png "屏幕截图.png")
-#### 14. WFS属性查询和空间查询
-![输入图片说明](https://images.gitee.com/uploads/images/2021/1011/142400_56bf36d5_4939108.png "屏幕截图.png")
-![输入图片说明](https://images.gitee.com/uploads/images/2021/1011/142507_f1b722bb_4939108.png "屏幕截图.png")
+4. [GDAL](https://gdal.org/download.html)
+   - [x] 实现读取.gdb数据
+   - [x] 实现将.gdb数据转GeoJSON数据
+
+## 提前安装
+
+### 1. 安装Postgres+PostGIS+PgRouting
+
+#### Windows系统安装相关教程参考
+
+1. 安装Postgres + PostGIS: `https://zhuanlan.zhihu.com/p/62157728`
+
+2. 安装PgRouting: `https://zhuanlan.zhihu.com/p/82408769`
+
+#### Linux系统安装相关教程参考
+
+1. CentOS安装参考：`https://blog.csdn.net/qq_40953393/article/details/116203749`
+
+2. CentOS安装PgRouting:
+```shell
+# 在CentOS中
+yum install pgrouting_12   #12代表装的postgresql的版本
+```
+
+3. Ubuntu安装PostGres+PostGIS+PgRouting:
+```shell
+# 在Ubuntu中
+sudo apt-get install postgresql-12-postgis-3
+sudo apt install postgresql-12-pgrouting #12代表装的postgresql的版本
+```
+
+### 2. 安装GDAL
+
+配置参考：`https://www.jianshu.com/p/c9c385395ada` 
+
+#### 注意两点：
+
+1. 环境变量不能漏
+|环境变量名|环境变量值|
+|:-----------:| :-------------:|
+|path	|C:\Program Files\GDAL\|
+|GDAL_DATA	|C:\Program Files\GDAL\gdal-data|
+|GDAL_DRIVER_PATH	|C:\Program Files\GDAL\gdalplugins|
+|PROJ_LIB |C:\Program Files\GDAL\projlib|
+
+2. dll复制到bin目录
+
+### 3. Postgres数据库恢复
+
+`PostGres+PostGIS+PgRouting`都安装好了方可进行数据库恢复
+
+1. 创建数据库(数据库名称：wengistest)
+```shell
+CREATE DATABASE wengistest;
+```
+2. 添加空间扩展(必须执行)
+```shell
+CREATE EXTENSION postgis;
+CREATE EXTENSION pgrouting;
+```
+3. [SQL](/SQL)下的sql文件导入数据库
+
+|   文件名   |   说明   |   备注   |
+|    :----:   |    :----:   |          :----: |
+|[capital.sql](/SQL/capital.sql)|  数据表  |必须导入|
+|[layer_edit.sql](/SQL/layer_edit.sql)|图层编辑表|必须导入|
+|[layer_university.sql](/SQL/layer_university.sql)|高校数据表|必须导入|
+|[port.sql](/SQL/port.sql)|数据表|必须导入|
+|[province.sql](/SQL/province.sql)|省级行政区表|必须导入|
+|[mvt_test.sql](/SQL/mvt_test.sql)|存储矢量瓦片表|非必须，包含部分矢量瓦片缓存|
+|[mvt_function.sql](/SQL/mvt_function.sql)|生成矢量瓦片重要函数|最后执行|
+|[shenzhen_roads.sql](/SQL/shenzhen_roads.sql)|路网导航数据表|必须导入|
+|[shenzhen_creat_network.sql](/SQL/shenzhen_creat_network.sql)|生成路网导航相关函数|最后执行|
+
+### 4. 启动Geoserver
+
+- 双击[geoserver/bin/startup.bat](/geoserver/bin/startup.bat)
+
+&emsp; 或
+
+- 双击[/geoserver/bin/startup.sh](/geoserver/bin/startup.sh)
+
+注意： 
+```
+默认启动端口：28081
+用户名：admin
+密码：geoserver
+启动地址：http://localhost:28081/geoserver
+```
+
+### 5. 前端项目启动
+
+前端项目启动[跳转此处](/vue-ui/README.md)
+
+### 6. 后端项目启动
+
+后端项目启动[跳转此处](/server-web/README.md)
+
+## 文件说明
+```
+├─geoserver     geoserver地图服务软件
+├─server-web    后端项目
+├─SQL           数据库恢复数据表
+├─vue-ui        前端项目
+```
+
+## 相关技术参考
+1. GIS开发实战图谱：https://blog.csdn.net/sinat_41310868/article/details/107010972
+2. WebGIS文章汇总：https://zhuanlan.zhihu.com/p/67232451
+3. PostGIS矢量瓦片创建
+- PostgreSQL+Postgis MapboxVectorTile应用：https://blog.csdn.net/gery1990/article/details/110471047
+- 基于springboot+postgis的矢量切片：https://blog.csdn.net/zhaoquanfeng/article/details/81874270
+- pgsql+postgis 实时返回mvt(Mapbox Vector Tiles) 矢量瓦片：https://blog.csdn.net/qq_35997793/article/details/108145550
+
+4. 其他矢量地图解决方案
+- 发布自己的mapbox矢量地图：https://blog.csdn.net/xinlingjun2007/article/details/80846826
+- Mapbox-GL矢量地图样式参考：https://blog.csdn.net/wan_yanyan528/article/details/48465403
+
+5. 网路分析（路径导航）
+- pgRouting官方教程介绍：https://blog.csdn.net/qq_35732147/article/details/88633598
+- PostGIS 结合Openlayers以及Geoserver实现最短路径分析：https://blog.csdn.net/guzicheng1990/article/details/102524923
+- PostGis+GeoServer+OpenLayers最短路径分析：https://blog.csdn.net/qgbihc/article/details/108635912
+
+6. GDAL读取gdb
+- java 调用gdal读取gdb数据：https://blog.csdn.net/weixin_53853459/article/details/120954597

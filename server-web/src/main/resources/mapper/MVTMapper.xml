@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.webgistest.dao.MVTMapper" >
+  <resultMap id="BaseResultMap" type="com.example.webgistest.pojo.MVT" >
+    <constructor >
+      <idArg column="z" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <idArg column="x" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <idArg column="y" jdbcType="INTEGER" javaType="java.lang.Integer" />
+    </constructor>
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.example.webgistest.pojo.MVT" >
+    <constructor >
+      <idArg column="z" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <idArg column="x" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <idArg column="y" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="mvt" jdbcType="BINARY" javaType="_byte[]" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    z, x, y
+  </sql>
+  <select id="getMvt" resultMap="ResultMapWithBLOBs" parameterType="com.example.webgistest.pojo.MVT" >
+    SELECT #{z,jdbcType=INTEGER} as z,
+           #{x,jdbcType=INTEGER} as x,
+           #{y,jdbcType=INTEGER} as y,
+           MVT_Title(#{z,jdbcType=INTEGER},#{x,jdbcType=INTEGER},#{y,jdbcType=INTEGER}) as mvt
+  </select>
+</mapper>

@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+
+<html lang="${lang}">
+<head>
+    <title> GNU LESSER GENERAL PUBLIC LICENSE</title>
+    <meta charset="utf-8" />
+  <style>
+
+    body, html, h1, h2, h3, h4, h5, .rst-content .toctree-wrapper p.caption {
+      font-family: "Lucida Sans", "Lucida Sans Unicode", "Lucida Grande", Verdana, Arial, Helvetica, sans-serif;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+      color: #2c3e50;
+    }
+    /* general */
+    body {
+     font-family: 'Lucida Grande', 'Lucida Sans Unicode', 'Geneva', 'Verdana', sans-serif;
+      margin: 0;
+    }
+    h1 {
+      font-size: 32px;
+    }
+    h2 {
+      padding-bottom: .3rem;
+      border-bottom: 1px solid #eaecef;
+    }
+    h4 {
+      font-size: 110%;
+      text-decoration: underline;
+    }
+    p {
+      margin-bottom: 20px;
+      line-height: 24px;
+    }
+    a {
+      color: #0366d6;
+    }
+    a:hover, a:focus, a:visited {
+      color: #0366d6;
+      text-decoration: underline;
+    }
+    ul {
+      margin-bottom: 24px;
+    }
+    ul li {
+      margin-top: 5px;
+      margin-bottom: 5px;
+      line-height: 24px;
+    }
+    ul li p {
+      margin-top: 5px;
+      margin-bottom: 5px;
+    }
+    .clearfix:before, .clearfix:after {
+      content: " ";
+      display: table;
+    }
+    .clearfix:after {
+      clear: both;
+    }
+    /* layout */
+    header {
+      border-bottom: 1px solid #e1e4e5;
+      padding: 15px 10px 10px 10px;
+    }
+    .gt-logo {
+      float: right;
+    }
+    .gt-logo svg {
+      width: 324px;
+      height: 82px;
+    }
+    .wrapper {
+      max-width: 700px;
+      margin: 0 auto;
+    }
+    @media (max-width: 700px) {
+      .wrapper {
+        padding: 0 15px;
+      }
+    }
+    footer {
+      border-top: 1px solid #e1e4e5;
+      padding: 15px;
+      color: grey;
+    }
+    footer p {
+      margin: 0;
+    }
+  </style>
+</head>
+<body>
+  <header class="clearfix">
+    <div class="gs-logo">
+      <a href="https://geoserver.org" target="_blank">
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   version="1.0"
+   id="Ebene_1"
+   x="0px"
+   y="0px"
+   width="137.21976"
+   height="32.04425"
+   viewBox="0 0 137.21976 32.044251"
+   enable-background="new 0 0 612.302 193.34"
+   xml:space="preserve"
+   sodipodi:docname="GeoServer.svg"
+   inkscape:version="1.0.1 (c497b03c, 2020-09-10)"><sodipodi:namedview
+   pagecolor="#ffffff"
+   bordercolor="#666666"
+   borderopacity="1"
+   objecttolerance="10"
+   gridtolerance="10"
+   guidetolerance="10"
+   inkscape:pageopacity="0"
+   inkscape:pageshadow="2"
+   inkscape:window-width="1180"
+   inkscape:window-height="767"
+   id="namedview90"
+   showgrid="false"
+   inkscape:zoom="3.0210441"
+   inkscape:cx="50.7187"
+   inkscape:cy="-59.875265"
+   inkscape:window-x="0"
+   inkscape:window-y="102"
+   inkscape:window-maximized="0"
+   inkscape:current-layer="Ebene_1" /><metadata
+   id="metadata330"><rdf:RDF><cc:Work
+       rdf:about=""><dc:format>image/svg+xml</dc:format><dc:type
+         rdf:resource="http://purl.org/dc/dcmitype/StillImage" /><dc:title /></cc:Work></rdf:RDF></metadata><defs
+   id="defs328" />
+<g
+   id="g323"
+   transform="matrix(0.2375,0,0,0.2375,-4.1873189,-6.9463812)">
+	<g
+   id="g209">
+		<path
+   fill="#0092c8"
+   d="m 183.868,103.441 c 0,-22.375 14.299,-38.812 35.379,-38.812 9.841,0 19.124,6.223 19.124,6.223 l -5.754,8.355 c 0,0.092 -7.151,-5.571 -14.113,-5.571 -11.793,0 -22.288,12.536 -22.288,28.875 0,8.824 4.736,16.809 14.765,16.809 2.969,0 5.942,-0.652 8.449,-1.765 l 2.415,-12.443 -0.278,-7.797 h 13.741 l -5.293,28.411 c -2.134,0 -4.269,0.558 -6.405,1.022 -4.179,0.928 -9.564,2.042 -14.483,2.042 -15.231,0.001 -25.259,-10.584 -25.259,-25.349"
+   id="path189" />
+		<path
+   fill="#0092c8"
+   d="m 252.756,107.621 c 0,6.407 3.528,11.42 9.288,11.42 7.799,0 15.321,-8.357 15.321,-8.357 l 0.743,10.957 c 0,0 -6.223,7.151 -18.479,7.151 -12.722,0 -18.385,-9.472 -18.385,-20.241 0,-15.693 9.935,-29.157 24.977,-29.157 9.472,0 13.926,4.828 13.926,11.233 0,12.538 -13.833,16.53 -27.391,16.994 m 15.507,-16.064 c 0,-2.785 -1.577,-3.991 -3.436,-3.991 -6.219,0 -9.657,6.962 -11.235,12.813 4.643,-0.557 14.671,-1.115 14.671,-8.822"
+   id="path191" />
+		<path
+   fill="#0092c8"
+   d="m 325.919,97.964 c 0,16.34 -9.653,30.827 -25.997,30.827 -13.465,0 -16.621,-11.143 -16.621,-18.573 0,-18.197 10.492,-30.918 26.185,-30.918 9.196,0.001 16.433,6.499 16.433,18.664 m -11.886,1.3 c 0,-6.593 -2.598,-11.606 -6.87,-11.606 -7.055,0 -12.252,11.142 -12.252,20.893 0,6.963 2.133,11.79 6.869,11.79 5.383,-10e-4 12.253,-6.779 12.253,-21.077"
+   id="path193" />
+		<path
+   fill="#0092c8"
+   d="m 371.227,76.794 c 0,0.093 -6.224,-3.156 -11.978,-3.156 -4.736,0 -8.546,3.249 -8.546,7.706 0,10.678 20.148,13.37 20.148,28.875 0,10.679 -9.746,18.573 -21.632,18.573 -9.562,0 -17.178,-5.108 -17.178,-5.108 l 1.486,-9.564 c 0,0 8.077,5.388 15.137,5.388 4.179,0 10.119,-2.323 10.119,-8.265 0,-8.451 -20.615,-12.907 -20.615,-28.134 0,-11.142 10.866,-18.476 21.638,-18.476 8.911,0 15.601,3.063 15.601,3.063 z"
+   id="path195" />
+		<path
+   fill="#0092c8"
+   d="m 388.398,107.621 c 0,6.407 3.529,11.42 9.284,11.42 7.801,0 15.323,-8.357 15.323,-8.357 l 0.739,10.957 c 0,0 -6.22,7.151 -18.478,7.151 -12.718,0 -18.382,-9.472 -18.382,-20.241 0,-15.693 9.936,-29.157 24.978,-29.157 9.466,0 13.929,4.828 13.929,11.233 10e-4,12.538 -13.838,16.53 -27.393,16.994 m 15.508,-16.064 c 0,-2.785 -1.581,-3.991 -3.438,-3.991 -6.219,0 -9.657,6.962 -11.235,12.813 4.646,-0.557 14.673,-1.115 14.673,-8.822"
+   id="path197" />
+		<path
+   fill="#0092c8"
+   d="m 419.314,127.584 7.337,-37.327 -0.742,-8.356 13.088,-2.6 -1.486,9.934 c 0,0 5.572,-9.934 13.374,-9.934 3.621,0 6.219,1.395 6.219,1.395 L 453.019,91 c 0,0 -2.597,-1.114 -4.92,-1.114 -5.292,0 -11.797,10.123 -13.279,17.829 l -2.322,11.978 -0.461,7.892 h -12.723 z"
+   id="path199" />
+		<path
+   fill="#0092c8"
+   d="m 466.668,126.933 -5.669,-37.141 -2.875,-8.727 12.903,-1.764 4.178,28.317 0.283,7.893 3.897,-7.893 7.241,-11.883 c 1.486,-2.416 2.137,-4.644 2.137,-6.963 0,-3.436 -2.506,-7.707 -2.506,-7.707 l 11.048,-1.764 c 0,0 2.136,4.176 2.136,8.077 0,3.713 -1.485,7.614 -4.551,12.441 L 476.6,128.79 Z"
+   id="path201" />
+		<path
+   fill="#0092c8"
+   d="m 512.252,107.621 c 0,6.407 3.526,11.42 9.279,11.42 7.803,0 15.325,-8.357 15.325,-8.357 l 0.741,10.957 c 0,0 -6.222,7.151 -18.478,7.151 -12.72,0 -18.387,-9.472 -18.387,-20.241 0,-15.693 9.94,-29.157 24.98,-29.157 9.471,0 13.929,4.828 13.929,11.233 0.002,12.538 -13.834,16.529 -27.389,16.994 m 15.505,-16.064 c 0,-2.785 -1.581,-3.991 -3.437,-3.991 -6.222,0 -9.659,6.962 -11.236,12.813 4.642,-0.557 14.673,-1.115 14.673,-8.822"
+   id="path203" />
+		<path
+   fill="#0092c8"
+   d="m 543.165,127.584 7.335,-37.327 -0.741,-8.356 13.089,-2.6 -1.485,9.934 c 0,0 5.572,-9.934 13.372,-9.934 3.622,0 6.219,1.395 6.219,1.395 L 576.871,91 c 0,0 -2.599,-1.114 -4.919,-1.114 -5.291,0 -11.796,10.123 -13.282,17.829 l -2.318,11.978 -0.464,7.892 h -12.723 z"
+   id="path205" />
+		<path
+   fill="#0092c8"
+   d="M 152.666,78.305 114.58,40.218 c -5.069,-5.066 -11.759,-7.597 -18.418,-7.597 -6.651,0 -13.338,2.536 -18.396,7.597 L 39.677,78.305 c -5.058,5.053 -7.597,11.73 -7.595,18.381 -0.002,6.658 2.526,13.357 7.598,18.429 l 38.085,38.086 c 5.058,5.06 11.745,7.598 18.401,7.597 h 0.012 c 6.651,0 13.336,-2.535 18.401,-7.597 l 38.084,-38.086 c 5.065,-5.066 7.599,-11.76 7.596,-18.414 0.004,-6.652 -2.535,-13.338 -7.593,-18.396"
+   id="path207" />
+	</g>
+	<g
+   id="g224">
+		<defs
+   id="defs212">
+			<path
+   id="SVGID_1_"
+   d="M 80,42.457 41.912,80.543 c -8.89,8.89 -8.89,23.442 0,32.337 L 80,150.965 c 8.892,8.894 23.45,8.895 32.342,0 l 38.086,-38.085 c 8.897,-8.896 8.894,-23.447 0.001,-32.337 L 112.341,42.457 c -4.447,-4.45 -10.309,-6.672 -16.169,-6.672 -5.862,0 -11.726,2.224 -16.172,6.672" />
+		</defs>
+		<clipPath
+   id="SVGID_2_">
+			<use
+   xlink:href="#SVGID_1_"
+   overflow="visible"
+   id="use214"
+   x="0"
+   y="0"
+   width="100%"
+   height="100%" />
+		</clipPath>
+		
+			<linearGradient
+   id="SVGID_3_"
+   gradientUnits="userSpaceOnUse"
+   x1="-1.1152"
+   y1="578.58588"
+   x2="0.59909999"
+   y2="578.58588"
+   gradientTransform="matrix(62.1889,-26.3976,-26.3976,-62.1889,15385.853,36072.457)">
+			<stop
+   offset="0"
+   style="stop-color:#0092C8"
+   id="stop217" />
+			<stop
+   offset="1"
+   style="stop-color:#00AFDD"
+   id="stop219" />
+		</linearGradient>
+		<polygon
+   clip-path="url(#SVGID_2_)"
+   fill="url(#SVGID_3_)"
+   points="-11.605,54.728 140.042,-9.643 203.951,140.918 52.304,205.288 "
+   id="polygon222"
+   style="fill:url(#SVGID_3_)" />
+	</g>
+	<g
+   id="g321">
+		<defs
+   id="defs229">
+			<filter
+   id="Adobe_OpacityMaskFilter"
+   filterUnits="userSpaceOnUse"
+   x="-31.976999"
+   y="-31.433001"
+   width="256.28299"
+   height="256.28299">
+				<feColorMatrix
+   type="matrix"
+   values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 1 0"
+   id="feColorMatrix226" />
+			</filter>
+		</defs>
+		<mask
+   maskUnits="userSpaceOnUse"
+   x="-31.977"
+   y="-31.433"
+   width="256.283"
+   height="256.283"
+   id="SVGID_4_">
+			<g
+   filter="url(#Adobe_OpacityMaskFilter)"
+   id="g251">
+				<rect
+   x="32.070999"
+   y="32.618"
+   width="128.185"
+   height="128.179"
+   id="rect231" />
+				<g
+   enable-background="new    "
+   id="g249">
+					<path
+   fill="#ffffff"
+   d="m 74.216,116.232 c 10.716,-7.749 -7.75,-15.5 -12.309,-17.778 -4.558,-2.279 0,-6.838 4.787,-8.89 4.789,-2.051 3.177,13.009 8.89,7.294 5.471,-5.47 -9.345,-11.852 3.305,-19.491 12.653,-7.635 -5.584,-5.582 -5.584,-12.65 0,-7.067 7.979,-7.977 7.979,-13.449 0,-3.58 -6.162,-4.171 -10.424,-4.154 l -31.189,31.19 c -0.694,0.693 -1.335,1.418 -1.933,2.168 0.148,5.851 7.16,6.814 11.175,6.814 5.016,0 7.751,7.751 2.737,12.765 -5.014,5.016 -5.387,13.595 -2.114,16.866 2.203,2.206 1.443,6.312 0.708,8.771 l 5.916,5.912 c 1.621,-5.203 8.685,-8.588 18.056,-15.368"
+   id="path233" />
+					<path
+   fill="#ffffff"
+   d="m 93.543,41.044 c 8.619,-1.109 0.641,5.976 4.737,7.768 3.704,1.618 13.599,-3.339 14.686,-10.062 -4.831,-4.083 -10.832,-6.132 -16.809,-6.13 -2.662,0 -5.327,0.412 -7.891,1.224 -0.473,3.449 -0.092,7.893 5.277,7.2"
+   id="path235" />
+					<path
+   fill="#ffffff"
+   d="m 114.599,89.498 c -1.434,-5.905 -15.203,-8.056 -21.801,-3.249 -9.726,7.087 -11.281,20.726 -3.728,21.498 7.554,0.773 14.438,8.093 10.643,15.337 -3.793,7.244 4.584,24.899 13.775,12.095 9.192,-12.803 4.615,-15.301 5.34,-22.352 0.72,-7.048 9.363,-15.99 7.246,-18.594 -2.122,-2.604 -10.352,-0.11 -11.475,-4.735"
+   id="path237" />
+					<path
+   fill="#ffffff"
+   d="m 83.665,157.613 c 3.879,2.117 8.191,3.182 12.494,3.182 h 0.012 c 6.651,0 13.338,-2.534 18.402,-7.597 l 3.215,-3.213 c -5.481,-1.025 -24.537,4.611 -34.123,7.628"
+   id="path239" />
+					<path
+   fill="#ffffff"
+   d="m 138.319,107.358 c -10.275,3.558 -17.391,15.021 -11.461,16.601 5.588,1.488 11.523,-2.986 15.498,1.456 l 10.302,-10.302 c -1.985,-4.05 -5.178,-10.925 -14.339,-7.755"
+   id="path241" />
+					<path
+   fill="#ffffff"
+   d="m 105.108,65.492 c 2.338,-0.313 0.499,-2.935 -0.828,-3.516 -1.327,-0.582 -5.552,-0.283 -3.988,1.63 1.182,1.446 2.481,2.201 4.816,1.886"
+   id="path243" />
+					<path
+   fill="#ffffff"
+   d="m 154.772,96.18 c -0.018,-1.368 -5.071,-2.765 -6.405,-2.646 -1.329,0.125 -1.774,2.366 1.97,3.283 2.824,0.69 4.452,0.73 4.435,-0.637"
+   id="path245" />
+					<path
+   fill="#ffffff"
+   d="m 110.593,54.962 c -0.564,4.5 3.939,6.19 1.688,8.44 -2.251,2.25 -15.5,7.035 -12.382,8.44 8.325,3.748 -5.78,3.222 0,9.003 2.871,2.87 11.933,-2.198 10.974,-5.628 -0.27,-0.97 2.503,-4.625 4.721,-2.698 1.917,1.666 7.844,3.504 7.844,13.321 0,5.226 4.501,10.323 9.103,9.075 3.82,-1.037 4.46,-5.837 2.088,-7.598 -3.03,-2.249 5.093,-4.964 13.362,3.959 3.815,4.115 10.121,-0.905 11.415,-1.175 V 90.1 c -1.125,-4.326 -3.373,-8.424 -6.745,-11.798 L 121.155,46.8 c -5.802,0.603 -10.332,6.321 -10.562,8.162"
+   id="path247" />
+				</g>
+			</g>
+		</mask>
+		<g
+   mask="url(#SVGID_4_)"
+   id="g279">
+			<g
+   id="g277">
+				<defs
+   id="defs255">
+					<rect
+   id="SVGID_5_"
+   x="32.075001"
+   y="32.622002"
+   width="128.17799"
+   height="128.17599" />
+				</defs>
+				<clipPath
+   id="SVGID_6_">
+					<use
+   xlink:href="#SVGID_5_"
+   overflow="visible"
+   id="use257"
+   x="0"
+   y="0"
+   width="100%"
+   height="100%" />
+				</clipPath>
+				<g
+   clip-path="url(#SVGID_6_)"
+   id="g275">
+					<defs
+   id="defs261">
+						<path
+   id="SVGID_7_"
+   d="m 96.157,32.621 c -6.656,-0.003 -13.34,2.536 -18.4,7.597 L 39.67,78.303 c -4.984,4.983 -7.527,11.542 -7.595,18.098 v 0.569 c 0.068,6.564 2.597,13.144 7.597,18.141 l 38.084,38.087 c 5.06,5.063 11.746,7.603 18.402,7.6 h 0.007 c 6.653,0 13.341,-2.535 18.405,-7.6 l 38.084,-38.087 c 5.068,-5.065 7.599,-11.756 7.598,-18.412 10e-4,-6.651 -2.533,-13.335 -7.592,-18.395 L 114.57,40.217 C 109.508,35.151 102.821,32.62 96.169,32.62 h -0.012 z" />
+					</defs>
+					<clipPath
+   id="SVGID_8_">
+						<use
+   xlink:href="#SVGID_7_"
+   overflow="visible"
+   id="use263"
+   x="0"
+   y="0"
+   width="100%"
+   height="100%" />
+					</clipPath>
+					
+						<linearGradient
+   id="SVGID_9_"
+   gradientUnits="userSpaceOnUse"
+   x1="-1.2285"
+   y1="578.75201"
+   x2="0.48590001"
+   y2="578.75201"
+   gradientTransform="matrix(43.2909,-44.829,-44.829,-43.2909,26057.109,25134.764)">
+						<stop
+   offset="0"
+   style="stop-color:#8CC63F"
+   id="stop266" />
+						<stop
+   offset="0.6137"
+   style="stop-color:#C9E39F"
+   id="stop268" />
+						<stop
+   offset="1"
+   style="stop-color:#F1F6DE"
+   id="stop270" />
+					</linearGradient>
+					<polygon
+   clip-path="url(#SVGID_8_)"
+   fill="url(#SVGID_9_)"
+   points="-31.977,98.946 93.928,-31.433 224.306,94.472 98.401,224.851 "
+   id="polygon273"
+   style="fill:url(#SVGID_9_)" />
+				</g>
+			</g>
+		</g>
+		<g
+   opacity="0.25"
+   id="g299">
+			<g
+   id="g297">
+				<defs
+   id="defs282">
+					<rect
+   id="SVGID_10_"
+   x="32.082001"
+   y="32.622002"
+   width="128.177"
+   height="128.17599" />
+				</defs>
+				<clipPath
+   id="SVGID_11_">
+					<use
+   xlink:href="#SVGID_10_"
+   overflow="visible"
+   id="use284"
+   x="0"
+   y="0"
+   width="100%"
+   height="100%" />
+				</clipPath>
+				<g
+   clip-path="url(#SVGID_11_)"
+   id="g295">
+					<defs
+   id="defs288">
+						<rect
+   id="SVGID_12_"
+   x="32.082001"
+   y="32.622002"
+   width="128.177"
+   height="128.17599" />
+					</defs>
+					<clipPath
+   id="SVGID_13_">
+						<use
+   xlink:href="#SVGID_12_"
+   overflow="visible"
+   id="use290"
+   x="0"
+   y="0"
+   width="100%"
+   height="100%" />
+					</clipPath>
+					<path
+   clip-path="url(#SVGID_13_)"
+   fill="#0092c8"
+   d="M 96.166,160.795 C 89.509,160.799 82.822,158.259 77.765,153.2 L 39.681,115.113 C 34.606,110.043 32.079,103.346 32.082,96.684 32.079,90.033 34.62,83.356 39.677,78.306 L 77.765,40.22 c 5.057,-5.062 11.744,-7.6 18.399,-7.598 6.654,-0.003 13.349,2.531 18.416,7.598 l 38.085,38.086 c 5.06,5.058 7.6,11.743 7.594,18.396 0.005,6.654 -2.533,13.347 -7.594,18.411 L 114.58,153.2 c -5.065,5.066 -11.755,7.598 -18.408,7.595 z M 44.148,82.775 c -3.826,3.827 -5.741,8.853 -5.743,13.909 0.002,5.081 1.912,10.125 5.745,13.958 l 38.086,38.085 c 3.828,3.829 8.863,5.741 13.929,5.744 5.07,-0.003 10.106,-1.912 13.941,-5.744 l 38.084,-38.085 c 3.832,-3.833 5.741,-8.873 5.745,-13.941 -0.003,-5.067 -1.914,-10.098 -5.742,-13.927 L 110.106,44.69 c -3.835,-3.834 -8.873,-5.743 -13.943,-5.746 -5.067,10e-4 -10.1,1.917 -13.928,5.746 z"
+   id="path293" />
+				</g>
+			</g>
+		</g>
+		<g
+   opacity="0.15"
+   id="g319">
+			<g
+   id="g317">
+				<defs
+   id="defs302">
+					<rect
+   id="SVGID_14_"
+   x="32.082001"
+   y="32.620998"
+   width="124.887"
+   height="87.036003" />
+				</defs>
+				<clipPath
+   id="SVGID_15_">
+					<use
+   xlink:href="#SVGID_14_"
+   overflow="visible"
+   id="use304"
+   x="0"
+   y="0"
+   width="100%"
+   height="100%" />
+				</clipPath>
+				<g
+   clip-path="url(#SVGID_15_)"
+   id="g315">
+					<defs
+   id="defs308">
+						<rect
+   id="SVGID_16_"
+   x="32.082001"
+   y="32.620998"
+   width="124.887"
+   height="87.036003" />
+					</defs>
+					<clipPath
+   id="SVGID_17_">
+						<use
+   xlink:href="#SVGID_16_"
+   overflow="visible"
+   id="use310"
+   x="0"
+   y="0"
+   width="100%"
+   height="100%" />
+					</clipPath>
+					<path
+   clip-path="url(#SVGID_17_)"
+   fill="#ffffff"
+   d="m 156.97,84.014 c -1.14,-2.049 -2.57,-3.976 -4.304,-5.71 L 114.58,40.22 C 109.511,35.151 102.821,32.621 96.163,32.623 89.511,32.622 82.824,35.157 77.766,40.22 L 39.677,78.304 c -5.057,5.055 -7.597,11.73 -7.595,18.381 -0.002,6.657 2.526,13.358 7.598,18.428 l 4.54,4.544 C 52.275,107.132 91.137,54.294 156.97,84.014"
+   id="path313" />
+				</g>
+			</g>
+		</g>
+	</g>
+</g>
+</svg>
+
+      </a>
+    </div>
+  </header>
+  <div class="wrapper" role="main"><h3>GNU LESSER GENERAL PUBLIC LICENSE</h3>
+<p>Version 2.1, February 1999</p>
+<pre><code>Copyright (C) 1991, 1999 Free Software Foundation, Inc.
+51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
+
+Everyone is permitted to copy and distribute verbatim copies
+of this license document, but changing it is not allowed.
+
+[This is the first released version of the Lesser GPL.  It also counts
+ as the successor of the GNU Library Public License, version 2, hence
+ the version number 2.1.]
+</code></pre>
+<h3>Preamble</h3>
+<p>The licenses for most software are designed to take away your freedom to share and change it. By contrast, the GNU General Public Licenses are intended to guarantee your freedom to share and change free software--to make sure the software is free for all its users.</p>
+<p>This license, the Lesser General Public License, applies to some specially designated software packages--typically libraries--of the Free Software Foundation and other authors who decide to use it. You can use it too, but we suggest you first think carefully about whether this license or the ordinary General Public License is the better strategy to use in any particular case, based on the explanations below.</p>
+<p>When we speak of free software, we are referring to freedom of use, not price. Our General Public Licenses are designed to make sure that you have the freedom to distribute copies of free software (and charge for this service if you wish); that you receive source code or can get it if you want it; that you can change the software and use pieces of it in new free programs; and that you are informed that you can do these things.</p>
+<p>To protect your rights, we need to make restrictions that forbid distributors to deny you these rights or to ask you to surrender these rights. These restrictions translate to certain responsibilities for you if you distribute copies of the library or if you modify it.</p>
+<p>For example, if you distribute copies of the library, whether gratis or for a fee, you must give the recipients all the rights that we gave you. You must make sure that they, too, receive or can get the source code. If you link other code with the library, you must provide complete object files to the recipients, so that they can relink them with the library after making changes to the library and recompiling it. And you must show them these terms so they know their rights.</p>
+<p>We protect your rights with a two-step method: (1) we copyright the library, and (2) we offer you this license, which gives you legal permission to copy, distribute and/or modify the library.</p>
+<p>To protect each distributor, we want to make it very clear that there is no warranty for the free library. Also, if the library is modified by someone else and passed on, the recipients should know that what they have is not the original version, so that the original author's reputation will not be affected by problems that might be introduced by others.</p>
+<p>Finally, software patents pose a constant threat to the existence of any free program. We wish to make sure that a company cannot effectively restrict the users of a free program by obtaining a restrictive license from a patent holder. Therefore, we insist that any patent license obtained for a version of the library must be consistent with the full freedom of use specified in this license.</p>
+<p>Most GNU software, including some libraries, is covered by the ordinary GNU General Public License. This license, the GNU Lesser General Public License, applies to certain designated libraries, and is quite different from the ordinary General Public License. We use this license for certain libraries in order to permit linking those libraries into non-free programs.</p>
+<p>When a program is linked with a library, whether statically or using a shared library, the combination of the two is legally speaking a combined work, a derivative of the original library. The ordinary General Public License therefore permits such linking only if the entire combination fits its criteria of freedom. The Lesser General Public License permits more lax criteria for linking other code with the library.</p>
+<p>We call this license the &quot;Lesser&quot; General Public License because it does Less to protect the user's freedom than the ordinary General Public License. It also provides other free software developers Less of an advantage over competing non-free programs. These disadvantages are the reason we use the ordinary General Public License for many libraries. However, the Lesser license provides advantages in certain special circumstances.</p>
+<p>For example, on rare occasions, there may be a special need to encourage the widest possible use of a certain library, so that it becomes a de-facto standard. To achieve this, non-free programs must be allowed to use the library. A more frequent case is that a free library does the same job as widely used non-free libraries. In this case, there is little to gain by limiting the free library to free software only, so we use the Lesser General Public License.</p>
+<p>In other cases, permission to use a particular library in non-free programs enables a greater number of people to use a large body of free software. For example, permission to use the GNU C Library in non-free programs enables many more people to use the whole GNU operating system, as well as its variant, the GNU/Linux operating system.</p>
+<p>Although the Lesser General Public License is Less protective of the users' freedom, it does ensure that the user of a program that is linked with the Library has the freedom and the wherewithal to run that program using a modified version of the Library.</p>
+<p>The precise terms and conditions for copying, distribution and modification follow. Pay close attention to the difference between a &quot;work based on the library&quot; and a &quot;work that uses the library&quot;. The former contains code derived from the library, whereas the latter must be combined with the library in order to run.</p>
+<h3>TERMS AND CONDITIONS FOR COPYING, DISTRIBUTION AND MODIFICATION</h3>
+<p><strong>0.</strong> This License Agreement applies to any software library or other program which contains a notice placed by the copyright holder or other authorized party saying it may be distributed under the terms of this Lesser General Public License (also called &quot;this License&quot;). Each licensee is addressed as &quot;you&quot;.</p>
+<p>A &quot;library&quot; means a collection of software functions and/or data prepared so as to be conveniently linked with application programs (which use some of those functions and data) to form executables.</p>
+<p>The &quot;Library&quot;, below, refers to any such software library or work which has been distributed under these terms. A &quot;work based on the Library&quot; means either the Library or any derivative work under copyright law: that is to say, a work containing the Library or a portion of it, either verbatim or with modifications and/or translated straightforwardly into another language. (Hereinafter, translation is included without limitation in the term &quot;modification&quot;.)</p>
+<p>&quot;Source code&quot; for a work means the preferred form of the work for making modifications to it. For a library, complete source code means all the source code for all modules it contains, plus any associated interface definition files, plus the scripts used to control compilation and installation of the library.</p>
+<p>Activities other than copying, distribution and modification are not covered by this License; they are outside its scope. The act of running a program using the Library is not restricted, and output from such a program is covered only if its contents constitute a work based on the Library (independent of the use of the Library in a tool for writing it). Whether that is true depends on what the Library does and what the program that uses the Library does.</p>
+<p><strong>1.</strong> You may copy and distribute verbatim copies of the Library's complete source code as you receive it, in any medium, provided that you conspicuously and appropriately publish on each copy an appropriate copyright notice and disclaimer of warranty; keep intact all the notices that refer to this License and to the absence of any warranty; and distribute a copy of this License along with the Library.</p>
+<p>You may charge a fee for the physical act of transferring a copy, and you may at your option offer warranty protection in exchange for a fee.</p>
+<p><strong>2.</strong> You may modify your copy or copies of the Library or any portion of it, thus forming a work based on the Library, and copy and distribute such modifications or work under the terms of Section 1 above, provided that you also meet all of these conditions:</p>
+<ul>
+<li><strong>a)</strong> The modified work must itself be a software library.</li>
+<li><strong>b)</strong> You must cause the files modified to carry prominent notices stating that you changed the files and the date of any change.</li>
+<li><strong>c)</strong> You must cause the whole of the work to be licensed at no charge to all third parties under the terms of this License.</li>
+<li>
+<p><strong>d)</strong> If a facility in the modified Library refers to a function or a table of data to be supplied by an application program that uses the facility, other than as an argument passed when the facility is invoked, then you must make a good faith effort to ensure that, in the event an application does not supply such function or table, the facility still operates, and performs whatever part of its purpose remains meaningful.</p>
+<p>(For example, a function in a library to compute square roots has a purpose that is entirely well-defined independent of the application. Therefore, Subsection 2d requires that any application-supplied function or table used by this function must be optional: if the application does not supply it, the square root function must still compute square roots.)</p>
+</li>
+</ul>
+<p>These requirements apply to the modified work as a whole. If identifiable sections of that work are not derived from the Library, and can be reasonably considered independent and separate works in themselves, then this License, and its terms, do not apply to those sections when you distribute them as separate works. But when you distribute the same sections as part of a whole which is a work based on the Library, the distribution of the whole must be on the terms of this License, whose permissions for other licensees extend to the entire whole, and thus to each and every part regardless of who wrote it.</p>
+<p>Thus, it is not the intent of this section to claim rights or contest your rights to work written entirely by you; rather, the intent is to exercise the right to control the distribution of derivative or collective works based on the Library.</p>
+<p>In addition, mere aggregation of another work not based on the Library with the Library (or with a work based on the Library) on a volume of a storage or distribution medium does not bring the other work under the scope of this License.</p>
+<p><strong>3.</strong> You may opt to apply the terms of the ordinary GNU General Public License instead of this License to a given copy of the Library. To do this, you must alter all the notices that refer to this License, so that they refer to the ordinary GNU General Public License, version 2, instead of to this License. (If a newer version than version 2 of the ordinary GNU General Public License has appeared, then you can specify that version instead if you wish.) Do not make any other change in these notices.</p>
+<p>Once this change is made in a given copy, it is irreversible for that copy, so the ordinary GNU General Public License applies to all subsequent copies and derivative works made from that copy.</p>
+<p>This option is useful when you wish to copy part of the code of the Library into a program that is not a library.</p>
+<p><strong>4.</strong> You may copy and distribute the Library (or a portion or derivative of it, under Section 2) in object code or executable form under the terms of Sections 1 and 2 above provided that you accompany it with the complete corresponding machine-readable source code, which must be distributed under the terms of Sections 1 and 2 above on a medium customarily used for software interchange.</p>
+<p>If distribution of object code is made by offering access to copy from a designated place, then offering equivalent access to copy the source code from the same place satisfies the requirement to distribute the source code, even though third parties are not compelled to copy the source along with the object code.</p>
+<p><strong>5.</strong> A program that contains no derivative of any portion of the Library, but is designed to work with the Library by being compiled or linked with it, is called a &quot;work that uses the Library&quot;. Such a work, in isolation, is not a derivative work of the Library, and therefore falls outside the scope of this License.</p>
+<p>However, linking a &quot;work that uses the Library&quot; with the Library creates an executable that is a derivative of the Library (because it contains portions of the Library), rather than a &quot;work that uses the library&quot;. The executable is therefore covered by this License. Section 6 states terms for distribution of such executables.</p>
+<p>When a &quot;work that uses the Library&quot; uses material from a header file that is part of the Library, the object code for the work may be a derivative work of the Library even though the source code is not. Whether this is true is especially significant if the work can be linked without the Library, or if the work is itself a library. The threshold for this to be true is not precisely defined by law.</p>
+<p>If such an object file uses only numerical parameters, data structure layouts and accessors, and small macros and small inline functions (ten lines or less in length), then the use of the object file is unrestricted, regardless of whether it is legally a derivative work. (Executables containing this object code plus portions of the Library will still fall under Section 6.)</p>
+<p>Otherwise, if the work is a derivative of the Library, you may distribute the object code for the work under the terms of Section 6. Any executables containing that work also fall under Section 6, whether or not they are linked directly with the Library itself.</p>
+<p><strong>6.</strong> As an exception to the Sections above, you may also combine or link a &quot;work that uses the Library&quot; with the Library to produce a work containing portions of the Library, and distribute that work under terms of your choice, provided that the terms permit modification of the work for the customer's own use and reverse engineering for debugging such modifications.</p>
+<p>You must give prominent notice with each copy of the work that the Library is used in it and that the Library and its use are covered by this License. You must supply a copy of this License. If the work during execution displays copyright notices, you must include the copyright notice for the Library among them, as well as a reference directing the user to the copy of this License. Also, you must do one of these things:</p>
+<ul>
+<li><strong>a)</strong> Accompany the work with the complete corresponding machine-readable source code for the Library including whatever changes were used in the work (which must be distributed under Sections 1 and 2 above); and, if the work is an executable linked with the Library, with the complete machine-readable &quot;work that uses the Library&quot;, as object code and/or source code, so that the user can modify the Library and then relink to produce a modified executable containing the modified Library. (It is understood that the user who changes the contents of definitions files in the Library will not necessarily be able to recompile the application to use the modified definitions.)</li>
+<li><strong>b)</strong> Use a suitable shared library mechanism for linking with the Library. A suitable mechanism is one that (1) uses at run time a copy of the library already present on the user's computer system, rather than copying library functions into the executable, and (2) will operate properly with a modified version of the library, if the user installs one, as long as the modified version is interface-compatible with the version that the work was made with.</li>
+<li><strong>c)</strong> Accompany the work with a written offer, valid for at least three years, to give the same user the materials specified in Subsection 6a, above, for a charge no more than the cost of performing this distribution.</li>
+<li><strong>d)</strong> If distribution of the work is made by offering access to copy from a designated place, offer equivalent access to copy the above specified materials from the same place.</li>
+<li><strong>e)</strong> Verify that the user has already received a copy of these materials or that you have already sent this user a copy.</li>
+</ul>
+<p>For an executable, the required form of the &quot;work that uses the Library&quot; must include any data and utility programs needed for reproducing the executable from it. However, as a special exception, the materials to be distributed need not include anything that is normally distributed (in either source or binary form) with the major components (compiler, kernel, and so on) of the operating system on which the executable runs, unless that component itself accompanies the executable.</p>
+<p>It may happen that this requirement contradicts the license restrictions of other proprietary libraries that do not normally accompany the operating system. Such a contradiction means you cannot use both them and the Library together in an executable that you distribute.</p>
+<p><strong>7.</strong> You may place library facilities that are a work based on the Library side-by-side in a single library together with other library facilities not covered by this License, and distribute such a combined library, provided that the separate distribution of the work based on the Library and of the other library facilities is otherwise permitted, and provided that you do these two things:</p>
+<ul>
+<li><strong>a)</strong> Accompany the combined library with a copy of the same work based on the Library, uncombined with any other library facilities. This must be distributed under the terms of the Sections above.</li>
+<li><strong>b)</strong> Give prominent notice with the combined library of the fact that part of it is a work based on the Library, and explaining where to find the accompanying uncombined form of the same work.</li>
+</ul>
+<p><strong>8.</strong> You may not copy, modify, sublicense, link with, or distribute the Library except as expressly provided under this License. Any attempt otherwise to copy, modify, sublicense, link with, or distribute the Library is void, and will automatically terminate your rights under this License. However, parties who have received copies, or rights, from you under this License will not have their licenses terminated so long as such parties remain in full compliance.</p>
+<p><strong>9.</strong> You are not required to accept this License, since you have not signed it. However, nothing else grants you permission to modify or distribute the Library or its derivative works. These actions are prohibited by law if you do not accept this License. Therefore, by modifying or distributing the Library (or any work based on the Library), you indicate your acceptance of this License to do so, and all its terms and conditions for copying, distributing or modifying the Library or works based on it.</p>
+<p><strong>10.</strong> Each time you redistribute the Library (or any work based on the Library), the recipient automatically receives a license from the original licensor to copy, distribute, link with or modify the Library subject to these terms and conditions. You may not impose any further restrictions on the recipients' exercise of the rights granted herein. You are not responsible for enforcing compliance by third parties with this License.</p>
+<p><strong>11.</strong> If, as a consequence of a court judgment or allegation of patent infringement or for any other reason (not limited to patent issues), conditions are imposed on you (whether by court order, agreement or otherwise) that contradict the conditions of this License, they do not excuse you from the conditions of this License. If you cannot distribute so as to satisfy simultaneously your obligations under this License and any other pertinent obligations, then as a consequence you may not distribute the Library at all. For example, if a patent license would not permit royalty-free redistribution of the Library by all those who receive copies directly or indirectly through you, then the only way you could satisfy both it and this License would be to refrain entirely from distribution of the Library.</p>
+<p>If any portion of this section is held invalid or unenforceable under any particular circumstance, the balance of the section is intended to apply, and the section as a whole is intended to apply in other circumstances.</p>
+<p>It is not the purpose of this section to induce you to infringe any patents or other property right claims or to contest validity of any such claims; this section has the sole purpose of protecting the integrity of the free software distribution system which is implemented by public license practices. Many people have made generous contributions to the wide range of software distributed through that system in reliance on consistent application of that system; it is up to the author/donor to decide if he or she is willing to distribute software through any other system and a licensee cannot impose that choice.</p>
+<p>This section is intended to make thoroughly clear what is believed to be a consequence of the rest of this License.</p>
+<p><strong>12.</strong> If the distribution and/or use of the Library is restricted in certain countries either by patents or by copyrighted interfaces, the original copyright holder who places the Library under this License may add an explicit geographical distribution limitation excluding those countries, so that distribution is permitted only in or among countries not thus excluded. In such case, this License incorporates the limitation as if written in the body of this License.</p>
+<p><strong>13.</strong> The Free Software Foundation may publish revised and/or new versions of the Lesser General Public License from time to time. Such new versions will be similar in spirit to the present version, but may differ in detail to address new problems or concerns.</p>
+<p>Each version is given a distinguishing version number. If the Library specifies a version number of this License which applies to it and &quot;any later version&quot;, you have the option of following the terms and conditions either of that version or of any later version published by the Free Software Foundation. If the Library does not specify a license version number, you may choose any version ever published by the Free Software Foundation.</p>
+<p><strong>14.</strong> If you wish to incorporate parts of the Library into other free programs whose distribution conditions are incompatible with these, write to the author to ask for permission. For software which is copyrighted by the Free Software Foundation, write to the Free Software Foundation; we sometimes make exceptions for this. Our decision will be guided by the two goals of preserving the free status of all derivatives of our free software and of promoting the sharing and reuse of software generally.</p>
+<p><strong>NO WARRANTY</strong></p>
+<p><strong>15.</strong> BECAUSE THE LIBRARY IS LICENSED FREE OF CHARGE, THERE IS NO WARRANTY FOR THE LIBRARY, TO THE EXTENT PERMITTED BY APPLICABLE LAW. EXCEPT WHEN OTHERWISE STATED IN WRITING THE COPYRIGHT HOLDERS AND/OR OTHER PARTIES PROVIDE THE LIBRARY &quot;AS IS&quot; WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE. THE ENTIRE RISK AS TO THE QUALITY AND PERFORMANCE OF THE LIBRARY IS WITH YOU. SHOULD THE LIBRARY PROVE DEFECTIVE, YOU ASSUME THE COST OF ALL NECESSARY SERVICING, REPAIR OR CORRECTION.</p>
+<p><strong>16.</strong> IN NO EVENT UNLESS REQUIRED BY APPLICABLE LAW OR AGREED TO IN WRITING WILL ANY COPYRIGHT HOLDER, OR ANY OTHER PARTY WHO MAY MODIFY AND/OR REDISTRIBUTE THE LIBRARY AS PERMITTED ABOVE, BE LIABLE TO YOU FOR DAMAGES, INCLUDING ANY GENERAL, SPECIAL, INCIDENTAL OR CONSEQUENTIAL DAMAGES ARISING OUT OF THE USE OR INABILITY TO USE THE LIBRARY (INCLUDING BUT NOT LIMITED TO LOSS OF DATA OR DATA BEING RENDERED INACCURATE OR LOSSES SUSTAINED BY YOU OR THIRD PARTIES OR A FAILURE OF THE LIBRARY TO OPERATE WITH ANY OTHER SOFTWARE), EVEN IF SUCH HOLDER OR OTHER PARTY HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.</p>
+<h3>END OF TERMS AND CONDITIONS</h3>
+<h3>How to Apply These Terms to Your New Libraries</h3>
+<p>If you develop a new library, and you want it to be of the greatest possible use to the public, we recommend making it free software that everyone can redistribute and change. You can do so by permitting redistribution under these terms (or, alternatively, under the terms of the ordinary General Public License).</p>
+<p>To apply these terms, attach the following notices to the library. It is safest to attach them to the start of each source file to most effectively convey the exclusion of warranty; and each file should have at least the &quot;copyright&quot; line and a pointer to where the full notice is found.</p>
+<pre><code>one line to give the library's name and an idea of what it does.
+Copyright (C) year  name of author
+
+This library is free software; you can redistribute it and/or
+modify it under the terms of the GNU Lesser General Public
+License as published by the Free Software Foundation; either
+version 2.1 of the License, or (at your option) any later version.
+
+This library is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+Lesser General Public License for more details.
+
+You should have received a copy of the GNU Lesser General Public
+License along with this library; if not, write to the Free Software
+Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
+</code></pre>
+<p>Also add information on how to contact you by electronic and paper mail.</p>
+<p>You should also get your employer (if you work as a programmer) or your school, if any, to sign a &quot;copyright disclaimer&quot; for the library, if necessary. Here is a sample; alter the names:</p>
+<pre><code>Yoyodyne, Inc., hereby disclaims all copyright interest in
+the library `Frob' (a library for tweaking knobs) written
+by James Random Hacker.
+
+signature of Ty Coon, 1 April 1990
+Ty Coon, President of Vice
+</code></pre>
+<p>That's all there is to it!</p>
+<p><cite>source: <a href="https://www.gnu.org/licenses/old-licenses/lgpl-2.1.en.html">www.gnu.org</a></cite></p>
+    </div>
+    <footer>
+      <p>
+        © Copyright 2022, Open Source Geospatial Foundation
+      </p>
+    </footer>
+  </body>
+</html>

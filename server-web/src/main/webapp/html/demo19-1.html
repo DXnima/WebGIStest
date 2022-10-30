@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>通过wfs加载数据</title>
+    <link rel="stylesheet" href="../js/lib/ol4.6.4/ol.css" type="text/css">
+</head>
+<body>
+<div id="map"></div>
+</body>
+<script src="../js/lib/ol4.6.4/ol.js"></script>
+<script src="../js/lib/jquery/jquery-3.3.1.min.js"></script>
+<script>
+
+  // 服务配置，命名空间、图层、服务地址等
+  var geoserverData = {
+    wsName: 'topp',
+    uri: 'http://www.openplans.org/topp',
+    wfsURL: 'http://localhost:28081/geoserver/wfs?',
+    layer: 'states'
+  }
+
+  var layers = [
+      new ol.layer.Tile({
+          source: new ol.source.OSM()
+      })
+  ];
+
+  var map = new ol.Map({
+      target: 'map',
+      layers: layers,
+      view: new ol.View({
+          projection: "EPSG:4326",
+          center: [267, 38],
+          zoom: 4
+      })
+  });
+
+  // 通过wfs加载数据
+  function loadData() {
+      var data = {
+          srcName: 'EPSG:4326',
+          featureNS: geoserverData.uri,
+          featurePrefix: geoserverData.wsName,
+          featureTypes: [geoserverData.layer],
+          outputFormat: 'application/json'
+      }
+      var request = new ol.format.WFS().writeGetFeature(data);
+      $.ajax({
+          url: geoserverData.wfsURL,
+          type: "POST",
+          data: new XMLSerializer().serializeToString(request),
+          contentType: 'text/xml',
+          success: function (req) {
+              console.log(JSON.stringify(req, null, "\t"))
+              var features = new ol.format.GeoJSON().readFeatures(req)
+              let source = new ol.source.Vector();
+              source.addFeatures(features)
+              let wfsLayer = new ol.layer.Vector({
+                  title: 'add Layer',
+                  source: source,
+                  style: new ol.style.Style({
+                      stroke: new ol.style.Stroke({
+                          color: 'blue',
+                          lineDash: [4],
+                          width: 3,
+                      }),
+                      fill: new ol.style.Fill({
+                          color: 'rgba(0,0,255,0.47)',
+                      }),
+                  })
+              })
+              map.addLayer(wfsLayer)
+              alert("加载成功！")
+          },
+          error: function (e) {
+              alert("加载失败！" + e)
+          }
+      });
+  }
+
+  loadData();
+</script>
+</html>
