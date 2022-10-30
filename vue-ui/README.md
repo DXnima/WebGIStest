@@ -36,19 +36,19 @@ Geoserver端口号：28081
 
 1. OpenLayer模块
 
-![OpenLayer模块](/image/1.png "OpenLayer")
+![OpenLayer模块](image/1.png "OpenLayer")
 
 2. Geoserver模块
 
-![Geoserver模块](/image/2.png "Geoserver")
+![Geoserver模块](image/2.png "Geoserver")
 
 3. 空间分析模块
 
-![空间分析模块](/image/3.png "空间分析")
+![空间分析模块](image/3.png "空间分析")
 
 4. GDAL模块
 
-![GDAL模块](/image/4.png "GDAL")
+![GDAL模块](image/4.png "GDAL")
 
 ## 文档结构说明
 ```
