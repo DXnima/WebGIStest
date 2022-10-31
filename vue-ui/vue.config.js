@@ -1,4 +1,7 @@
 module.exports = {
+  // 解决不引用就会报错
+  lintOnSave: false,
+  publicPath: "./",
   //设置服务器访问和端口
   /* devServer: {
      disableHostCheck: true,
