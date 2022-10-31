@@ -7,8 +7,8 @@
  <h1>WebGIStest</h1>
 
  <a href="https://github.com/openlayers/openlayers">
-    <img alt="Openlayers" width=40px height=40px src="https://openlayers.org/theme/img/logo-dark.svg" />
- </a>
+    <img alt="Openlayers" width=40px height=40px src="https://openlayers.org/en/v4.6.5/apidoc/logo-70x70.png" />OpenLayers
+</a>
  <a href="https://github.com/geoserver/geoserver">
     <img alt="Geoserver" width=165px height=40px src="https://geoserver.org/img/geoserver-logo.png" />
  </a>
@@ -127,11 +127,11 @@ sudo apt install postgresql-12-pgrouting #12代表装的postgresql的版本
 1. 环境变量不能漏
 
 |环境变量名|环境变量值|
-|    :----:   |    :----:   |
+|    :----   |    :----   |
 |path	|C:\Program Files\GDAL\|
 |GDAL_DATA	|C:\Program Files\GDAL\gdal-data|
 |GDAL_DRIVER_PATH	|C:\Program Files\GDAL\gdalplugins|
-|PROJ_LIB |C:\Program Files\GDAL\projlib|
+| PROJ_LIB        | C:\Program Files\GDAL\projlib   |
 
 2. dll复制到bin目录
 
@@ -139,9 +139,9 @@ sudo apt install postgresql-12-pgrouting #12代表装的postgresql的版本
 
 `PostGres+PostGIS+PgRouting`都安装好了方可进行数据库恢复
 
-1. 创建数据库(数据库名称：wengistest)
+1. 创建数据库(数据库名称：webgistest)
 ```shell
-CREATE DATABASE wengistest;
+CREATE DATABASE webgistest;
 ```
 2. 添加空间扩展(必须执行)
 ```shell
@@ -150,17 +150,17 @@ CREATE EXTENSION pgrouting;
 ```
 3. [SQL](/SQL)下的sql文件导入数据库
 
-|   文件名   |   说明   |   备注   |
-|    :----:   |    :----:   |          :----: |
-|[capital.sql](/SQL/capital.sql)|  数据表  |必须导入|
-|[layer_edit.sql](/SQL/layer_edit.sql)|图层编辑表|必须导入|
-|[layer_university.sql](/SQL/layer_university.sql)|高校数据表|必须导入|
-|[port.sql](/SQL/port.sql)|数据表|必须导入|
-|[province.sql](/SQL/province.sql)|省级行政区表|必须导入|
-|[mvt_test.sql](/SQL/mvt_test.sql)|存储矢量瓦片表|非必须，包含部分矢量瓦片缓存|
-|[mvt_function.sql](/SQL/mvt_function.sql)|生成矢量瓦片重要函数|最后执行|
-|[shenzhen_roads.sql](/SQL/shenzhen_roads.sql)|路网导航数据表|必须导入|
-|[shenzhen_creat_network.sql](/SQL/shenzhen_creat_network.sql)|生成路网导航相关函数|最后执行|
+|   文件名   | 说明         | 备注             |
+|    :----   |:-----------|:---------------|
+|[capital.sql](/SQL/capital.sql)| 数据表        | 必须导入           |
+|[layer_edit.sql](/SQL/layer_edit.sql)| 图层编辑表      | 必须导入           |
+|[layer_university.sql](/SQL/layer_university.sql)| 高校数据表      | 必须导入           |
+|[port.sql](/SQL/port.sql)| 数据表        | 必须导入           |
+|[province.sql](/SQL/province.sql)| 省级行政区表     | 必须导入           |
+|[mvt_test.sql](/SQL/mvt_test.sql)| 存储矢量瓦片表    | 非必须，包含部分矢量瓦片缓存 |
+|[mvt_function.sql](/SQL/mvt_function.sql)| 生成矢量瓦片重要函数 | 最后执行           |
+|[shenzhen_roads.sql](/SQL/shenzhen_roads.sql)| 路网导航数据表    | 必须导入           |
+|[shenzhen_creat_network.sql](/SQL/shenzhen_creat_network.sql)| 生成路网导航相关函数 | 最后执行           |
 
 ### 4. 启动Geoserver
 
