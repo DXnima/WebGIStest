@@ -36,7 +36,17 @@
 
 - 地图服务端： GeoServer
 
-## 说明
+## 项目说明
+
+1. 前端项目启动
+
+前端项目[跳转此处](/vue-ui/README.md)
+
+2. 后端项目启动
+
+后端项目[跳转此处](/server-web/README.md)
+
+## 实现功能说明
 1. [OpenLayers](https://openlayers.org/en/latest/apidoc/)
     - [x] 实现图层切换
       - [x] openStreetMap
@@ -177,14 +187,6 @@ CREATE EXTENSION pgrouting;
 密码：geoserver
 启动地址：http://localhost:28081/geoserver
 ```
-
-### 5. 前端项目启动
-
-前端项目启动[跳转此处](/vue-ui/README.md)
-
-### 6. 后端项目启动
-
-后端项目启动[跳转此处](/server-web/README.md)
 
 ## 文件说明
 ```
