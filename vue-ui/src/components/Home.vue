@@ -21,7 +21,7 @@
             <!--一级菜单模版区-->
             <template slot="title">
               <!--图标-->
-              <i :class="iconObj[item.id]"></i>
+              <i :class="iconObj[item.id] ? iconObj[item.id]:'el-icon-location'"></i>
               <!--文本-->
               <span>{{ item.authName }}</span>
             </template>

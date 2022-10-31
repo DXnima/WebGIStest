@@ -36,6 +36,9 @@
 
 - 地图服务端： GeoServer
 
+## 项目展示
+![空间分析模块](vue-ui/image/3.png "空间分析")
+
 ## 项目说明
 
 - 前端项目[跳转此处](/vue-ui/README.md)
@@ -61,7 +64,7 @@
     - [x] 加载GeoJSON数据
     - [x] 加载wkts数据  
     - [x] 加载GeoServer发布的wms服务
-    - [x] GeoServer发布的WFS服务
+    - [x] 加载GeoServer发布的WFS服务
       - [x] 加载WFS服务
       - [x] 添加WFS服务图层
       - [x] 修改WFS服务图层
@@ -86,7 +89,6 @@
         - [x] 合并分析
         - [x] 差异分析
         - [x] 缓冲区分析
-        - [x] 网络分析(路径导航)
 3. [Geoserver REST](https://docs.geoserver.org/stable/en/user/rest/)
     - [x] 实现PostGIS数据源地图发布
     - [x] 实现Shapefile数据源地图发布
