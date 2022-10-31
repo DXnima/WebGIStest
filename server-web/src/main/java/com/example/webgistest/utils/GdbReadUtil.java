@@ -35,7 +35,12 @@ public class GdbReadUtil {
             String systemType = System.getProperty("os.name");
             String file="";
             boolean isWin= systemType.toLowerCase().contains("win");
-            file="/lib/gdalalljni.dll";
+            if(isWin) {
+                file="/lib/win/gdalalljni.dll";
+            }
+            else {
+                file="/lib/linux/libgdalalljni.so";
+            }
             //从资源文件加载动态库
             GdalLibraryUtil.loadFromResource(file);
         } catch (Exception e) {

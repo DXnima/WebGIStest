@@ -19,7 +19,10 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <geotools.version>26-SNAPSHOT</geotools.version>
         <jackson.version>2.9.6</jackson.version>
-        <gdal.bindir>src/main/resources/lib</gdal.bindir>
+        <!-- windows系统动态加载gdal驱动-->
+        <gdal.bindir>src/main/resources/lib/win</gdal.bindir>
+        <!-- linux系统动态加载gdal驱动-->
+        <!-- <gdal.bindir>src/main/resources/lib/linux</gdal.bindir>-->
     </properties>
 
     <dependencies>

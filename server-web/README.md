@@ -22,7 +22,9 @@ server.port=28080
 
 ### 生成jar包
 ```shell
-mvn clean mvn package -Dmaven.test.skip=true mvn install -Dmaven.test.skip=true
+mvn clean
+mvn package -Dmaven.test.skip=true 
+mvn install -Dmaven.test.skip=true
 ```
 
 

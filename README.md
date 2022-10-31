@@ -110,15 +110,19 @@
 
 #### Linux系统安装相关教程参考
 
-1. CentOS安装参考：`https://blog.csdn.net/qq_40953393/article/details/116203749`
+CentOS安装参考：`https://blog.csdn.net/qq_40953393/article/details/116203749`
 
-2. CentOS安装PgRouting:
+1. CentOS安装PgRouting:
 ```shell
 # 在CentOS中
-yum install pgrouting_12   #12代表装的postgresql的版本
+sudo yum install -y https://download.postgresql.org/pub/repos/yum/reporpms/EL-7-x86_64/pgdg-redhat-repo-latest.noarch.rpm
+yum install -y postgresql12-server
+sudo /usr/pgsql-12/bin/postgresql-12-setup initdb
+yum install -y postgis3_12
+yum install -y pgrouting_12   #12代表装的postgresql的版本
 ```
 
-3. Ubuntu安装PostGres+PostGIS+PgRouting:
+2. Ubuntu安装PostGres+PostGIS+PgRouting:
 ```shell
 # 在Ubuntu中
 sudo apt-get install postgresql-12-postgis-3
@@ -129,9 +133,53 @@ sudo apt install postgresql-12-pgrouting #12代表装的postgresql的版本
 
 配置参考：`https://www.jianshu.com/p/c9c385395ada` 
 
+Linux中安装
+```shell
+# 安装proj
+wget http://download.osgeo.org/proj/proj-8.2.0.tar.gz
+tar -zxvf proj-8.2.0.tar.gz
+cd proj-8.2.0
+./configure
+make && make install
+
+# 安装geos
+wget https://download.osgeo.org/geos/geos-3.11.0.tar.bz2
+tar -xjf geos-3.11.0.tar.bz2
+cd geos-3.11.0
+./configure
+make && make install
+
+# 安装swig
+wget http://prdownloads.sourceforge.net/swig/swig-4.1.0.tar.gz
+tar -zxvf swig-4.1.0.tar.gz
+cd swig-4.1.0
+./configure
+make && make install
+swig -version
+
+# 安装ant
+wget https://dlcdn.apache.org//ant/binaries/apache-ant-1.10.12-bin.tar.gz
+tar -zxvf apache-ant-1.10.12-bin.tar.gz
+cd apache-ant-1.10.12
+# ant需要配置环境变量
+vi /etc/profile
+export ANT_HOME=/usr/local/apache-ant-1.10.12
+export PATH=$ANT_HOME/bin:$PATH
+source /etc/profile
+ant -version
+
+# 安装gdal
+wget http://download.osgeo.org/gdal/3.5.2/gdal-3.5.2.tar.gz
+tar -xf gdal-3.5.2.tar.gz
+cd gdal-3.5.2
+./configure
+make && make install
+gdalinfo --version
+```
+
 #### 注意两点：
 
-1. 环境变量不能漏
+1. Windows安装中环境变量不能漏
 
 |环境变量名|环境变量值|
 |    :----   |    :----   |
