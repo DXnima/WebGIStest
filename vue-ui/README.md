@@ -53,6 +53,7 @@ Geoserver端口号：28081
 ## 文档结构说明
 ```
 ├─image                                  图片资源
+├─pages                                  项目打包文件
 ├─public                                 公共资源
 │      favicon.ico
 │      index.html
