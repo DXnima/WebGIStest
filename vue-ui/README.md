@@ -110,7 +110,7 @@ Geoserver端口号：28081
     ├─plugins                         插件
     │      element.js                    element按需导入
     ├─router                          路由
-    │      index.js                      所以页面跳转路由
+    │      index.js                      所有页面跳转路由
     ├─utils                           工具类
     │      searchUtils.js                图层查询工具类
     │  App.vue                        页面主入口
