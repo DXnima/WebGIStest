@@ -7,7 +7,7 @@ SpringBoot | Mybaits | Postgres+PostGIS+PgRouting | GeoTools | GDAL
 
 1. 修改数据库用户名密码
 
-修改文件位置：[application.properties](/server-web/src/main/resources/application.properties)
+**修改文件位置**：[application.properties](/server-web/src/main/resources/application.properties)
 ```properties
 # postgres数据库webgistest
 spring.datasource.url=jdbc:postgresql://localhost:5432/webgistest

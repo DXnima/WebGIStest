@@ -131,9 +131,13 @@ sudo apt install postgresql-12-pgrouting #12代表装的postgresql的版本
 
 ### 2. 安装GDAL
 
-配置参考：`https://www.jianshu.com/p/c9c385395ada` 
+配置参考：
 
-Linux中安装
+**Windows安装**：`https://www.jianshu.com/p/c9c385395ada`
+
+**Linux安装**：https://www.jianshu.com/p/ff4cf2b59613
+
+**Linux中安装**
 ```shell
 # 安装proj
 wget http://download.osgeo.org/proj/proj-8.2.0.tar.gz
@@ -225,7 +229,7 @@ CREATE EXTENSION pgrouting;
 
 - 双击[/geoserver/bin/startup.sh](/geoserver/bin/startup.sh)
 
-注意： 
+**注意**： 
 ```
 默认启动端口：28081
 用户名：admin
@@ -242,21 +246,23 @@ CREATE EXTENSION pgrouting;
 ```
 
 ## 相关技术参考
-1. GIS开发实战图谱：https://blog.csdn.net/sinat_41310868/article/details/107010972
-2. WebGIS文章汇总：https://zhuanlan.zhihu.com/p/67232451
-3. PostGIS矢量瓦片创建
+**1. GIS开发实战图谱**：https://blog.csdn.net/sinat_41310868/article/details/107010972
+
+**2. WebGIS文章汇总**：https://zhuanlan.zhihu.com/p/67232451
+
+**3. PostGIS矢量瓦片创建**
 - PostgreSQL+Postgis MapboxVectorTile应用：https://blog.csdn.net/gery1990/article/details/110471047
 - 基于springboot+postgis的矢量切片：https://blog.csdn.net/zhaoquanfeng/article/details/81874270
 - pgsql+postgis 实时返回mvt(Mapbox Vector Tiles) 矢量瓦片：https://blog.csdn.net/qq_35997793/article/details/108145550
 
-4. 其他矢量地图解决方案
+**4. 其他矢量地图解决方案**
 - 发布自己的mapbox矢量地图：https://blog.csdn.net/xinlingjun2007/article/details/80846826
 - Mapbox-GL矢量地图样式参考：https://blog.csdn.net/wan_yanyan528/article/details/48465403
 
-5. 网路分析（路径导航）
+**5. 网路分析（路径导航）**
 - pgRouting官方教程介绍：https://blog.csdn.net/qq_35732147/article/details/88633598
 - PostGIS 结合Openlayers以及Geoserver实现最短路径分析：https://blog.csdn.net/guzicheng1990/article/details/102524923
 - PostGis+GeoServer+OpenLayers最短路径分析：https://blog.csdn.net/qgbihc/article/details/108635912
 
-6. GDAL读取gdb
+**6. GDAL读取gdb**
 - java 调用gdal读取gdb数据：https://blog.csdn.net/weixin_53853459/article/details/120954597
