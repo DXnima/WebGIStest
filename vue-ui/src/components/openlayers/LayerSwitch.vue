@@ -172,7 +172,7 @@ export default {
     tianMap(lyr) {
       return new TileLayer({
         source: new XYZ({
-          url: "http://t0.tianditu.com/DataServer?T=" + lyr + "&X={x}&Y={y}&L={z}&tk=16c5722fed64bcdbb390cc21a5548cf9"
+          url: "http://t0.tianditu.gov.cn/DataServer?T=" + lyr + "&X={x}&Y={y}&L={z}&tk=16c5722fed64bcdbb390cc21a5548cf9"
         }),
         visible: false,
         title: 'tian'

@@ -111,7 +111,7 @@ export default {
 
       const tianMap = new TileLayer({
         source: new XYZ({
-          url: "http://t4.tianditu.com/DataServer?T=vec_w&x={x}&y={y}&l={z}&tk=49ea1deec0ffd88ef13a3f69987e9a63"
+          url: "http://t4.tianditu.gov.cn/DataServer?T=vec_w&x={x}&y={y}&l={z}&tk=49ea1deec0ffd88ef13a3f69987e9a63"
         }),
         visible: true,
         name: '天地图'
