@@ -8,11 +8,10 @@ import './assets/css/ol.css'
 //导入加载 进度条
 import NProgress from 'nprogress'
 import 'nprogress/nprogress.css'
-
 //导入axios
 import axios from 'axios'
 //配置请求的根路径
-axios.defaults.baseURL = 'http://localhost:28080'
+axios.defaults.baseURL = process.env.VUE_APP_BASE_API
 // 请求拦截 请求头添加token request展示进度条 NProgress.start()
 axios.interceptors.request.use(config => {
   NProgress.start()

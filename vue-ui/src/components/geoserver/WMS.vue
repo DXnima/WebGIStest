@@ -37,7 +37,7 @@ export default {
             let wms = new ImageLayer({
                 source: new ImageWMS({
                     ratio: 1,
-                    url: 'http://localhost:28081/geoserver/wms',
+                    url: process.env.VUE_APP_GEOSERVER + 'geoserver/wms',
                     params: {
                         'FORMAT': 'image/png',
                         'VERSION': '1.1.1',

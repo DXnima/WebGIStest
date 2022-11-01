@@ -32,7 +32,7 @@ import {getTdtLayer} from "../../utils/searchUtils";
 export default {
     data() {
         return {
-            url: "http://localhost:28081",
+            url: process.env.VUE_APP_GEOSERVER,
             // 路网图层
             lyr: 'webgistest:shenzhen_roads',
             // 导航图层
@@ -57,7 +57,7 @@ export default {
             const that = this
             let roadLayer = new TileLayer({
                 source: new TileWMS({
-                    url: that.url + '/geoserver/wms',
+                    url: that.url + 'geoserver/wms',
                     params: { 'LAYERS': that.lyr, 'TILED': true },
                     serverType: 'geoserver'
                 })
@@ -107,7 +107,7 @@ export default {
                     format: new GeoJSON(),
                     url: function (extent) {
                         return (
-                            that.url + '/geoserver/wfs?service=WFS&version=1.1.0&request=GetFeature&typeName=' + that.pgr_lyr + '&'
+                            that.url + 'geoserver/wfs?service=WFS&version=1.1.0&request=GetFeature&typeName=' + that.pgr_lyr + '&'
                             + 'viewparams=x1:' + coord[0][0] + ';y1:' + coord[0][1] + ';x2:' + coord[1][0] + ';y2:' + coord[1][1] + '&'
                             + 'outputFormat=application/json&srsname=EPSG:3857&bbox=' +
                             extent.join(',') + ',EPSG:3857');

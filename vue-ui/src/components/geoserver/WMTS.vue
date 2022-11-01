@@ -34,18 +34,18 @@ export default {
     },
     methods: {
         initMap() {
-          var projection = new Projection({
+          let projection = new Projection({
             code: 'EPSG:4326',
             units: 'degrees',
             axisOrientation: 'neu'
           });
-          var view = new View({
+          let view = new View({
             zoom: 2,
             center: [-97, 38],
             projection: projection
           });
 
-          var map = new Map({
+          let map = new Map({
             controls: control.defaults({
               attribution: false
             }).extend([]),
@@ -60,14 +60,14 @@ export default {
           this.projection = projection
         },
         getTileLayer(lyr) {
-            var gridsetName = 'EPSG:4326';
-            var gridNames = ['EPSG:4326:0', 'EPSG:4326:1', 'EPSG:4326:2', 'EPSG:4326:3', 'EPSG:4326:4', 'EPSG:4326:5', 'EPSG:4326:6', 'EPSG:4326:7', 'EPSG:4326:8', 'EPSG:4326:9', 'EPSG:4326:10', 'EPSG:4326:11', 'EPSG:4326:12', 'EPSG:4326:13', 'EPSG:4326:14', 'EPSG:4326:15', 'EPSG:4326:16', 'EPSG:4326:17', 'EPSG:4326:18'];
-            var baseUrl = 'http://localhost:28081/geoserver/gwc/service/wmts';
-            var format = 'image/png';
-            var layerName = lyr;
-            var resolutions = [0.703125, 0.3515625, 0.17578125, 0.087890625, 0.0439453125, 0.02197265625, 0.010986328125, 0.0054931640625, 0.00274658203125, 0.001373291015625, 6.866455078125E-4, 3.4332275390625E-4, 1.71661376953125E-4, 8.58306884765625E-5, 4.291534423828125E-5, 2.1457672119140625E-5, 1.0728836059570312E-5, 5.364418029785156E-6, 2.682209014892578E-6];
-            var baseParams = ['VERSION', 'LAYER', 'STYLE', 'TILEMATRIX', 'TILEMATRIXSET', 'SERVICE', 'FORMAT'];
-            var params = {
+            let gridsetName = 'EPSG:4326';
+            let gridNames = ['EPSG:4326:0', 'EPSG:4326:1', 'EPSG:4326:2', 'EPSG:4326:3', 'EPSG:4326:4', 'EPSG:4326:5', 'EPSG:4326:6', 'EPSG:4326:7', 'EPSG:4326:8', 'EPSG:4326:9', 'EPSG:4326:10', 'EPSG:4326:11', 'EPSG:4326:12', 'EPSG:4326:13', 'EPSG:4326:14', 'EPSG:4326:15', 'EPSG:4326:16', 'EPSG:4326:17', 'EPSG:4326:18'];
+            let baseUrl = process.env.VUE_APP_GEOSERVER + 'geoserver/gwc/service/wmts';
+            let format = 'image/png';
+            let layerName = lyr;
+            let resolutions = [0.703125, 0.3515625, 0.17578125, 0.087890625, 0.0439453125, 0.02197265625, 0.010986328125, 0.0054931640625, 0.00274658203125, 0.001373291015625, 6.866455078125E-4, 3.4332275390625E-4, 1.71661376953125E-4, 8.58306884765625E-5, 4.291534423828125E-5, 2.1457672119140625E-5, 1.0728836059570312E-5, 5.364418029785156E-6, 2.682209014892578E-6];
+            let baseParams = ['VERSION', 'LAYER', 'STYLE', 'TILEMATRIX', 'TILEMATRIXSET', 'SERVICE', 'FORMAT'];
+            let params = {
                 'VERSION': '1.0.0',
                 'LAYER': layerName,
                 'TILEMATRIX': gridNames,
@@ -76,15 +76,15 @@ export default {
                 'FORMAT': format
             };
 
-            var url = baseUrl + '?';
-            for (var param in params) {
+            let url = baseUrl + '?';
+            for (let param in params) {
                 if (baseParams.indexOf(param.toUpperCase()) < 0) {
                     url = url + param + '=' + params[param] + '&';
                 }
             }
             url = url.slice(0, -1);
 
-            var source = new WMTS({
+            let source = new WMTS({
                 url: url,
                 layer: params['LAYER'],
                 matrixSet: params['TILEMATRIXSET'],
@@ -100,7 +100,7 @@ export default {
                 style: params['STYLE'],
                 wrapX: true
             });
-            var layer = new TileLayer({
+            let layer = new TileLayer({
                 source: source
             });
             return layer;

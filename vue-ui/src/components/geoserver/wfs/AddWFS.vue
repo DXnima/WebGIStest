@@ -35,7 +35,7 @@ export default {
             geoserverData: {
                 wsName: 'webgistest',
                 uri: 'http://www.openplans.org/webgistest',
-                wfsURL: 'http://localhost:28081/geoserver/wfs?',
+                wfsURL: process.env.VUE_APP_GEOSERVER + 'geoserver/wfs?',
                 layer: 'port'
             },
             draw: null
@@ -50,7 +50,7 @@ export default {
         initMap() {
             let that = this
             //测试数据 添加WFS数据  添加所有
-            var wfsSource = new Vector({
+            let wfsSource = new Vector({
                 format: new GeoJSON(),
                 url: function (extent) {
                     return (
@@ -78,12 +78,12 @@ export default {
                 },
             })
 
-            var layers = [
+            let layers = [
               getTdtLayer("vec_w"),
               getTdtLayer("cva_w"), wfsLayer
             ];
 
-            var map = new Map({
+            let map = new Map({
                 target: 'map',
                 layers: layers,
                 view: new View({
@@ -93,7 +93,7 @@ export default {
                 })
             });
 
-            var draw = new Draw({
+            let draw = new Draw({
                 source: new Vector({
                     features: []
                 }),
@@ -106,7 +106,7 @@ export default {
 
             draw.on("drawend", function (e) {
                 draw.setActive(false);
-                var feature = e.feature;
+                let feature = e.feature;
                 that.addFeature(feature);
                 wfsLayer.getSource().changed();
             });
@@ -132,9 +132,9 @@ export default {
             // 避免出现报错PointOutsideEnvelopeException: 1 outside of (-90.0,90
             // 进行经纬度调换
             geom.applyTransform((flatCoordinates, flatCoordinates2, stride) => {
-                for (var j = 0; j < flatCoordinates.length; j += stride) {
-                    var y = flatCoordinates[j]
-                    var x = flatCoordinates[j + 1]
+                for (let j = 0; j < flatCoordinates.length; j += stride) {
+                    let y = flatCoordinates[j]
+                    let x = flatCoordinates[j + 1]
                     flatCoordinates[j] = x
                     flatCoordinates[j + 1] = y
                 }
@@ -143,15 +143,15 @@ export default {
             ft.setGeometry(geom)
             // 2、更新到后台
             let WFSTSerializer = new WFS();
-            var featObject = WFSTSerializer.writeTransaction([ft],
+            let featObject = WFSTSerializer.writeTransaction([ft],
                 null, null, {
                 featureNS: this.geoserverData.uri,
                 featurePrefix: this.geoserverData.wsName,//工作空间名称
                 featureType: this.geoserverData.layer,//图层名称
                 srsName: 'EPSG:4326'
             })
-            var serializer = new XMLSerializer()
-            var featString = serializer.serializeToString(featObject);
+            let serializer = new XMLSerializer()
+            let featString = serializer.serializeToString(featObject);
             const { data: res } = await this.$http.post(this.geoserverData.wfsURL,
                 featString,
                 {

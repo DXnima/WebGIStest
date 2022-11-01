@@ -26,11 +26,13 @@ npm run lint
 ```
 
 ### 注意端口号
+
+本项目默认相关端口
 ```
 后端端口号：28080
 Geoserver端口号：28081
 ```
-提示：在[main-dev.js](/vue-ui/src/main-dev.js)和[main-prod.js](/vue-ui/src/main-prod.js)修改后端端口号
+提示：在[.env.development](/vue-ui/.env.development)和[.env.production](/vue-ui/.env.production)修改后端接口和Geoserver服务端口
 
 ## 效果图
 
@@ -116,5 +118,7 @@ Geoserver端口号：28081
     │  App.vue                        页面主入口
     │  main-dev.js                    测试环境js
     └  main-prod.js                   开发环境js
-└  vue.config.js                   测试和开发环境配置文件
+│  .env.development                测试环境变量配置
+│  .env.production                 发布环境变量测试
+└  vue.config.js                   测试和发布环境配置文件
 ```

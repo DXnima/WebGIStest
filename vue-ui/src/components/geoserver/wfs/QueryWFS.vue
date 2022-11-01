@@ -33,7 +33,7 @@ export default {
             geoserverData: {
                 wsName: 'webgistest',
                 uri: 'http://www.openplans.org/webgistest',
-                wfsURL: 'http://localhost:28081/geoserver/wfs?',
+                wfsURL: process.env.VUE_APP_GEOSERVER + 'geoserver/wfs?',
                 layer: 'port'
             },
             wfsFilter: null
@@ -48,7 +48,7 @@ export default {
         initMap() {
             const that = this
             //测试数据 添加WFS数据  添加所有
-            var wfsSource = new Vector({
+            let wfsSource = new Vector({
                 format: new GeoJSON(),
                 url: function (extent) {
                     return (
@@ -74,7 +74,7 @@ export default {
                 })
             })
 
-            var wfsFilter = new VectorLayer({
+            let wfsFilter = new VectorLayer({
                 source: new Vector(),
                 style: new Style({
                     image: new Circle({
@@ -87,12 +87,12 @@ export default {
                 })
             });
 
-            var layers = [
+            let layers = [
               getTdtLayer("vec_w"),
               getTdtLayer("cva_w"), wfsLayer, wfsFilter
             ];
 
-            var map = new Map({
+            let map = new Map({
                 target: 'map',
                 layers: layers,
                 view: new View({
@@ -107,7 +107,7 @@ export default {
         // 查询过滤图层
         findData() {
             const that = this
-            var data = {
+            let data = {
                 srcName: 'EPSG:4326',
                 featureNS: this.geoserverData.uri,
                 featurePrefix: this.geoserverData.wsName,
@@ -119,7 +119,7 @@ export default {
                     filter.equalTo('name', '珠海港')
                 )
             }
-            var request = new WFS().writeGetFeature(data)
+            let request = new WFS().writeGetFeature(data)
             fetch(that.geoserverData.wfsURL, {
                 method: 'POST',
                 body: new XMLSerializer().serializeToString(request),
@@ -127,7 +127,7 @@ export default {
                 return response.json()
             }).then(function (json) {
                 console.log(JSON.stringify(json, null, "\t"))
-                var features = new GeoJSON({
+                let features = new GeoJSON({
                     geometryName: 'geom',
                 }).readFeatures(json)
                 if (that.wfsFilter) {

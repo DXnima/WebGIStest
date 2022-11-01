@@ -219,7 +219,7 @@ const getLikeSQL = (featureTypes, keyword) => {
 const getDescribeToSql = (url, type, keyword) => {
     type = TYPE(type);
     return new Promise((resolve) => {
-        fetch(url + `/geoserver/wfs?service=WFS&version=1.1.0&outputFormat=application/json&request=DescribeFeatureType&typeName=${type}`
+        fetch(url + `geoserver/wfs?service=WFS&version=1.1.0&outputFormat=application/json&request=DescribeFeatureType&typeName=${type}`
         ).then(function (response) {
             return response.json();
         }).then(function (json) {
@@ -242,7 +242,7 @@ const getDescribeToSql = (url, type, keyword) => {
  */
 
 const getSearchURLs = (url, type, keyword, pageSize) => {
-    let baseURL = url + `/geoserver/wfs?service=WFS&version=1.1.0&request=GetFeature&outputFormat=application/json&sortBy=&srsName=${SRS_NAME}&`
+    let baseURL = url + `geoserver/wfs?service=WFS&version=1.1.0&request=GetFeature&outputFormat=application/json&sortBy=&srsName=${SRS_NAME}&`
     let urls = [];
     return new Promise((resolve) => {
         getDescribeToSql(url, type, keyword).then(r => {
@@ -334,7 +334,7 @@ const getFeatureRequest = (layerName, pageSize, filter) => {
  * @param resolve Promise.resolve
  */
 const postWFS = (url, body, pageSize, resolve) => {
-    postRequestAll(url + '/geoserver/wfs', body, body.length + 1, (data) => {
+    postRequestAll(url + 'geoserver/wfs', body, body.length + 1, (data) => {
         let features = []
         data.forEach(feature => {
             if (feature !== undefined) {
@@ -562,31 +562,31 @@ const addGeoJSON = (map, featureId) => {
  * @returns {_ol_layer_Tile_}
  */
 const getTdtLayer = (lyr) => {
-  // let url = "http://t0.tianditu.com/DataServer?T="+lyr+"&X={x}&Y={y}&L={z}";
-  let urls = [];
-  for (let i = 0; i < 8; i++) {
-    urls.push("http://t" + i + ".tianditu.com/DataServer?T=" + lyr + "&X={x}&Y={y}&L={z}&tk=16c5722fed64bcdbb390cc21a5548cf9");
-  }
-  return new TileLayer({
-    source: new XYZ({
-      urls: urls
-    })
-  });
+    // let url = "http://t0.tianditu.com/DataServer?T="+lyr+"&X={x}&Y={y}&L={z}";
+    let urls = [];
+    for (let i = 0; i < 8; i++) {
+        urls.push("http://t" + i + ".tianditu.com/DataServer?T=" + lyr + "&X={x}&Y={y}&L={z}&tk=16c5722fed64bcdbb390cc21a5548cf9");
+    }
+    return new TileLayer({
+        source: new XYZ({
+            urls: urls
+        })
+    });
 }
 
 export {
-  getRequestAll,
-  postRequestAll,
-  formatDate,
-  getLikeSQL,
-  getDescribeToSql,
-  getSearchURLs,
-  getSearch,
-  getFeatureRequest,
-  postWFS,
-  spaceFilter,
-  getSearchData,
-  styleFunction,
-  addGeoJSON,
-  getTdtLayer
+    getRequestAll,
+    postRequestAll,
+    formatDate,
+    getLikeSQL,
+    getDescribeToSql,
+    getSearchURLs,
+    getSearch,
+    getFeatureRequest,
+    postWFS,
+    spaceFilter,
+    getSearchData,
+    styleFunction,
+    addGeoJSON,
+    getTdtLayer
 }

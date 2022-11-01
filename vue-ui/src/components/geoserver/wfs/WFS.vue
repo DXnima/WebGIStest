@@ -38,20 +38,20 @@ export default {
     methods: {
         async initMap() {
             // 服务配置，命名空间、图层、服务地址等
-            var geoserverData = {
+            let geoserverData = {
                 wsName: 'topp',
                 uri: 'http://www.openplans.org/topp',
-                wfsURL: 'http://localhost:28081/geoserver/wfs?',
+                wfsURL: process.env.VUE_APP_GEOSERVER + 'geoserver/wfs?',
                 layer: 'states'
             }
 
-            var layers = [
+            let layers = [
                 new TileLayer({
                     source: new OSM()
                 })
             ];
 
-            var map = new Map({
+            let map = new Map({
                 target: 'map',
                 layers: [
                   getTdtLayer("vec_w"),
@@ -65,14 +65,14 @@ export default {
             });
 
             // 通过wfs加载数据
-            var data = {
+            let data = {
                 srcName: 'EPSG:4326',
                 featureNS: geoserverData.uri,
                 featurePrefix: geoserverData.wsName,
                 featureTypes: [geoserverData.layer],
                 outputFormat: 'application/json'
             }
-            var request = new WFS().writeGetFeature(data);
+            let request = new WFS().writeGetFeature(data);
             const { data: res } = await this.$http.post(geoserverData.wfsURL,
                 new XMLSerializer().serializeToString(request),
                 {
@@ -82,7 +82,7 @@ export default {
                     }
                 })
             if (!res) return
-            var features = new GeoJSON().readFeatures(res)
+            let features = new GeoJSON().readFeatures(res)
             let source = new Vector();
             source.addFeatures(features)
             let wfsLayer = new VectorLayer({

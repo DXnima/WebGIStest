@@ -54,7 +54,7 @@ export default {
     data() {
         return {
             // 服务配置，命名空间、图层、服务地址等
-            url: 'http://localhost:28081',//BaseURL
+            url: process.env.VUE_APP_GEOSERVER,//BaseURL
             map: null,//地图对象
             input: '',
             restaurants: [],//搜素下拉数据存储
@@ -88,7 +88,7 @@ export default {
             //加载图层
             let tileWms = new TileLayer({
                 source: new TileWMS({
-                    url: this.url + '/geoserver/wms',
+                    url: this.url + 'geoserver/wms',
                     params: {
                         'FORMAT': 'image/png',
                         tiled: true,

@@ -33,7 +33,7 @@ export default {
             geoserverData: {
                 wsName: 'webgistest',
                 uri: 'http://www.openplans.org/webgistest',
-                wfsURL: 'http://localhost:28081/geoserver/wfs?',
+                wfsURL: process.env.VUE_APP_GEOSERVER + 'geoserver/wfs?',
                 layer: 'port'
             }
         }
@@ -47,7 +47,7 @@ export default {
         initMap() {
             const that = this
             //测试数据 添加WFS数据  添加所有
-            var wfsSource = new Vector({
+            let wfsSource = new Vector({
                 format: new GeoJSON(),
                 url: function (extent) {
                     return (
@@ -75,12 +75,12 @@ export default {
                 }
             })
 
-            var layers = [
+            let layers = [
               getTdtLayer("vec_w"),
               getTdtLayer("cva_w"), wfsLayer
             ];
 
-            var map = new Map({
+            let map = new Map({
                 target: 'map',
                 layers: layers,
                 view: new View({
@@ -103,9 +103,9 @@ export default {
             });
 
             select.on("select", function (e) {
-                var features = e.selected;
+                let features = e.selected;
                 if (features.length > 0) {
-                    var feature = features[0];
+                    let feature = features[0];
                     that.deleteFeature(feature);
                     wfsLayer.getSource().changed();
                 }
@@ -127,15 +127,15 @@ export default {
             ft.setId(feature.getId());
             // 2、更新到后台
             let WFSTSerializer = new WFS()
-            var featObject = WFSTSerializer.writeTransaction(null,
+            let featObject = WFSTSerializer.writeTransaction(null,
                 null, [ft], {
                 featureNS: this.geoserverData.uri,
                 featurePrefix: this.geoserverData.wsName,//工作空间名称
                 featureType: this.geoserverData.layer,//图层名称
                 srsName: 'EPSG:4326'
             });
-            var serializer = new XMLSerializer()
-            var featString = serializer.serializeToString(featObject)
+            let serializer = new XMLSerializer()
+            let featString = serializer.serializeToString(featObject)
             const { data: res } = await this.$http.post(this.geoserverData.wfsURL,
                 featString,
                 {

@@ -28,7 +28,8 @@ export default {
     methods: {
         initMap() {
             mapboxgl.accessToken = 'pk.eyJ1IjoiZHhuaW1hIiwiYSI6ImNrbzA3YXM3YjBiM20yb21zd21hNmZ2YmkifQ.E-CP-z0iDN9RcMywNydpfA';
-            var map = new mapboxgl.Map({
+            let url = process.env.VUE_APP_BASE_API + 'mvt_test/{z}/{x}/{y}.pbf'
+            let map = new mapboxgl.Map({
                 container: 'map', // container id
                 style: {
                     "version": 8,
@@ -37,7 +38,7 @@ export default {
                     "sources": {
                         "mvt_test": {
                             "type": "vector",
-                            "tiles": ["http://localhost:28080/mvt_test/{z}/{x}/{y}.pbf"],
+                            "tiles": [url],
                             "minZoom": 0,
                             "maxZoom": 5
                         }
@@ -77,7 +78,7 @@ export default {
             });
             //当鼠标滚动时，触发事件，获取当前地图缩放级别
             map.on("wheel", function () {
-                var range = map.getZoom();
+                let range = map.getZoom();
                 document.getElementById("zoom").innerHTML = "zoom:" + parseInt(range);
                 console.log(range);
             });
