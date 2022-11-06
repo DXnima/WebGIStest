@@ -86,10 +86,10 @@ export default {
     async analysis(){
       if (this.source)
         this.source.clear();
-      const {data:res} = await this.$http.get("spa/diff",{params:{
+      const { data: res } = await this.$API.diffAnalysis({
           geom1:this.geom1,
           geom2:this.geom2
-        }})
+        })
       if(!res.success) {
         this.geom = res.msg
       }

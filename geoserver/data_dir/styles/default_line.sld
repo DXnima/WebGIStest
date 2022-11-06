@@ -1,32 +1,35 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<StyledLayerDescriptor version="1.0.0" 
- xsi:schemaLocation="http://www.opengis.net/sld StyledLayerDescriptor.xsd" 
- xmlns="http://www.opengis.net/sld" 
- xmlns:ogc="http://www.opengis.net/ogc" 
- xmlns:xlink="http://www.w3.org/1999/xlink" 
- xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <!-- a Named Layer is the basic building block of an SLD document -->
-  <NamedLayer>
-    <Name>default_line</Name>
-    <UserStyle>
-    <!-- Styles can have names, titles and abstracts -->
-      <Title>Blue Line</Title>
-      <Abstract>A sample style that draws a line</Abstract>
-      <!-- FeatureTypeStyles describe how to render different features -->
-      <!-- A FeatureTypeStyle for rendering lines -->
-      <FeatureTypeStyle>
-        <Rule>
-          <Name>rule1</Name>
-          <Title>Blue Line</Title>
-          <Abstract>A solid blue line with a 1 pixel width</Abstract>
-          <LineSymbolizer>
-            <Stroke>
-              <CssParameter name="stroke">#0000FF</CssParameter>
-            </Stroke>
-          </LineSymbolizer>
-        </Rule>
-      </FeatureTypeStyle>
-    </UserStyle>
-  </NamedLayer>
-</StyledLayerDescriptor>
+<?xml version="1.0" encoding="GBK"?><sld:StyledLayerDescriptor xmlns="http://www.opengis.net/sld" xmlns:sld="http://www.opengis.net/sld" xmlns:gml="http://www.opengis.net/gml" xmlns:ogc="http://www.opengis.net/ogc" version="1.0.0">
+    <sld:UserLayer>
+        <sld:LayerFeatureConstraints>
+            <sld:FeatureTypeConstraint/>
+        </sld:LayerFeatureConstraints>
+        <sld:UserStyle>
+            <sld:Name>Default Styler</sld:Name>
+            <sld:Title>Blue Line</sld:Title>
+            <sld:Abstract>A sample style that draws a line</sld:Abstract>
+            <sld:FeatureTypeStyle>
+                <sld:Name>name</sld:Name>
+                <sld:FeatureTypeName>Feature</sld:FeatureTypeName>
+                <sld:Rule>
+                    <sld:Name>rule1</sld:Name>
+                    <sld:Title>Blue Line</sld:Title>
+                    <sld:Abstract>A solid blue line with a 1 pixel width</sld:Abstract>
+                    <sld:MaxScaleDenominator>5.59E8</sld:MaxScaleDenominator>
+                    <sld:LineSymbolizer>
+                        <sld:Geometry>
+                            <ogc:Function name="offset">
+                                <ogc:PropertyName>geom</ogc:PropertyName>
+                                <ogc:Literal>0.0</ogc:Literal>
+                                <ogc:Literal>0.0</ogc:Literal>
+                            </ogc:Function>
+                        </sld:Geometry>
+                        <sld:Stroke>
+                            <sld:CssParameter name="stroke">#FF2200</sld:CssParameter>
+                        </sld:Stroke>
+                    </sld:LineSymbolizer>
+                </sld:Rule>
+            </sld:FeatureTypeStyle>
+        </sld:UserStyle>
+    </sld:UserLayer>
+</sld:StyledLayerDescriptor>
 

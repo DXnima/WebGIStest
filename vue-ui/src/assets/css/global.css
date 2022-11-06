@@ -30,6 +30,10 @@ body,
 	height: 200px;
 }
 
+.el-container {
+	box-shadow: 0 0 2px #ddd;
+}
+
 .ql-editor {
 	min-height: 300px;
 }

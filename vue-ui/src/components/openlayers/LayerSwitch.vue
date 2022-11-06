@@ -10,14 +10,14 @@
     <el-card>
       <el-container>
         <el-aside width="200px">
-          <h2>切换图层</h2>
-          <el-radio-group v-model="radio" size="medium" @change="radioChange">
+          <h2 style="margin-left: 10px">切换图层</h2>
+          <el-radio-group style="padding-left: 10px" v-model="radio" size="medium" @change="radioChange">
             <el-radio label="osm">OSM地图</el-radio><br>
             <el-radio label="baidu">百度地图</el-radio><br>
             <el-radio label="tian">天地图</el-radio><br>
-            <el-radio label="wmsImage">WMS Image服务</el-radio><br>
-            <el-radio label="wmsTile">WMS Tile服务</el-radio><br>
-            <el-radio label="wmsGrid">WMS Grid服务</el-radio><br>
+            <el-radio label="wmsImage">WmsUtils Image服务</el-radio><br>
+            <el-radio label="wmsTile">WmsUtils Tile服务</el-radio><br>
+            <el-radio label="wmsGrid">WmsUtils Grid服务</el-radio><br>
             <el-radio label="wmtsMap">WMTS服务</el-radio><br>
             <el-radio label="wfsMap">WFS服务</el-radio><br>
           </el-radio-group>

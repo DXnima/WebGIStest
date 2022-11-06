@@ -30,7 +30,7 @@ export default {
     methods: {
         initMap() {
             let view = new View({
-                zoom: 4,
+                zoom: 5,
                 center: [267, 38],
                 projection: "EPSG:4326"
             });

@@ -83,6 +83,7 @@
         </parameter>
       </virtualTable>
     </entry>
+    <entry key="cachingEnabled">false</entry>
   </metadata>
   <store class="dataStore">
     <id>DataStoreInfoImpl-76ccc7fc:184231a0bd9:-7ffd</id>

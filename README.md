@@ -69,7 +69,6 @@
       - [x] 添加WFS服务图层
       - [x] 修改WFS服务图层
       - [x] 删除WFS服务
-    - [x] GeoServer实现最短路径分析（网络分析）
     - [x] 点要素选中高亮
     - [x] 点线面要素在线绘制、编辑
     - [x] 点线面要素保存PostgesSQL数据库
@@ -89,10 +88,13 @@
         - [x] 合并分析
         - [x] 差异分析
         - [x] 缓冲区分析
+        - [x] 最短路径分析（网络分析）
 3. [Geoserver REST](https://docs.geoserver.org/stable/en/user/rest/)
     - [x] 实现PostGIS数据源地图发布
     - [x] 实现Shapefile数据源地图发布
     - [x] 实现SLD样式发布
+    - [x] 实现PostGIS数据编辑
+    - [x] 实现Geoserver REST数据编辑
 
 4. [GDAL](https://gdal.org/download.html)
    - [x] 实现读取.gdb数据
@@ -153,6 +155,8 @@ cd geos-3.11.0
 ./configure
 make && make install
 
+# 安装swig的依赖pcre2
+apt-get install libpcre2-dev
 # 安装swig
 wget http://prdownloads.sourceforge.net/swig/swig-4.1.0.tar.gz
 tar -zxvf swig-4.1.0.tar.gz
@@ -172,6 +176,8 @@ export PATH=$ANT_HOME/bin:$PATH
 source /etc/profile
 ant -version
 
+# 安装gdal相关依赖
+sudo apt-get install libgdal-dev
 # 安装gdal
 wget http://download.osgeo.org/gdal/3.5.2/gdal-3.5.2.tar.gz
 tar -xf gdal-3.5.2.tar.gz
@@ -198,6 +204,8 @@ gdalinfo --version
 
 `PostGres+PostGIS+PgRouting`都安装好了方可进行数据库恢复
 
+[webgistest.sql](/SQL/webgistest.sql) 是**所有数据**库导入文件
+
 1. 创建数据库(数据库名称：webgistest)
 ```shell
 CREATE DATABASE webgistest;
@@ -209,17 +217,20 @@ CREATE EXTENSION pgrouting;
 ```
 3. [SQL](/SQL)下的sql文件导入数据库
 
+**详情说明如下**：
+
 |   文件名   | 说明         | 备注             |
 |    :----   |:-----------|:---------------|
-|[capital.sql](/SQL/capital.sql)| 数据表        | 必须导入           |
-|[layer_edit.sql](/SQL/layer_edit.sql)| 图层编辑表      | 必须导入           |
-|[layer_university.sql](/SQL/layer_university.sql)| 高校数据表      | 必须导入           |
-|[port.sql](/SQL/port.sql)| 数据表        | 必须导入           |
-|[province.sql](/SQL/province.sql)| 省级行政区表     | 必须导入           |
-|[mvt_test.sql](/SQL/mvt_test.sql)| 存储矢量瓦片表    | 非必须，包含部分矢量瓦片缓存 |
-|[mvt_function.sql](/SQL/mvt_function.sql)| 生成矢量瓦片重要函数 | 最后执行           |
-|[shenzhen_roads.sql](/SQL/shenzhen_roads.sql)| 路网导航数据表    | 必须导入           |
-|[shenzhen_creat_network.sql](/SQL/shenzhen_creat_network.sql)| 生成路网导航相关函数 | 最后执行           |
+|[capital.sql](/SQL/sql/capital.sql)| 数据表        | 必须导入           |
+|[layer_edit.sql](/SQL/sql/layer_edit.sql)| 图层编辑表      | 必须导入           |
+|[layer_university.sql](/SQL/sql/layer_university.sql)| 高校数据表      | 必须导入           |
+|[port.sql](/SQL/sql/port.sql)| 数据表        | 必须导入           |
+|[province.sql](/SQL/sql/province.sql)| 省级行政区表     | 必须导入           |
+|[mvt_test.sql](/SQL/sql/mvt_test.sql)| 存储矢量瓦片表    | 非必须，包含部分矢量瓦片缓存 |
+|[test_polygon.sql](/SQL/sql/test_polygon.sql)| 存储矢量瓦片表    | 非必须，包含部分矢量瓦片缓存 |
+|[mvt_function.sql](/SQL/sql/mvt_function.sql)| 生成矢量瓦片重要函数 | 最后执行           |
+|[shenzhen_roads.sql](/SQL/sql/shenzhen_roads.sql)| 路网导航数据表    | 必须导入           |
+|[shenzhen_creat_network.sql](/SQL/sql/shenzhen_creat_network.sql)| 生成路网导航相关函数 | 最后执行           |
 
 ### 4. 启动Geoserver
 

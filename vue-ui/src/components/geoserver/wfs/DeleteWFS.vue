@@ -53,8 +53,8 @@ export default {
                     return (
                         that.geoserverData.wfsURL + 'service=WFS&version=1.1.0&request=GetFeature&typeName=' +
                         that.geoserverData.wsName + ":" +
-                        that.geoserverData.layer + '&' + 'outputFormat=application/json&srsname=EPSG:4326&bbox=' +
-                        extent.join(',') + ',EPSG:4326');
+                        that.geoserverData.layer + '&' + 'outputFormat=application/json&srsname=EPSG:3857&bbox=' +
+                        extent.join(',') + ',EPSG:3857');
                 },
                 strategy: loadingstrategy.bbox
             });
@@ -84,8 +84,8 @@ export default {
                 target: 'map',
                 layers: layers,
                 view: new View({
-                    projection: "EPSG:4326",
-                    center: [114, 31],
+                  projection: "EPSG:3857",
+                  center: [12690421.9504332, 3632749.14338443],
                     zoom: 4
                 })
             });
@@ -132,7 +132,7 @@ export default {
                 featureNS: this.geoserverData.uri,
                 featurePrefix: this.geoserverData.wsName,//工作空间名称
                 featureType: this.geoserverData.layer,//图层名称
-                srsName: 'EPSG:4326'
+                srsName: 'EPSG:3857'
             });
             let serializer = new XMLSerializer()
             let featString = serializer.serializeToString(featObject)

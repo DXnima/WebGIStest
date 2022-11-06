@@ -59,7 +59,7 @@ export default {
         ],
         view: view
       });
-      const { data: result } = await this.$http.get('capital/all')
+      const { data: result } = await this.$API.getCapital()
       let features = [];
       for (let i = 0, len = result.data.length; i < len; i++) {
         let _r = result.data[i],

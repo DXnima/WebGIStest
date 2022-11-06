@@ -1,0 +1,16 @@
+<layer>
+  <name>test_polygon</name>
+  <id>LayerInfoImpl-71001060:184427637e7:-7ef0</id>
+  <type>VECTOR</type>
+  <defaultStyle>
+    <id>StyleInfoImpl-71001060:184427637e7:-7fe0</id>
+  </defaultStyle>
+  <resource class="featureType">
+    <id>FeatureTypeInfoImpl-71001060:184427637e7:-7ef1</id>
+  </resource>
+  <attribution>
+    <logoWidth>0</logoWidth>
+    <logoHeight>0</logoHeight>
+  </attribution>
+  <dateCreated>2022-11-04 12:36:00.486 UTC</dateCreated>
+</layer>

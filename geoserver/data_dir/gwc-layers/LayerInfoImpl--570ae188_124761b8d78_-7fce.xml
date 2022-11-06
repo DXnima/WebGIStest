@@ -10,9 +10,25 @@
   <gridSubsets>
     <gridSubset>
       <gridSetName>EPSG:4326</gridSetName>
+      <extent>
+        <coords>
+          <double>-74.047185</double>
+          <double>40.679648</double>
+          <double>-73.90782</double>
+          <double>40.882078</double>
+        </coords>
+      </extent>
     </gridSubset>
     <gridSubset>
       <gridSetName>EPSG:900913</gridSetName>
+      <extent>
+        <coords>
+          <double>-8242894.928875323</double>
+          <double>4965204.031885681</double>
+          <double>-8227380.888040921</double>
+          <double>4994963.724331942</double>
+        </coords>
+      </extent>
     </gridSubset>
   </gridSubsets>
   <metaWidthHeight>
@@ -24,7 +40,13 @@
   <parameterFilters>
     <styleParameterFilter>
       <key>STYLES</key>
-      <defaultValue></defaultValue>
+      <defaultValue>poly_landmarks</defaultValue>
+      <allowedStyles class="sorted-set">
+        <string>grass</string>
+        <string>poly_landmarks</string>
+        <string>restricted</string>
+        <string>style_polygon</string>
+      </allowedStyles>
       <availableStyles class="sorted-set">
         <string>grass</string>
         <string>polygon</string>

@@ -23,7 +23,6 @@ const WebGISUI = () => import('../components/openlayers/WebGISUI')
 //Geoserver
 const WMS = () => import('../components/geoserver/WMS')
 const WMTS = () => import('../components/geoserver/WMTS')
-const VectorTiles = () => import('../components/geoserver/VectorTiles')
 const WFS = () => import('../components/geoserver/wfs/WFS')
 const AddWFS = () => import('../components/geoserver/wfs/AddWFS')
 const DeleteWFS = () => import('../components/geoserver/wfs/DeleteWFS')
@@ -31,6 +30,14 @@ const QueryWFS = () => import('../components/geoserver/wfs/QueryWFS')
 const UpdateWFS = () => import('../components/geoserver/wfs/UpdateWFS')
 const AllWFS = () => import('../components/geoserver/wfs/AllWFS')
 const AllQueryWFS = () => import('../components/geoserver/wfs/AllQueryWFS')
+//Geoserver REST
+const GeoserverRest = () => import('../components/geoserver_rest/GeoserverRest')
+const TableRest = () => import('../components/geoserver_rest/table/Edit')
+const EditTableRest = () => import('../components/geoserver_rest/table/EditTable')
+const FeatureRest = () => import('../components/geoserver_rest/feature/Edit')
+const EditFeatureRest = () => import('../components/geoserver_rest/feature/EditFeature')
+//MapBOX
+const VectorTiles = () => import('../components/mapbox/VectorTiles')
 //网络分析
 const BuffAnalysis = () => import('../components/analysis/BuffAnalysis')
 const DiffAnalysis = () => import('../components/analysis/DiffAnalysis')
@@ -41,6 +48,7 @@ const UnionAnalysis = () => import('../components/analysis/UnionAnalysis')
 const NetAnalysis = () => import('../components/analysis/NetAnalysis')
 //GDAL
 const ReadGdb = () => import('../components/gdal/ReadGdb')
+
 Vue.use(Router)
 
 const routes = [
@@ -72,7 +80,6 @@ const routes = [
       //Geoserver
       { path: '/WMS', component: WMS },
       { path: '/WMTS', component: WMTS },
-      { path: '/VectorTiles', component: VectorTiles },
       { path: '/WFS', component: WFS },
       { path: '/AddWFS', component: AddWFS },
       { path: '/DeleteWFS', component: DeleteWFS },
@@ -80,6 +87,26 @@ const routes = [
       { path: '/UpdateWFS', component: UpdateWFS },
       { path: '/AllWFS', component: AllWFS },
       { path: '/AllQueryWFS', component: AllQueryWFS },
+      //Geoserver REST
+      { path: '/GeoserverRest', component: GeoserverRest },
+      {
+        path: '/TableRest',
+        component: TableRest,
+        //home下子路由规则
+        children: [
+          { path: '/TableRest/:name', component: EditTableRest }
+        ]
+      },
+      {
+        path: '/FeatureRest',
+        component: FeatureRest,
+        //home下子路由规则
+        children: [
+          { path: '/FeatureRest/:name', component: EditFeatureRest }
+        ]
+      },
+      //MapBox
+      { path: '/VectorTiles', component: VectorTiles },
       //网络分析
       { path: '/BuffAnalysis', component: BuffAnalysis },
       { path: '/DiffAnalysis', component: DiffAnalysis },

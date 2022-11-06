@@ -1,32 +1,37 @@
 package com.example.webgistest.pojo;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
 import java.math.BigDecimal;
 
+@ApiModel(value = "大学表信息类")
 public class University {
+    @ApiModelProperty(value = "唯一id")
     private Integer gid;
-
+    @ApiModelProperty(value = "名称")
     private String name;
-
+    @ApiModelProperty(value = "部门")
     private String department;
-
+    @ApiModelProperty(value = "等级")
     private String schoo1Lev;
-
+    @ApiModelProperty(value = "类型")
     private String types;
-
+    @ApiModelProperty(value = "省份")
     private String province;
-
+    @ApiModelProperty(value = "是否双一流")
     private Integer firstUniv;
-
+    @ApiModelProperty(value = "院系")
     private Integer firstDisc;
-
+    @ApiModelProperty(value = "满意度")
     private Integer graduate;
-
+    @ApiModelProperty(value = "表名")
     private BigDecimal satisfacti;
-
+    @ApiModelProperty(value = "纬度")
     private BigDecimal lon;
-
+    @ApiModelProperty(value = "经度")
     private BigDecimal lat;
-
+    @ApiModelProperty(value = "地理要素信息Geometry类型")
     private Object geom;
 
     public University(Integer gid, String name, String department, String schoo1Lev, String types, String province, Integer firstUniv, Integer firstDisc, Integer graduate, BigDecimal satisfacti, BigDecimal lon, BigDecimal lat, Object geom) {

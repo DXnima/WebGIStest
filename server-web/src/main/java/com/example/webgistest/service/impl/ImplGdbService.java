@@ -1,8 +1,8 @@
 package com.example.webgistest.service.impl;
 
 import com.example.webgistest.common.ServerResponse;
-import com.example.webgistest.pojo.FeatureInfo;
-import com.example.webgistest.pojo.LayerInfo;
+import com.example.webgistest.pojo.GdbFeatureInfo;
+import com.example.webgistest.pojo.GdbLayerInfo;
 import com.example.webgistest.service.IGdbService;
 import com.example.webgistest.utils.GeoLineUtil;
 import com.example.webgistest.utils.GdbReadUtil;
@@ -20,14 +20,14 @@ import java.util.Map;
 @Service
 public class ImplGdbService implements IGdbService {
 
-    private static List<LayerInfo> LIST = new ArrayList<>();
+    private static List<GdbLayerInfo> LIST = new ArrayList<>();
 
     public ImplGdbService(){
         LIST = GdbReadUtil.getLayerInfo("data/testdata.gdb");
     }
 
     @Override
-    public ServerResponse<List<LayerInfo>> getLayers(){
+    public ServerResponse<List<GdbLayerInfo>> getLayers(){
         if (LIST.size() == 0) {
             return ServerResponse.createByErrorMessage("图层获取失败！");
         }
@@ -37,10 +37,10 @@ public class ImplGdbService implements IGdbService {
     @Override
     public ServerResponse<List<Map>> getResult() {
         List<Map> list = new ArrayList<>();
-        LayerInfo zlgcLayer = new LayerInfo(); //治理工程图层
-        LayerInfo xzqhLayer = new LayerInfo(); //行政区划图层
-        LayerInfo haLayer = new LayerInfo();   //河岸图层
-        for (LayerInfo layer : LIST) {
+        GdbLayerInfo zlgcLayer = new GdbLayerInfo(); //治理工程图层
+        GdbLayerInfo xzqhLayer = new GdbLayerInfo(); //行政区划图层
+        GdbLayerInfo haLayer = new GdbLayerInfo();   //河岸图层
+        for (GdbLayerInfo layer : LIST) {
             switch (layer.getName()) {
                 case "治理工程":
                     zlgcLayer = layer;
@@ -59,7 +59,7 @@ public class ImplGdbService implements IGdbService {
             try {
                 //河岸线
                 Geometry haGeom = gjson.read(reader);
-                for (FeatureInfo xzqhFeature : xzqhLayer.getFeatures()) {
+                for (GdbFeatureInfo xzqhFeature : xzqhLayer.getFeatures()) {
                     Map map = new HashMap();
                     //获取每一个要素的名称
                     String name = xzqhFeature.getProperties().get("ADDVNM").toString();
@@ -76,7 +76,7 @@ public class ImplGdbService implements IGdbService {
                     double zlgcLen = 0;
                     //记录治理河岸长度
                     double zlhaLen = 0;
-                    for (FeatureInfo zlgcFeature : zlgcLayer.getFeatures()) {
+                    for (GdbFeatureInfo zlgcFeature : zlgcLayer.getFeatures()) {
                         gjson = new GeometryJSON();
                         reader = new StringReader(zlgcFeature.getGeometry());
                         //治理工程线要素

@@ -1,14 +1,19 @@
 package com.example.webgistest.pojo;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
+@ApiModel(value = "读取gdb要素类")
 public class Capital {
+    @ApiModelProperty(value = "唯一id")
     private Integer gid;
-
+    @ApiModelProperty(value = "名称")
     private String name;
-
+    @ApiModelProperty(value = "经度")
     private Double lat;
-
+    @ApiModelProperty(value = "纬度")
     private Double lon;
-
+    @ApiModelProperty(value = "地理要素信息Geometry类型 WKT", example = "POINT(129.345, 34.6589)")
     private Object geom;
 
     public Capital(Integer gid, String name, Double lat, Double lon, Object geom) {

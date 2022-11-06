@@ -5,29 +5,25 @@
   <namespace>
     <id>NamespaceInfoImpl-76ccc7fc:184231a0bd9:-7ffe</id>
   </namespace>
-  <title>测试port</title>
-  <abstract>测试WFS添加数据</abstract>
-  <keywords>
-    <string>features</string>
-    <string>port</string>
-  </keywords>
-  <srs>EPSG:4326</srs>
+  <title>测试点要素</title>
+  <abstract>主要用于测试WFS添加、修改、删除数据，测试点要素图层</abstract>
+  <srs>EPSG:3857</srs>
   <nativeBoundingBox>
-    <minx>-180.0</minx>
-    <maxx>180.0</maxx>
-    <miny>-90.0</miny>
-    <maxy>90.0</maxy>
-    <crs>EPSG:4326</crs>
+    <minx>108.975311279297</minx>
+    <maxx>1.3586606E7</maxx>
+    <miny>22.2231941223145</miny>
+    <maxy>4853581.0</maxy>
   </nativeBoundingBox>
   <latLonBoundingBox>
-    <minx>106.595642089844</minx>
-    <maxx>122.050559997559</maxx>
-    <miny>22.2231941223145</miny>
-    <maxy>39.9148826599121</maxy>
+    <minx>9.789418771387E-4</minx>
+    <maxx>122.05055829109993</maxx>
+    <miny>1.99634349416E-4</miny>
+    <maxy>39.914882949613265</maxy>
     <crs>EPSG:4326</crs>
   </latLonBoundingBox>
   <projectionPolicy>FORCE_DECLARED</projectionPolicy>
   <enabled>true</enabled>
+  <advertised>true</advertised>
   <store class="dataStore">
     <id>DataStoreInfoImpl-76ccc7fc:184231a0bd9:-7ffd</id>
   </store>
@@ -42,4 +38,5 @@
   <overridingServiceSRS>false</overridingServiceSRS>
   <skipNumberMatched>false</skipNumberMatched>
   <circularArcPresent>false</circularArcPresent>
+  <encodeMeasures>false</encodeMeasures>
 </featureType>

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.webgistest.dao.PgEditMapper">
+    <select id="getGeomTable" resultType="java.util.Map">
+        SELECT table_name AS NAME,column_name AS COLUMN
+        FROM information_schema.COLUMNS
+        WHERE table_schema = 'public' AND udt_name = 'geometry';
+    </select>
+    <select id="getTableNumber" resultType="java.lang.Integer">
+        SELECT reltuples::bigint AS number
+        FROM pg_class
+        WHERE  oid = #{tableName,jdbcType=VARCHAR}::regclass;
+    </select>
+    <select id="getGeomType" resultType="java.lang.String">
+        SELECT geometrytype ( "${geom}" ) AS TYPE
+        FROM "${tableName}"  LIMIT 1;
+    </select>
+    <select id="getTableField" resultType="java.lang.String">
+        SELECT column_name AS name
+        FROM information_schema.COLUMNS
+        WHERE TABLE_NAME = '${tableName}'
+    </select>
+    <select id="getTableData" resultType="java.util.Map">
+        SELECT *,st_astext("${geom}") AS wkt,COUNT ( * ) OVER ( ) AS total
+        FROM "${tableName}"
+        LIMIT #{pageSize,jdbcType=INTEGER} OFFSET (( #{page,jdbcType=INTEGER} -1)* #{pageSize,jdbcType=INTEGER} )
+    </select>
+    <select id="findTableData" resultType="java.util.Map">
+        SELECT *,st_astext("${geom}") AS wkt,COUNT ( * ) OVER ( ) AS total
+        FROM "${tableName}"
+        WHERE <![CDATA[ 1 <> 1 ]]> OR
+        <foreach item="item" separator="OR" collection="fields" index="index">
+            "${item}"::VARCHAR LIKE '%${query}%'
+        </foreach>
+        LIMIT #{pageSize,jdbcType=INTEGER} OFFSET (( #{page,jdbcType=INTEGER} -1)* #{pageSize,jdbcType=INTEGER} )
+    </select>
+    <insert id="insertTableData" parameterType="java.util.Map">
+        INSERT INTO "${tableName}"
+        <foreach item="key" collection="fields" open="(" separator="," close=")">
+            <if test="key != 'gid' and key != 'id' ">
+                "${key}"
+            </if>
+        </foreach>
+        VALUES
+        <foreach item="key" collection="fields" open="(" separator="," close=")" >
+            <if test="key != 'gid' and key != 'id' ">
+                <choose>
+                    <when test="key == 'geom'">
+                        st_geomfromtext(#{newRow[${key}]})
+                    </when>
+                    <otherwise>
+                        #{newRow[${key}]}
+                    </otherwise>
+                </choose>
+            </if>
+        </foreach>
+    </insert>
+    <update id="updateTableData" parameterType="java.util.Map">
+        UPDATE "${tableName}" SET
+        <foreach item="key" collection="fields" separator="," >
+            <choose>
+                <when test="key == 'geom'">
+                    "${key}" = st_geomfromtext(#{newRow[${key}]})
+                </when>
+                <otherwise>
+                    "${key}" = #{newRow[${key}]}
+                </otherwise>
+            </choose>
+        </foreach>
+        WHERE "${geom}" = #{oldGeom,jdbcType=VARCHAR}
+    </update>
+    <delete id="deleteTableData" parameterType="java.util.Map">
+        DELETE FROM "${tableName}"
+        WHERE "${geom}" IN ( #{oldGeom,jdbcType=VARCHAR} )
+    </delete>
+</mapper>

@@ -15,10 +15,8 @@
         <el-col :span="10">
           <el-input type="textarea" :rows="4" placeholder="显示结果" v-model="geom"></el-input>
         </el-col>
-        <el-col :span="2">
+        <el-col :span="4">
           <el-input-number v-model="distance" :min="0" label="描述文字"></el-input-number>
-        </el-col>
-        <el-col :span="2">
           <el-button type="primary" @click="analysis">提交</el-button>
         </el-col>
       </el-row>
@@ -108,10 +106,10 @@ export default {
     async analysis(){
       if (this.source)
         this.source.clear();
-      const {data:res} = await this.$http.get("spa/buff",{params:{
+      const { data: res } = await this.$API.buffAnalysis({
           geom:this.geom1,
           distance:this.distance
-        }})
+        })
       if(!res.success) {
         this.geom = res.msg
       }

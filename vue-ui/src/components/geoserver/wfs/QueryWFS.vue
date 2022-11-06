@@ -54,8 +54,8 @@ export default {
                     return (
                         that.geoserverData.wfsURL + 'service=WFS&version=1.1.0&request=GetFeature&typeName=' +
                         that.geoserverData.wsName + ":" +
-                        that.geoserverData.layer + '&' + 'outputFormat=application/json&srsname=EPSG:4326&bbox=' +
-                        extent.join(',') + ',EPSG:4326');
+                        that.geoserverData.layer + '&' + 'outputFormat=application/json&srsname=EPSG:3857&bbox=' +
+                        extent.join(',') + ',EPSG:3857');
                 },
                 strategy: loadingstrategy.bbox
             });
@@ -96,8 +96,8 @@ export default {
                 target: 'map',
                 layers: layers,
                 view: new View({
-                    projection: "EPSG:4326",
-                    center: [114, 31],
+                    projection: "EPSG:3857",
+                    center: [12233037.3, 4861921.87],
                     zoom: 4
                 })
             });

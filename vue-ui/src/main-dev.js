@@ -1,10 +1,19 @@
 import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
-import './plugins/element.js'
+import * as API from '@/api/index'
 //导入全局样式表
 import './assets/css/global.css'
 import './assets/css/ol.css'
+//导入Element
+import ElementUI from 'element-ui';
+import 'element-ui/lib/theme-chalk/index.css'; //样式文件需要单独引入
+Vue.use(ElementUI)
+//导入VXETable
+import 'xe-utils'
+import VXETable from 'vxe-table'
+import 'vxe-table/lib/style.css'
+Vue.use(VXETable)
 //导入加载 进度条
 import NProgress from 'nprogress'
 import 'nprogress/nprogress.css'
@@ -24,6 +33,8 @@ axios.interceptors.response.use(config => {
   return config
 })
 Vue.prototype.$http = axios
+Vue.prototype.$api = API;
+Vue.prototype.$API = API;
 
 Vue.config.productionTip = false
 

@@ -4,8 +4,8 @@
   <inMemoryCached>true</inMemoryCached>
   <name>webgistest:shenzhen_roads</name>
   <mimeFormats>
-    <string>image/jpeg</string>
     <string>image/png</string>
+    <string>image/jpeg</string>
   </mimeFormats>
   <gridSubsets>
     <gridSubset>
@@ -26,7 +26,7 @@
       <key>STYLES</key>
       <defaultValue></defaultValue>
       <availableStyles class="sorted-set"/>
-      <defaultStyle>generic</defaultStyle>
+      <defaultStyle>webgistest:style_shenzhen_roads</defaultStyle>
     </styleParameterFilter>
   </parameterFilters>
   <gutter>0</gutter>

@@ -1,7 +1,7 @@
 package com.example.webgistest.utils;
 
-import com.example.webgistest.pojo.FeatureInfo;
-import com.example.webgistest.pojo.LayerInfo;
+import com.example.webgistest.pojo.GdbFeatureInfo;
+import com.example.webgistest.pojo.GdbLayerInfo;
 import org.gdal.gdal.gdal;
 import org.gdal.ogr.*;
 
@@ -60,12 +60,12 @@ public class GdbReadUtil {
     }
 
     //获取每个图层信息
-    public static List<LayerInfo> getLayerInfo(String FirePath) {
+    public static List<GdbLayerInfo> getLayerInfo(String FirePath) {
         Driver driver = ogr.GetDriverByName("OpenFileGDB");
         if (driver == null) {
             return null;
         }
-        List<LayerInfo> listLayer = new ArrayList<>();
+        List<GdbLayerInfo> listLayer = new ArrayList<>();
         DataSource dataSource = null;
         try {
             dataSource = driver.Open(FirePath, 0);
@@ -74,7 +74,7 @@ public class GdbReadUtil {
                 //用于存储属性信息
                 List<Map> attributes = new ArrayList<>();
                 //用于存储要素信息
-                List<FeatureInfo> features = new ArrayList<>();
+                List<GdbFeatureInfo> features = new ArrayList<>();
                 //获取图层
                 Layer layer = dataSource.GetLayer(i);
                 //图层名称名称
@@ -85,19 +85,19 @@ public class GdbReadUtil {
                 long count = layer.GetFeatureCount();
                 if (0 != count) {
                     do {//获取图层下的要素
-                        FeatureInfo featureInfo = new FeatureInfo();
+                        GdbFeatureInfo gdbFeatureInfo = new GdbFeatureInfo();
                         Feature feature = layer.GetNextFeature();
                         if (null == feature){
                             break;
                         }
                         //获取要素ID
-                        featureInfo.setId(feature.GetFID());
+                        gdbFeatureInfo.setId(feature.GetFID());
                         //获取Geometry
                         Geometry geometry = feature.GetGeometryRef();
                         if (geometry != null) {
                             String geometryJson = geometry.ExportToJson();
                             //获取要素Geometry
-                            featureInfo.setGeometry(geometryJson);
+                            gdbFeatureInfo.setGeometry(geometryJson);
                         }
                         //获取属性信息
                         Map attribute = new HashMap();
@@ -105,18 +105,18 @@ public class GdbReadUtil {
                             attribute.put(feature.GetFieldDefnRef(p).GetName(), getProperty(feature, p));
                         }
                         //获取要素属性信息
-                        featureInfo.setProperties(attribute);
-                        features.add(featureInfo);
+                        gdbFeatureInfo.setProperties(attribute);
+                        features.add(gdbFeatureInfo);
                         attributes.add(attribute);
                         feature.delete();
                     } while (true);
                 }
-                LayerInfo layerInfo = new LayerInfo();
-                layerInfo.setName(layerName);
-                layerInfo.setProj(proj);
-                layerInfo.setCount(count);
-                layerInfo.setFeatures(features);
-                listLayer.add(layerInfo);
+                GdbLayerInfo gdbLayerInfo = new GdbLayerInfo();
+                gdbLayerInfo.setName(layerName);
+                gdbLayerInfo.setProj(proj);
+                gdbLayerInfo.setCount(count);
+                gdbLayerInfo.setFeatures(features);
+                listLayer.add(gdbLayerInfo);
             }
         } catch (Exception e) {
             e.printStackTrace();

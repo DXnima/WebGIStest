@@ -104,6 +104,7 @@ import proj from 'ol/proj';
 import extent from 'ol/extent';
 import control from 'ol/control';
 import {getTdtLayer} from "../../utils/searchUtils";
+import {getUniversity} from "@/api";
 export default {
   data() {
     return {
@@ -191,7 +192,7 @@ export default {
         province: province,
         type: isprivate
       };
-      const { data: result } = await this.$http.get("university/get", { params: paras })
+      const { data: result } = await this.$API.getUniversity(paras)
       if (this.source)
         this.source.clear();
       let features = [], coords = []

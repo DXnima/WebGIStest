@@ -44,16 +44,50 @@ Geoserver端口号：28081
 
 ![Geoserver模块](image/2.png "Geoserver")
 
+3. Geoserver REST模块
+
+![Geoserver REST模块](image/3.png "Geoserver REST")
+
+![Geoserver REST模块](image/4.png "Geoserver REST")
+
+
+4. MaBox模块
+
+![MaBox模块](image/5.png "MaBox")
+
 3. 空间分析模块
 
-![空间分析模块](image/3.png "空间分析")
+![空间分析模块](image/6.png "空间分析")
 
 4. GDAL模块
 
-![GDAL模块](image/4.png "GDAL")
+![GDAL模块](image/7.png "GDAL")
 
 ## 文档结构说明
 ```
+├─api                                    主要请求接口封装
+│  │  index.js                              接口主文件
+│  │
+│  ├─control                               JavaWeb后端接口
+│  │      capital.js
+│  │      config.js
+│  │      gdb.js
+│  │      geotools.js
+│  │      layeredit.js
+│  │      mapinfo.js
+│  │      mapmvt.js
+│  │      mappublish.js
+│  │      mapstyle.js
+│  │      pgedit.js
+│  │      spatialanalysis.js
+│  │      university.js
+│  │      upload.js
+│  │
+│  └─ogc                                 Geoserver REST相关接口
+│          wfs.js
+│          wms.js
+│
+├─dist                                   打包文件
 ├─image                                  图片资源
 ├─pages                                  项目打包文件
 ├─public                                 公共资源
@@ -82,7 +116,7 @@ Geoserver端口号：28081
     │  │
     │  ├─geoserver                      Geoserver模块
     │  │  │  VectorTiles.vue                加载矢量切片
-    │  │  │  WMS.vue                        加载WMS
+    │  │  │  WmsUtils.vue                        加载WMS
     │  │  │  WMTS.vue                       加载WMTS
     │  │  └─wfs                           WFS模块
     │  │          AddWFS.vue                WFS添加数据
@@ -92,6 +126,20 @@ Geoserver端口号：28081
     │  │          QueryWFS.vue              WFS查询数据
     │  │          UpdateWFS.vue             WFS更新数据
     │  │          WFS.vue                   加载WFS
+    │  ├─geoserver_rest                  Geoserver RESTAPI模块
+    │  │       GeoserverRest.vue           Geoserver后台主界面
+    │  │       StyleDialog.vue             样式调节弹窗
+    │  │
+    │  ├─feature                        Geoserver REST修改空间数据
+    │  │       Edit.vue                    Geoserver REST修改要素类
+    │  │       EditFeature.vue             Geoserver REST编辑要素类
+    │  │
+    │  ├─table                          连接PostGIS修改空间数据
+    │  │       Edit.vue                    PostGIS修改要素类
+    │  │       EditTable.vue               PostGIS编辑要素类
+    │  │
+    │  ├─mapbox                         MapBox模块
+    │  │     VectorTiles.vue                加载MBTiles矢量切片
     │  │
     │  └─openlayers                     OpenLayer模块
     │          ClickHighlight.vue           点击高亮

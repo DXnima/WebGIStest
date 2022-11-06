@@ -1,76 +1,77 @@
 package com.example.webgistest.pojo;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
 /**
  * geoserver rest接口
  * 发布Shapefile文件
  * 配置类
  */
-public class ShapefileConfig {
-    private String workspace;     //待创建和发布图层的工作区名称workspace
-    private String store; //待创建和发布图层的数据存储名称store
-    private String srs; //坐标系
-    private String zipFile;//压缩文件的完整路径
-    private String layername;//图层名称
-    private String urlDatastore; //shp文件所在的位置
+@ApiModel(value = "shp图层发布配置类")
+public class ShapeFileConfig {
 
-    public ShapefileConfig(String workspace, String store, String srs, String zipFile, String layername, String urlDatastore) {
-        this.workspace = workspace;
-        this.store = store;
-        this.srs = srs;
-        this.zipFile = zipFile;
-        this.layername = layername;
-        this.urlDatastore = urlDatastore;
+    @ApiModelProperty(value = "工作空间名称")
+    private String workspaceName;//待创建和发布图层的工作区名称workspace
+    @ApiModelProperty(value = "shp文件的完整路径")
+    private String shpFile;//shp文件的完整路径
+    @ApiModelProperty(value = "坐标系统代码", example = "4326")
+    private Integer crsCode;//坐标系统代码
+    @ApiModelProperty(value = "样式工作空间名称")
+    private String styleWorkspace;//样式工作空间名
+    @ApiModelProperty(value = "样式名称")
+    private String styleName;//样式名
+
+    public ShapeFileConfig(String workspaceName, String shpFile, Integer crsCode, String styleWorkspace, String styleName) {
+        this.workspaceName = workspaceName;
+        this.shpFile = shpFile;
+        this.crsCode = crsCode;
+        this.styleWorkspace = styleWorkspace;
+        this.styleName = styleName;
     }
 
-    public ShapefileConfig() {
+    public ShapeFileConfig() {
         super();
     }
 
-    public String getWorkspace() {
-        return workspace;
+    public String getWorkspaceName() {
+        return workspaceName;
     }
 
-    public void setWorkspace(String workspace) {
-        this.workspace = workspace;
+    public void setWorkspaceName(String workspaceName) {
+        this.workspaceName = workspaceName;
     }
 
-    public String getStore() {
-        return store;
+    public String getShpFile() {
+        return shpFile;
     }
 
-    public void setStore(String store) {
-        this.store = store;
+    public void setShpFile(String shpFile) {
+        this.shpFile = shpFile;
     }
 
-    public String getSrs() {
-        return srs;
+    public Integer getCrsCode() {
+        return crsCode;
     }
 
-    public void setSrs(String srs) {
-        this.srs = srs;
+    public void setCrsCode(Integer crsCode) {
+        this.crsCode = crsCode;
     }
 
-    public String getZipFile() {
-        return zipFile;
+    public String getStyleWorkspace() {
+        return styleWorkspace;
     }
 
-    public void setZipFile(String zipFile) {
-        this.zipFile = zipFile;
+    public void setStyleWorkspace(String styleWorkspace) {
+        this.styleWorkspace = styleWorkspace;
     }
 
-    public String getLayername() {
-        return layername;
+    public String getStyleName() {
+        return styleName;
     }
 
-    public void setLayername(String layername) {
-        this.layername = layername;
+    public void setStyleName(String styleName) {
+        this.styleName = styleName;
     }
 
-    public String getUrlDatastore() {
-        return urlDatastore;
-    }
-
-    public void setUrlDatastore(String urlDatastore) {
-        this.urlDatastore = urlDatastore;
-    }
 }

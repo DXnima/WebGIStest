@@ -1,7 +1,5 @@
 package com.example.webgistest.utils;
 
-import com.example.webgistest.pojo.PostgisConfig;
-import com.example.webgistest.pojo.ShapefileConfig;
 import it.geosolutions.geoserver.rest.GeoServerRESTManager;
 import it.geosolutions.geoserver.rest.GeoServerRESTPublisher;
 import it.geosolutions.geoserver.rest.decoder.RESTDataStore;
@@ -23,6 +21,187 @@ import java.util.List;
  * geoserver发布地图
  */
 public class GeoserverPublish {
+
+    /**
+     * geoserver rest接口
+     * PostGIS发布服务
+     * PostGIS配置类
+     */
+    public static class PostgisConfig {
+        //postgis连接配置
+        private String host;
+        private int port;//端口号
+        private String user;//用户名
+        private String password;//用户密码
+        private String database;//数据库名称
+        private String workspace;//待创建和发布图层的工作区名称workspace
+        private String store; //待创建和发布图层的数据存储名称store
+        private String table; // 数据库要发布的表名称,后面图层名称和表名保持一致
+        private String srs; //坐标系
+
+        public PostgisConfig(String host, int port, String user, String password, String database, String workspace, String store, String table, String srs) {
+            this.host = host;
+            this.port = port;
+            this.user = user;
+            this.password = password;
+            this.database = database;
+            this.workspace = workspace;
+            this.store = store;
+            this.table = table;
+            this.srs = srs;
+        }
+
+        public PostgisConfig() {
+            super();
+        }
+
+        public String getHost() {
+            return host;
+        }
+
+        public void setHost(String host) {
+            this.host = host;
+        }
+
+        public int getPort() {
+            return port;
+        }
+
+        public void setPort(int port) {
+            this.port = port;
+        }
+
+        public String getUser() {
+            return user;
+        }
+
+        public void setUser(String user) {
+            this.user = user;
+        }
+
+        public String getPassword() {
+            return password;
+        }
+
+        public void setPassword(String password) {
+            this.password = password;
+        }
+
+        public String getDatabase() {
+            return database;
+        }
+
+        public void setDatabase(String database) {
+            this.database = database;
+        }
+
+        public String getWorkspace() {
+            return workspace;
+        }
+
+        public void setWorkspace(String workspace) {
+            this.workspace = workspace;
+        }
+
+        public String getStore() {
+            return store;
+        }
+
+        public void setStore(String store) {
+            this.store = store;
+        }
+
+        public String getTable() {
+            return table;
+        }
+
+        public void setTable(String table) {
+            this.table = table;
+        }
+
+        public String getSrs() {
+            return srs;
+        }
+
+        public void setSrs(String srs) {
+            this.srs = srs;
+        }
+    }
+
+    /**
+     * geoserver rest接口
+     * 发布Shapefile文件
+     * 配置类
+     */
+    public static class ShapefileConfig {
+        private String workspace;     //待创建和发布图层的工作区名称workspace
+        private String store; //待创建和发布图层的数据存储名称store
+        private String srs; //坐标系
+        private String zipFile;//压缩文件的完整路径
+        private String layername;//图层名称
+        private String urlDatastore; //shp文件所在的位置
+
+        public ShapefileConfig(String workspace, String store, String srs, String zipFile, String layername, String urlDatastore) {
+            this.workspace = workspace;
+            this.store = store;
+            this.srs = srs;
+            this.zipFile = zipFile;
+            this.layername = layername;
+            this.urlDatastore = urlDatastore;
+        }
+
+        public ShapefileConfig() {
+            super();
+        }
+
+        public String getWorkspace() {
+            return workspace;
+        }
+
+        public void setWorkspace(String workspace) {
+            this.workspace = workspace;
+        }
+
+        public String getStore() {
+            return store;
+        }
+
+        public void setStore(String store) {
+            this.store = store;
+        }
+
+        public String getSrs() {
+            return srs;
+        }
+
+        public void setSrs(String srs) {
+            this.srs = srs;
+        }
+
+        public String getZipFile() {
+            return zipFile;
+        }
+
+        public void setZipFile(String zipFile) {
+            this.zipFile = zipFile;
+        }
+
+        public String getLayername() {
+            return layername;
+        }
+
+        public void setLayername(String layername) {
+            this.layername = layername;
+        }
+
+        public String getUrlDatastore() {
+            return urlDatastore;
+        }
+
+        public void setUrlDatastore(String urlDatastore) {
+            this.urlDatastore = urlDatastore;
+        }
+    }
 
     //发布postgis中的数据
     public static void GeoserverPublishPostGISData(String url, String username, String passwd, PostgisConfig postgisConfig) throws IOException {

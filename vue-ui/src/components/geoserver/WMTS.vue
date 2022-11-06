@@ -40,7 +40,7 @@ export default {
             axisOrientation: 'neu'
           });
           let view = new View({
-            zoom: 2,
+            zoom: 5,
             center: [-97, 38],
             projection: projection
           });

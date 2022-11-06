@@ -1,5 +1,8 @@
 package com.example.webgistest.common;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
 import java.io.Serializable;
 
 /**
@@ -8,9 +11,13 @@ import java.io.Serializable;
  * @description:复用
  * @Version: 1.0
  **/
+@ApiModel(value = "Response统一返回类")
 public class ServerResponse<T> implements Serializable {
+    @ApiModelProperty(value = "状态码")
     private int status;  //代码
+    @ApiModelProperty(value = "返回的数据")
     private T data;
+    @ApiModelProperty(value = "文本提示")
     private String msg;
 
     private ServerResponse(int status) {
@@ -45,6 +52,7 @@ public class ServerResponse<T> implements Serializable {
         return status;
     }
 
+    @ApiModelProperty(value = "是否成功")
     public boolean isSuccess() {
         return this.status == ResponseCode.SUCCESS.getCode();
     }
@@ -73,6 +81,15 @@ public class ServerResponse<T> implements Serializable {
 
     public static <T> ServerResponse<T> createByErrorMessage(String errorMessage) {
         return new ServerResponse<T>(ResponseCode.Error.getCode(), errorMessage);
+    }
+
+    public static <T> ServerResponse<T> createByConfig() {
+        return new ServerResponse<T>(ResponseCode.UNCONFIG.getCode(), ResponseCode.UNCONFIG.getMsg());
+    }
+
+
+    public static <T> ServerResponse<T> createByConfigMessage(String errorMessage) {
+        return new ServerResponse<T>(ResponseCode.UNCONFIG.getCode(), errorMessage);
     }
 
     public static <T> ServerResponse<T> createByErrorCodeMessage(int errorCode, String errorMessage) {

@@ -7,10 +7,6 @@
   </namespace>
   <title>深圳路网</title>
   <abstract>深圳路网数据</abstract>
-  <keywords>
-    <string>features</string>
-    <string>shenzhen_roads</string>
-  </keywords>
   <nativeCRS class="projected">PROJCS[&quot;WGS 84 / Pseudo-Mercator&quot;, &#xd;
   GEOGCS[&quot;WGS 84&quot;, &#xd;
     DATUM[&quot;World Geodetic System 1984&quot;, &#xd;
@@ -49,6 +45,10 @@
   </latLonBoundingBox>
   <projectionPolicy>FORCE_DECLARED</projectionPolicy>
   <enabled>true</enabled>
+  <advertised>true</advertised>
+  <metadata>
+    <entry key="cachingEnabled">false</entry>
+  </metadata>
   <store class="dataStore">
     <id>DataStoreInfoImpl-76ccc7fc:184231a0bd9:-7ffd</id>
   </store>
@@ -63,4 +63,5 @@
   <overridingServiceSRS>false</overridingServiceSRS>
   <skipNumberMatched>false</skipNumberMatched>
   <circularArcPresent>false</circularArcPresent>
+  <encodeMeasures>false</encodeMeasures>
 </featureType>

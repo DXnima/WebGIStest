@@ -36,8 +36,8 @@ public class ImplWMSService implements IWMSService {
             ImageIO.scanForPlugins();
             String shpPath = "", sldPath = "";
             String p = System.getProperty("user.dir");
-            shpPath = p + "\\src\\main\\webapp\\data\\capital.shp";
-            sldPath = p + "\\src\\main\\webapp\\data\\capital.sld";
+            shpPath = "data/capital/capital.shp";
+            sldPath = "data/capital/capital.sld";
             map = new MapContent();
             addShapeLayer(shpPath, sldPath);
         }

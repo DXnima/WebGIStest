@@ -11,13 +11,22 @@ public class WebGIStestApplication {
 
     public static String port;
 
+    public static String contextPath;
+
+
     @Value("${server.port}")
     public void setPort(String port) {
         WebGIStestApplication.port = port;
     }
 
+    @Value("${server.servlet.context-path}")
+    public void setContextPath(String contextPath) {
+        WebGIStestApplication.contextPath = contextPath;
+    }
+
+
     private static void printServerUrl() {
-        String url = String.format("http://%s%s%s", "localhost" + ":",port, "");
+        String url = String.format("http://%s%s%s%s", "localhost" + ":", port, contextPath, "doc.html");
         System.err.println("-----------------------------------------------------------------");
         System.err.println("##### WebGIStest程序启动成功！");
         System.err.println("##### 接口URI : " + url);

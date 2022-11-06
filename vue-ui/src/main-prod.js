@@ -1,9 +1,14 @@
 import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
-
+import * as API from '@/api/index'
 //导入全局样式表
 import './assets/css/global.css'
+//导入VXETable
+import 'xe-utils'
+import VXETable from 'vxe-table'
+import 'vxe-table/lib/style.css'
+Vue.use(VXETable)
 //导入加载 进度条
 import NProgress from 'nprogress'
 //导入axios
@@ -22,6 +27,8 @@ axios.interceptors.response.use(config=>{
   return config
 })
 Vue.prototype.$http=axios
+Vue.prototype.$api = API;
+Vue.prototype.$API = API;
 
 Vue.config.productionTip = false
 

@@ -60,7 +60,7 @@ export default {
                 view: new View({
                     projection: "EPSG:4326",
                     center: [267, 38],
-                    zoom: 4
+                    zoom: 5
                 })
             });
 
@@ -100,7 +100,6 @@ export default {
                 })
             })
             map.addLayer(wfsLayer)
-            alert("加载成功！")
         }
     }
 }

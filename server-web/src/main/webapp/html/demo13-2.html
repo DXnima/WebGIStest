@@ -32,9 +32,9 @@
             "name": "Empty Style",
             "metadata": {"maputnik:renderer": "mbgljs"},
             "sources": {
-                "mvt": {
+                "mapMvt": {
                     "type": "vector",
-                    "tiles": ["http://localhost:8080/mvt/{z}/{x}/{y}.pbf"],
+                    "tiles": ["http://localhost:8080/mapMvt/{z}/{x}/{y}.pbf"],
                     "minZoom": 0,
                     "maxZoom": 14,
                     "maxzoom": 14
@@ -46,19 +46,19 @@
                 {
                     "id": "capital",
                     "type": "circle",
-                    "source": "mvt",
+                    "source": "mapMvt",
                     "source-layer": "capital"
                 },
                 {
                     "id": "university",
                     "type": "circle",
-                    "source": "mvt",
+                    "source": "mapMvt",
                     "source-layer": "university"
                 },
                 {
                     "id": "china",
                     "type": "fill",
-                    "source": "mvt",
+                    "source": "mapMvt",
                     "source-layer": "china"
                 }
             ],

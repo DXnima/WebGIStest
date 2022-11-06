@@ -26,5 +26,9 @@ mvn clean
 mvn package -Dmaven.test.skip=true 
 mvn install -Dmaven.test.skip=true
 ```
+### 启动jar包
+```
+java -jar -Dfile.encoding=utf-8 WebGIStest-0.1.jar
+```
 
 

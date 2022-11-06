@@ -44,6 +44,7 @@ import Fill from 'ol/style/fill';
 import proj from 'ol/proj';
 import control from 'ol/control';
 import {getTdtLayer} from "../../utils/searchUtils";
+import {addLayerEdit, getLayerEdit} from "@/api";
 export default {
   data() {
     return {
@@ -191,7 +192,7 @@ export default {
         name: name,
         geom: WKTGeo + ''
       };
-      this.$http.get("edit/add", { params: paras })
+      this.$API.addLayerEdit(paras)
       this.select.getFeatures().clear();
       this.select.setActive(false);
       this.edit.setActive(false);
@@ -272,7 +273,7 @@ export default {
     async addFeatures() {
       if (this.source)
         this.source.clear();
-      const { data: result } = await this.$http.get('edit/query', { name: null })
+      const { data: result } = await this.$API.getLayerEdit({ name: null })
       let length = 0;
       let features = [];
       if (result.data)
