@@ -23,9 +23,7 @@
                             <sld:CssParameter name="fill">#ff0000</sld:CssParameter>
                             <sld:CssParameter name="fill-opacity">0.5</sld:CssParameter>
                         </sld:Fill>
-                        <sld:Stroke>
-                            <sld:CssParameter name="stroke">#21C834</sld:CssParameter>
-                        </sld:Stroke>
+                        <sld:Stroke/>
                     </sld:PolygonSymbolizer>
                 </sld:Rule>
             </sld:FeatureTypeStyle>

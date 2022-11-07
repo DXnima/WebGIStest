@@ -7,7 +7,7 @@ import it.geosolutions.geoserver.rest.GeoServerRESTPublisher;
 @ApiModel(value = "Geoserver配置类")
 public class ImproveGeoServerPublisher extends GeoServerRESTPublisher {
 
-    @ApiModelProperty(value = "Geoserver服务的链接", example = "http://localhost:8080/geoserver")
+    @ApiModelProperty(value = "Geoserver服务的链接", example = "http://localhost:28081/geoserver")
     private String restURL;
     @ApiModelProperty(value = "用户名", example = "admin")
     private String username;

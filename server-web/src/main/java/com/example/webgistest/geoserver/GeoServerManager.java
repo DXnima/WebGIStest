@@ -185,8 +185,12 @@ public class GeoServerManager {
         if (reader.existsStyle(styleName)) {
             throw new ExistedException("样式；" + styleName);
         }
-        //     格式化 sld xml 文件
-        sldBody = sldBody.replaceAll("\"", "\\\\\"");
+        //根据系统环境 格式化 sld xml 文件
+        String systemType = System.getProperty("os.name");
+        boolean isWin= systemType.toLowerCase().contains("win");
+        if(isWin) {
+            sldBody = sldBody.replaceAll("\"", "\\\\\"");
+        }
 
         //     请求路径
         String url = String.format("%s/rest/styles?name=%s&raw=true", geoServerRESTPublisher.getRestURL(), styleName);
@@ -246,8 +250,12 @@ public class GeoServerManager {
             if (!reader.existsStyle(styleName)) {
                 throw new StyleServiceNotFoundException(styleName);
             }
-            //     格式化 sld xml 文件
-            sldBody = sldBody.replaceAll("\"", "\\\\\"");
+            //根据系统环境 格式化 sld xml 文件
+            String systemType = System.getProperty("os.name");
+            boolean isWin= systemType.toLowerCase().contains("win");
+            if(isWin) {
+                sldBody = sldBody.replaceAll("\"", "\\\\\"");
+            }
 
             //     登录名、密码字符串
             String logInStr = geoServerRESTPublisher.getUsername() + ":" + geoServerRESTPublisher.getPassword();
@@ -390,8 +398,12 @@ public class GeoServerManager {
         if (reader.existsStyleFromWorkspace(workspaceName, styleName)) {
             throw new ExistedException("style 样式服务：" + styleName);
         }
-        //     格式化 sld xml 文件
-        sldBody = sldBody.replaceAll("\"", "\\\\\"");
+        //根据系统环境 格式化 sld xml 文件
+        String systemType = System.getProperty("os.name");
+        boolean isWin= systemType.toLowerCase().contains("win");
+        if(isWin) {
+            sldBody = sldBody.replaceAll("\"", "\\\\\"");
+        }
 
         //     请求路径
         String url = String.format("%s/rest/workspaces/%s/styles?name=%s&raw=true", geoServerRESTPublisher.getRestURL(), workspaceName, styleName);
@@ -447,9 +459,13 @@ public class GeoServerManager {
         if (!reader.existsStyleFromWorkspace(workspaceName, styleName)) {
             throw new StyleServiceNotFoundException("修改" + styleName);
         }
-        //     格式化 sld xml 文件
-        sldBody = sldBody.replaceAll("\"", "\\\\\"");
-
+        //
+        //根据系统环境 格式化 sld xml 文件
+        String systemType = System.getProperty("os.name");
+        boolean isWin= systemType.toLowerCase().contains("win");
+        if(isWin) {
+            sldBody = sldBody.replaceAll("\"", "\\\\\"");
+        }
         //     登录名、密码字符串
         String logInStr = geoServerRESTPublisher.getUsername() + ":" + geoServerRESTPublisher.getPassword();
         //     请求路径
