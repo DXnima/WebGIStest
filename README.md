@@ -25,8 +25,8 @@
 <h4 align="center">WebGIStest 是基于 Vue+SpringBoot </a> 使用开源GIS技术的相关用例功能实现项目。</h4>
 
 ## 项目地址
-- Gitee地址：https://gitee.com/dxwangnima/WebGIStest.git
-- Github地址：https://github.com/DXwangnima/WebGIStest.git
+- Gitee地址：https://gitee.com/dxnima/WebGIStest.git
+- Github地址：https://github.com/DXnima/WebGIStest.git
 
 ## 技术：
 
