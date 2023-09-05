@@ -14,14 +14,15 @@
       <el-aside :width="isCollapse ? '64px' : '200px'">
         <div class="toggle-button" @click="toggleCollapse">|||</div>
         <!---侧边菜单栏-->
-        <el-menu background-color="#333744" text-color="#fff" active-text-color="#409eff" :unique-opened="true"
-          :collapse="isCollapse" :collapse-transition="false" :router="true" :default-active="activePath">
+        <el-menu @open="handleMenuOpenClose" @close="handleMenuOpenClose" background-color="#333744" text-color="#fff"
+          active-text-color="#409eff" :unique-opened="true" :collapse="isCollapse" :collapse-transition="false"
+          :router="true" :default-active="activePath">
           <!--一级菜单-->
           <el-submenu :index="item.id + ''" v-for="item in menulist" :key="item.id">
             <!--一级菜单模版区-->
             <template slot="title">
               <!--图标-->
-              <i :class="iconObj[item.id] ? iconObj[item.id]:'el-icon-location'"></i>
+              <i :class="iconObj[item.id] ? iconObj[item.id] : 'el-icon-location'"></i>
               <!--文本-->
               <span>{{ item.authName }}</span>
             </template>
@@ -143,165 +144,170 @@ export default {
           },
         ]
       },
-        {
-          "id": 200,  // 菜单一级图标id
-          "authName": "MapBox", // 菜单一级标题
-          "path": null, // 菜单一级跳转路由
-          children: [
-            {
-              "id": 201, // 菜单二级图标id
-              "authName": "加载矢量瓦片", // 菜单二级标题
-              "path": 'VectorTiles', // 菜单二级跳转路由
-              "children": []
-            },
-          ]
-        },
-        {
-          "id": 300,  // 菜单一级图标id
-          "authName": "Geoserver", // 菜单一级
-          "children": [
-            {
-              "id": 301, // 菜单二级图标id
-              "authName": "加载WMS", // 菜单二级标题
-              "path": 'WMS', // 菜单二级跳转路由
-              "children": []
-            },
-            {
-              "id": 302, // 菜单二级图标id
-              "authName": "加载WMTS", // 菜单二级标题
-              "path": 'WMTS', // 菜单二级跳转路由
-              "children": []
-            },
-            {
-              "id": 303,
-              "authName": "加载WFS",
-              "path": 'WFS',
-              "children": []
-            },
-            {
-              "id": 304,
-              "authName": "WFS添加数据",
-              "path": 'AddWFS',
-              "children": []
-            },
-            {
-              "id": 305,
-              "authName": "WFS修改数据",
-              "path": 'UpdateWFS',
-              "children": []
-            },
-            {
-              "id": 306,
-              "authName": "WFS删除数据",
-              "path": 'DeleteWFS',
-              "children": []
-            },
-            {
-              "id": 307,
-              "authName": "WFS综合操作",
-              "path": 'AllWFS',
-              "children": []
-            },
-            {
-              "id": 308,
-              "authName": "WFS查询数据",
-              "path": 'QueryWFS',
-              "children": []
-            },
-            {
-              "id": 309,
-              "authName": "WFS综合查询",
-              "path": 'AllQueryWFS',
-              "children": []
-            }
-          ]
-        },
-        {
-          "id": 400,  // 菜单一级图标id
-          "authName": "Geoserver REST", // 菜单一级
-          "children": [
-            {
-              "id": 401, // 菜单二级图标id
-              "authName": "地图服务后台", // 菜单二级标题
-              "path": 'GeoserverRest', // 菜单二级跳转路由
-              "children": []
-            },
-            {
-              "id": 402, // 菜单二级图标id
-              "authName": "PostGIS编辑", // 菜单二级标题
-              "path": 'TableRest', // 菜单二级跳转路由
-              "children": []
-            },
-            {
-              "id": 403, // 菜单二级图标id
-              "authName": "Geoserver编辑", // 菜单二级标题
-              "path": 'FeatureRest', // 菜单二级跳转路由
-              "children": []
-            },
-          ]
-        },
-        {
-          "id": 500,  // 菜单一级图标id
-          "authName": "空间分析", // 菜单一级标题
-          "path": null, // 菜单一级跳转路由
-          "children": [
-            {
-              "id": 501, // 菜单二级图标id
-              "authName": "空间关系", // 菜单二级标题
-              "path": 'SpaceRelation', // 菜单二级跳转路由
-              "children": []
-            },
-            {
-              "id": 502, // 菜单二级图标id
-              "authName": "叠加分析", // 菜单二级标题
-              "path": 'InterAnalysis', // 菜单二级跳转路由
-              "children": []
-            },
-            {
-              "id": 503, // 菜单二级图标id
-              "authName": "合并分析", // 菜单二级标题
-              "path": 'UnionAnalysis', // 菜单二级跳转路由
-              "children": []
-            },
-            {
-              "id": 504, // 菜单二级图标id
-              "authName": "差异分析", // 菜单二级标题
-              "path": 'DiffAnalysis', // 菜单二级跳转路由
-              "children": []
-            },
-            {
-              "id": 505, // 菜单二级图标id
-              "authName": "Sym差异分析", // 菜单二级标题
-              "path": 'SymDiffAnalysis', // 菜单二级跳转路由
-              "children": []
-            },
-            {
-              "id": 506, // 菜单二级图标id
-              "authName": "缓冲区分析", // 菜单二级标题
-              "path": 'BuffAnalysis', // 菜单二级跳转路由
-              "children": []
-            },
-            {
-              "id": 507, // 菜单二级图标id
-              "authName": "网络分析", // 菜单二级标题
-              "path": 'NetAnalysis', // 菜单二级跳转路由
-              "children": []
-            }
-          ]
-        },
-        {
-          "id": 600,  // 菜单一级图标id
-          "authName": "GDAL", // 菜单一级标题
-          "path": null, // 菜单一级跳转路由
-          "children": [
-            {
-              "id": 601, // 菜单二级图标id
-              "authName": "读取GDB", // 菜单二级标题
-              "path": 'ReadGdb', // 菜单二级跳转路由
-              "children": []
-            }]
-        }
-      ],
+      {
+        "id": 200,  // 菜单一级图标id
+        "authName": "MapBox", // 菜单一级标题
+        "path": null, // 菜单一级跳转路由
+        children: [
+          {
+            "id": 201, // 菜单二级图标id
+            "authName": "加载矢量瓦片", // 菜单二级标题
+            "path": 'VectorTiles', // 菜单二级跳转路由
+            "children": []
+          },
+        ]
+      },
+      {
+        "id": 300,  // 菜单一级图标id
+        "authName": "Geoserver", // 菜单一级
+        "children": [
+          {
+            "id": 301, // 菜单二级图标id
+            "authName": "加载WMS", // 菜单二级标题
+            "path": 'WMS', // 菜单二级跳转路由
+            "children": []
+          },
+          {
+            "id": 302, // 菜单二级图标id
+            "authName": "加载WMTS", // 菜单二级标题
+            "path": 'WMTS', // 菜单二级跳转路由
+            "children": []
+          },
+          {
+            "id": 303,
+            "authName": "加载WFS",
+            "path": 'WFS',
+            "children": []
+          },
+          {
+            "id": 304,
+            "authName": "WFS添加数据",
+            "path": 'AddWFS',
+            "children": []
+          },
+          {
+            "id": 305,
+            "authName": "WFS修改数据",
+            "path": 'UpdateWFS',
+            "children": []
+          },
+          {
+            "id": 306,
+            "authName": "WFS删除数据",
+            "path": 'DeleteWFS',
+            "children": []
+          },
+          {
+            "id": 307,
+            "authName": "WFS综合操作",
+            "path": 'AllWFS',
+            "children": []
+          },
+          {
+            "id": 308,
+            "authName": "WFS查询数据",
+            "path": 'QueryWFS',
+            "children": []
+          },
+          {
+            "id": 309,
+            "authName": "WFS综合查询",
+            "path": 'AllQueryWFS',
+            "children": []
+          }
+        ]
+      },
+      {
+        "id": 400,  // 菜单一级图标id
+        "authName": "Geoserver REST", // 菜单一级
+        "children": [
+          {
+            "id": 401, // 菜单二级图标id
+            "authName": "地图服务后台", // 菜单二级标题
+            "path": 'GeoserverRest', // 菜单二级跳转路由
+            "children": []
+          },
+          {
+            "id": 402, // 菜单二级图标id
+            "authName": "PostGIS编辑", // 菜单二级标题
+            "path": 'TableRest', // 菜单二级跳转路由
+            "children": []
+          },
+          {
+            "id": 403, // 菜单二级图标id
+            "authName": "Geoserver编辑", // 菜单二级标题
+            "path": 'FeatureRest', // 菜单二级跳转路由
+            "children": []
+          },
+        ]
+      },
+      {
+        "id": 500,  // 菜单一级图标id
+        "authName": "空间分析", // 菜单一级标题
+        "path": null, // 菜单一级跳转路由
+        "children": [
+          {
+            "id": 501, // 菜单二级图标id
+            "authName": "空间关系", // 菜单二级标题
+            "path": 'SpaceRelation', // 菜单二级跳转路由
+            "children": []
+          },
+          {
+            "id": 502, // 菜单二级图标id
+            "authName": "叠加分析", // 菜单二级标题
+            "path": 'InterAnalysis', // 菜单二级跳转路由
+            "children": []
+          },
+          {
+            "id": 503, // 菜单二级图标id
+            "authName": "合并分析", // 菜单二级标题
+            "path": 'UnionAnalysis', // 菜单二级跳转路由
+            "children": []
+          },
+          {
+            "id": 504, // 菜单二级图标id
+            "authName": "差异分析", // 菜单二级标题
+            "path": 'DiffAnalysis', // 菜单二级跳转路由
+            "children": []
+          },
+          {
+            "id": 505, // 菜单二级图标id
+            "authName": "Sym差异分析", // 菜单二级标题
+            "path": 'SymDiffAnalysis', // 菜单二级跳转路由
+            "children": []
+          },
+          {
+            "id": 506, // 菜单二级图标id
+            "authName": "缓冲区分析", // 菜单二级标题
+            "path": 'BuffAnalysis', // 菜单二级跳转路由
+            "children": []
+          },
+          {
+            "id": 507, // 菜单二级图标id
+            "authName": "网络分析", // 菜单二级标题
+            "path": 'NetAnalysis', // 菜单二级跳转路由
+            "children": []
+          }
+        ]
+      },
+      {
+        "id": 600,  // 菜单一级图标id
+        "authName": "GDAL", // 菜单一级标题
+        "path": null, // 菜单一级跳转路由
+        "children": [
+          {
+            "id": 601, // 菜单二级图标id
+            "authName": "读取GDB", // 菜单二级标题
+            "path": 'ReadGdb', // 菜单二级跳转路由
+            "children": []
+          }]
+      },
+      {
+        "id": 700,  // 菜单一级图标id
+        "authName": "地图样式修改", // 菜单一级标题
+        "path": null, // 菜单一级跳转路由
+        "children": []
+      }],
       iconObj: {
         '125': 'el-icon-menu',
         '103': 'el-icon-location',
@@ -338,6 +344,17 @@ export default {
     saveNavState(activePath) {
       window.sessionStorage.setItem('activePath', activePath)
       this.activePath = activePath
+    },
+    handleMenuOpenClose(index) {
+      if (index === '700') {
+        const newWindow = window.open('./maputnik/index.html', '_blank'); // 在新窗口中打开静态HTML页面
+        if (newWindow) {
+          newWindow.focus();
+        } else {
+          // 可以显示提示或执行其他操作
+          alert('已阻止弹出窗口。请允许此站点的弹出窗口!');
+        }
+      }
     }
   }
 }
