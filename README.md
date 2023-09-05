@@ -277,3 +277,9 @@ CREATE EXTENSION pgrouting;
 
 **6. GDAL读取gdb**
 - java 调用gdal读取gdb数据：https://blog.csdn.net/weixin_53853459/article/details/120954597
+
+## 一起交流
+QQ群：515705676
+
+<a target="_blank" href="https://qm.qq.com/cgi-bin/qm/qr?k=BoBCLpD94tPsRCVReo-PBfrAN-fNvWJa&jump_from=webapi&authKey=rT6f5T/iXu6bx2mKuvxvLeaKe/xVcFvCz1ZkrxVSwdEl4uwHZuM3+2Uef4LWJT/Z"><img border="0" src="//pub.idqqimg.com/wpa/images/group.png" alt="WebGIStest交流" title="WebGIStest交流"></a>
+
