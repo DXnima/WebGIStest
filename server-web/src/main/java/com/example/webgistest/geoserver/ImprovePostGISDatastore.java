@@ -15,7 +15,7 @@ public class ImprovePostGISDatastore {
     private String user = "postgres";
     @ApiModelProperty(value = "PostGIS密码", example = "123456")
     private String password;
-    @ApiModelProperty(value = "PostGIS数据库")
+    @ApiModelProperty(value = "PostGIS数据库", example = "webgistest")
     private String database;
 
     public ImprovePostGISDatastore(String host, String password, String database) {

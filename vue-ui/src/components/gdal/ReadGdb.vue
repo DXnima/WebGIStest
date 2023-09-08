@@ -67,12 +67,12 @@ export default {
     },
     async getTableData() {
       const {data: res} = await this.$API.getCalculate()
-      if (res.status === 200)
+      if (res.status === 200 && res.data)
         this.tableData = res.data
     },
     async getLayers() {
       const {data:res} = await this.$API.getGdbLayers()
-      if (res.status === 200)
+      if (res.status === 200 && res.data)
         return res.data.reverse()
     },
     addFeature(layer) {

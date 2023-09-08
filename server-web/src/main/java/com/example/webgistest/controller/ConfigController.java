@@ -39,10 +39,9 @@ public class ConfigController {
 
     @ApiOperationSupport(order = 1)
     @ApiOperation(value = "1.Geoserver配置", notes = "配置Geoserver服务的url,用户名，密码。")
-    @ApiImplicitParam(name = "config", value = "Geoserver配置类", required = true, dataTypeClass = ImproveGeoServerPublisher.class, paramType = "body")
     @RequestMapping(value = "/geoserver", method = RequestMethod.POST)
     @ResponseBody
-    public ServerResponse<Object> configGeoserver(ImproveGeoServerPublisher config) {
+    public ServerResponse<Object> configGeoserver(@RequestBody ImproveGeoServerPublisher config) {
 
         if (!HTTPUtils.httpPing(config.getRestURL(), config.getUsername(), config.getPassword())) {
             return ServerResponse.createByErrorMessage("Geoserver服务器无响应，请重新配置！");
@@ -74,7 +73,6 @@ public class ConfigController {
      */
     @ApiOperationSupport(order = 2)
     @ApiOperation(value = "2.PostGIS获取表和类型", notes = "连接PostGIS数据库并获取表名,不需要dataStoreName参数.")
-    @ApiImplicitParam(name = "postgis", value = "postgis配置类", required = true, dataTypeClass = ImprovePostGISDatastore.class, paramType = "body")
     @RequestMapping(value = "/postgis", method = RequestMethod.POST)
     @ResponseBody
     ServerResponse<List<PgTableInfo>> getTableInfo(@RequestBody ImprovePostGISDatastore postgis) {

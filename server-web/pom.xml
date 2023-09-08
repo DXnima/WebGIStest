@@ -20,9 +20,9 @@
         <geotools.version>26.7</geotools.version>
         <jackson.version>2.13.4</jackson.version>
         <!-- windows系统动态加载gdal驱动-->
-        <gdal.bindir>src/main/resources/lib/win</gdal.bindir>
+        <!-- <gdal.bindir>src/main/resources/lib/win</gdal.bindir> -->
         <!-- linux系统动态加载gdal驱动-->
-        <!-- <gdal.bindir>src/main/resources/lib/linux</gdal.bindir>-->
+        <gdal.bindir>src/main/resources/lib/linux</gdal.bindir>
     </properties>
 
     <dependencies>

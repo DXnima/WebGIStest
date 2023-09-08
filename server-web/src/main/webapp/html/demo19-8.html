@@ -34,7 +34,7 @@
 
     let roadLayer = new ol.layer.Tile({
         source: new ol.source.TileWMS({
-            url: 'http://localhost:28081/geoserver/wms',
+            url: 'http://localhost:28085/geoserver/wms',
             params: { 'LAYERS': 'webgistest:shenzhen_roads', 'TILED': true },
             serverType: 'geoserver'
         })
@@ -60,7 +60,7 @@
                 format: new ol.format.GeoJSON(),
                 url: function (extent) {
                     return (
-                        'http://localhost:28081/geoserver/wfs?service=WFS&version=1.1.0&request=GetFeature&typeName=webgistest:pgr_shenzhen_roads&'
+                        'http://localhost:28085/geoserver/wfs?service=WFS&version=1.1.0&request=GetFeature&typeName=webgistest:pgr_shenzhen_roads&'
                         + 'viewparams=x1:' + coord[0][0] + ';y1:' + coord[0][1] + ';x2:' + coord[1][0] + ';y2:' + coord[1][1] + '&'
                         + 'outputFormat=application/json&srsname=EPSG:3857&bbox=' +
                         extent.join(',') + ',EPSG:3857');

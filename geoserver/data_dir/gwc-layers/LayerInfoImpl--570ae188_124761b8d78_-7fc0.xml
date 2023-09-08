@@ -3,6 +3,7 @@
   <enabled>true</enabled>
   <inMemoryCached>true</inMemoryCached>
   <name>topp:states</name>
+  <blobStoreId>mbtiles</blobStoreId>
   <mimeFormats>
     <string>image/png</string>
     <string>image/jpeg</string>
@@ -40,11 +41,9 @@
   <parameterFilters>
     <styleParameterFilter>
       <key>STYLES</key>
-      <defaultValue>population</defaultValue>
+      <defaultValue></defaultValue>
       <allowedStyles class="sorted-set">
         <string>pophatch</string>
-        <string>population</string>
-        <string>style_polygon</string>
       </allowedStyles>
       <availableStyles class="sorted-set">
         <string>polygon</string>

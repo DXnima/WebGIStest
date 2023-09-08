@@ -304,7 +304,7 @@ export default {
       },
       {
         "id": 700,  // 菜单一级图标id
-        "authName": "地图样式修改", // 菜单一级标题
+        "authName": "MVT样式调节", // 菜单一级标题
         "path": null, // 菜单一级跳转路由
         "children": []
       }],
@@ -345,7 +345,7 @@ export default {
       window.sessionStorage.setItem('activePath', activePath)
       this.activePath = activePath
     },
-    handleMenuOpenClose(index) {
+    async handleMenuOpenClose(index) {
       if (index === '700') {
         const newWindow = window.open('./maputnik/index.html', '_blank'); // 在新窗口中打开静态HTML页面
         if (newWindow) {
@@ -354,6 +354,15 @@ export default {
           // 可以显示提示或执行其他操作
           alert('已阻止弹出窗口。请允许此站点的弹出窗口!');
         }
+      }
+      if(index === '400'){
+        const {data:res}= await this.$API.addWorkspace({
+          password: 'geoserver',
+          restURL: process.env.VUE_APP_GEOSERVER + 'geoserver',
+          username: 'admin'
+        })
+        if (res.status !==200) 
+          return this.$message.error(res.msg)
       }
     }
   }

@@ -16,7 +16,7 @@ spring.datasource.username=postgres
 # postgres数据库密码
 spring.datasource.password=123456
 # 端口号
-server.port=28080
+server.port=28081
 ```
 ### 特别注意端口号
 

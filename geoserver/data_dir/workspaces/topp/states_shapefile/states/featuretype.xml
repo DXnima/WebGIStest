@@ -14,13 +14,15 @@
     <string>state</string>
     <string>states</string>
   </keywords>
-  <nativeCRS>GEOGCS[&quot;GCS_WGS_1984&quot;, 
-  DATUM[&quot;WGS_1984&quot;, 
-    SPHEROID[&quot;WGS_1984&quot;, 6378137.0, 298.257223563]], 
-  PRIMEM[&quot;Greenwich&quot;, 0.0], 
+  <nativeCRS>GEOGCS[&quot;WGS 84&quot;, 
+  DATUM[&quot;World Geodetic System 1984&quot;, 
+    SPHEROID[&quot;WGS 84&quot;, 6378137.0, 298.257223563, AUTHORITY[&quot;EPSG&quot;,&quot;7030&quot;]], 
+    AUTHORITY[&quot;EPSG&quot;,&quot;6326&quot;]], 
+  PRIMEM[&quot;Greenwich&quot;, 0.0, AUTHORITY[&quot;EPSG&quot;,&quot;8901&quot;]], 
   UNIT[&quot;degree&quot;, 0.017453292519943295], 
-  AXIS[&quot;Longitude&quot;, EAST], 
-  AXIS[&quot;Latitude&quot;, NORTH]]</nativeCRS>
+  AXIS[&quot;Geodetic longitude&quot;, EAST], 
+  AXIS[&quot;Geodetic latitude&quot;, NORTH], 
+  AUTHORITY[&quot;EPSG&quot;,&quot;4326&quot;]]</nativeCRS>
   <srs>EPSG:4326</srs>
   <nativeBoundingBox>
     <minx>-124.73142200000001</minx>
@@ -39,155 +41,186 @@
   <projectionPolicy>FORCE_DECLARED</projectionPolicy>
   <enabled>true</enabled>
   <metadata>
-    <entry key="cacheAgeMax">3600</entry>
     <entry key="kml.regionateFeatureLimit">10</entry>
-    <entry key="indexingEnabled">false</entry>
+    <entry key="cacheAgeMax">3600</entry>
     <entry key="cachingEnabled">true</entry>
+    <entry key="indexingEnabled">false</entry>
     <entry key="dirName">states</entry>
   </metadata>
   <store class="dataStore">
     <id>DataStoreInfoImpl--570ae188:124761b8d78:-7fd9</id>
   </store>
+  <serviceConfiguration>false</serviceConfiguration>
+  <internationalTitle/>
+  <internationalAbstract/>
+  <maxFeatures>0</maxFeatures>
+  <numDecimals>0</numDecimals>
+  <padWithZeros>false</padWithZeros>
+  <forcedDecimal>false</forcedDecimal>
   <attributes>
     <attribute>
       <name>the_geom</name>
       <minOccurs>0</minOccurs>
       <maxOccurs>1</maxOccurs>
       <nillable>false</nillable>
+      <binding>org.locationtech.jts.geom.MultiPolygon</binding>
     </attribute>
     <attribute>
       <name>STATE_NAME</name>
       <minOccurs>0</minOccurs>
       <maxOccurs>1</maxOccurs>
       <nillable>false</nillable>
+      <binding>java.lang.String</binding>
     </attribute>
     <attribute>
       <name>STATE_FIPS</name>
       <minOccurs>0</minOccurs>
       <maxOccurs>1</maxOccurs>
       <nillable>false</nillable>
+      <binding>java.lang.String</binding>
     </attribute>
     <attribute>
       <name>SUB_REGION</name>
       <minOccurs>0</minOccurs>
       <maxOccurs>1</maxOccurs>
       <nillable>false</nillable>
+      <binding>java.lang.String</binding>
     </attribute>
     <attribute>
       <name>STATE_ABBR</name>
       <minOccurs>0</minOccurs>
       <maxOccurs>1</maxOccurs>
       <nillable>false</nillable>
+      <binding>java.lang.String</binding>
     </attribute>
     <attribute>
       <name>LAND_KM</name>
       <minOccurs>0</minOccurs>
       <maxOccurs>1</maxOccurs>
       <nillable>false</nillable>
+      <binding>java.lang.Double</binding>
     </attribute>
     <attribute>
       <name>WATER_KM</name>
       <minOccurs>0</minOccurs>
       <maxOccurs>1</maxOccurs>
       <nillable>false</nillable>
+      <binding>java.lang.Double</binding>
     </attribute>
     <attribute>
       <name>PERSONS</name>
       <minOccurs>0</minOccurs>
       <maxOccurs>1</maxOccurs>
       <nillable>false</nillable>
+      <binding>java.lang.Double</binding>
     </attribute>
     <attribute>
       <name>FAMILIES</name>
       <minOccurs>0</minOccurs>
       <maxOccurs>1</maxOccurs>
       <nillable>false</nillable>
+      <binding>java.lang.Double</binding>
     </attribute>
     <attribute>
       <name>HOUSHOLD</name>
       <minOccurs>0</minOccurs>
       <maxOccurs>1</maxOccurs>
       <nillable>false</nillable>
+      <binding>java.lang.Double</binding>
     </attribute>
     <attribute>
       <name>MALE</name>
       <minOccurs>0</minOccurs>
       <maxOccurs>1</maxOccurs>
       <nillable>false</nillable>
+      <binding>java.lang.Double</binding>
     </attribute>
     <attribute>
       <name>FEMALE</name>
       <minOccurs>0</minOccurs>
       <maxOccurs>1</maxOccurs>
       <nillable>false</nillable>
+      <binding>java.lang.Double</binding>
     </attribute>
     <attribute>
       <name>WORKERS</name>
       <minOccurs>0</minOccurs>
       <maxOccurs>1</maxOccurs>
       <nillable>false</nillable>
+      <binding>java.lang.Double</binding>
     </attribute>
     <attribute>
       <name>DRVALONE</name>
       <minOccurs>0</minOccurs>
       <maxOccurs>1</maxOccurs>
       <nillable>false</nillable>
+      <binding>java.lang.Double</binding>
     </attribute>
     <attribute>
       <name>CARPOOL</name>
       <minOccurs>0</minOccurs>
       <maxOccurs>1</maxOccurs>
       <nillable>false</nillable>
+      <binding>java.lang.Double</binding>
     </attribute>
     <attribute>
       <name>PUBTRANS</name>
       <minOccurs>0</minOccurs>
       <maxOccurs>1</maxOccurs>
       <nillable>false</nillable>
+      <binding>java.lang.Double</binding>
     </attribute>
     <attribute>
       <name>EMPLOYED</name>
       <minOccurs>0</minOccurs>
       <maxOccurs>1</maxOccurs>
       <nillable>false</nillable>
+      <binding>java.lang.Double</binding>
     </attribute>
     <attribute>
       <name>UNEMPLOY</name>
       <minOccurs>0</minOccurs>
       <maxOccurs>1</maxOccurs>
       <nillable>false</nillable>
+      <binding>java.lang.Double</binding>
     </attribute>
     <attribute>
       <name>SERVICE</name>
       <minOccurs>0</minOccurs>
       <maxOccurs>1</maxOccurs>
       <nillable>false</nillable>
+      <binding>java.lang.Double</binding>
     </attribute>
     <attribute>
       <name>MANUAL</name>
       <minOccurs>0</minOccurs>
       <maxOccurs>1</maxOccurs>
       <nillable>false</nillable>
+      <binding>java.lang.Double</binding>
     </attribute>
     <attribute>
       <name>P_MALE</name>
       <minOccurs>0</minOccurs>
       <maxOccurs>1</maxOccurs>
       <nillable>false</nillable>
+      <binding>java.lang.Double</binding>
     </attribute>
     <attribute>
       <name>P_FEMALE</name>
       <minOccurs>0</minOccurs>
       <maxOccurs>1</maxOccurs>
       <nillable>false</nillable>
+      <binding>java.lang.Double</binding>
     </attribute>
     <attribute>
       <name>SAMP_POP</name>
       <minOccurs>0</minOccurs>
       <maxOccurs>1</maxOccurs>
       <nillable>false</nillable>
+      <binding>java.lang.Double</binding>
     </attribute>
   </attributes>
-  <maxFeatures>0</maxFeatures>
-  <numDecimals>0</numDecimals>
+  <overridingServiceSRS>false</overridingServiceSRS>
+  <skipNumberMatched>false</skipNumberMatched>
+  <circularArcPresent>false</circularArcPresent>
 </featureType>

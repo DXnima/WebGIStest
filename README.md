@@ -32,7 +32,7 @@
 
 - 前端：Vue | Element | Axios | OpenLayers | Mapbox-GL | Echarts
 
-- 后端：SpringBoot | Mybaits | Postgres+PostGIS+PgRouting | GeoTools | GDAL
+- 后端：SpringBoot | Mybaits | Redis | Postgres+PostGIS+PgRouting | GeoTools | GDAL v3.5.2
 
 - 地图服务端： GeoServer
 
@@ -100,19 +100,50 @@
    - [x] 实现读取.gdb数据
    - [x] 实现将.gdb数据转GeoJSON数据
 
-## 提前安装
+## 快速启动
+
+### 1. Docker Hub拉取镜像安装
+```shell
+# 拉取镜像
+docker pull dxnima/webgistest:v1.0
+# 启动容器
+docker run -p 28080:28080 -p 28081:28081 -p 28085:28085 --name webgistest -itd dxnima/webgistest:v1.0
+```
+容器启动后可以查看项目：
+
+前端打开：`http://localhost:28080`
+
+后端打开：`http://localhost:28081/webgisapi/doc.html`
+
+geoserver打开：`http://localhost:28085/geoserver`, 用户名：`admin` 密码：`geoserver`
+
+**tips**：容器中还启动了postgres数据库，可以使用`-p 5432:5432`将postgres数据库映射出来
+
+### 2. 手动创建镜像并安装
+```shell
+git clone https://gitee.com/dxnima/WebGIStest.git
+# git clone https://github.com/DXnima/WebGIStest.git
+cd WebGIStest
+# 构建镜像
+docker build -f Dockerfile -t dxnima/webgistest .
+# 启动容器
+docker run -p 28080:28080 -p 28081:28081 -p 28085:28085 --name webgistest -itd dxnima/webgistest
+```
+项目打开方式同上
+
+## 手动启动
 
 ### 1. 安装Postgres+PostGIS+PgRouting
 
 #### Windows系统安装相关教程参考
 
-1. 安装Postgres + PostGIS: `https://zhuanlan.zhihu.com/p/62157728`
+1. 安装Postgres + PostGIS: https://zhuanlan.zhihu.com/p/62157728
 
-2. 安装PgRouting: `https://zhuanlan.zhihu.com/p/82408769`
+2. 安装PgRouting: https://zhuanlan.zhihu.com/p/82408769
 
 #### Linux系统安装相关教程参考
 
-CentOS安装参考：`https://blog.csdn.net/qq_40953393/article/details/116203749`
+CentOS安装参考：https://blog.csdn.net/qq_40953393/article/details/116203749
 
 1. CentOS安装PgRouting:
 ```shell
@@ -127,19 +158,36 @@ yum install -y pgrouting_12   #12代表装的postgresql的版本
 2. Ubuntu安装PostGres+PostGIS+PgRouting:
 ```shell
 # 在Ubuntu中
-sudo apt-get install postgresql-12-postgis-3
-sudo apt install postgresql-12-pgrouting #12代表装的postgresql的版本
+sudo echo "deb http://apt.postgresql.org/pub/repos/apt/ bionic-pgdg main" > /etc/apt/sources.list.d/pgdg.list
+sudo apt-get update
+sudo apt-get install -y postgresql-12-postgis-3
+sudo apt-get install -y postgresql-12-pgrouting #12代表装的postgresql的版本
 ```
 
-### 2. 安装GDAL
+### 2. 安装Redis
+
+**Windows安装**：https://www.runoob.com/redis/redis-install.html
+
+**Ubuntu中安装**
+```shell
+sudo apt-get -y redis-server
+```
+
+
+### 3. 安装GDAL(**版本要求3.5.2**)
 
 配置参考：
 
-**Windows安装**：`https://www.jianshu.com/p/c9c385395ada`
+**Windows安装**：https://www.jianshu.com/p/c9c385395ada
 
 **Linux安装**：https://www.jianshu.com/p/ff4cf2b59613
 
-**Linux中安装**
+**Ubuntu中安装**
+```shell
+sudo apt-get -y build-essential libgdal-dev
+```
+
+**Linux中手动安装**
 ```shell
 # 安装proj
 wget http://download.osgeo.org/proj/proj-8.2.0.tar.gz
@@ -166,7 +214,7 @@ make && make install
 swig -version
 
 # 安装ant
-wget https://dlcdn.apache.org//ant/binaries/apache-ant-1.10.12-bin.tar.gz
+wget https://archive.apache.org/dist/ant/binaries/apache-ant-1.10.12-bin.tar.gz
 tar -zxvf apache-ant-1.10.12-bin.tar.gz
 cd apache-ant-1.10.12
 # ant需要配置环境变量
@@ -200,7 +248,7 @@ gdalinfo --version
 
 2. dll复制到bin目录
 
-### 3. Postgres数据库恢复
+### 4. Postgres数据库恢复
 
 `PostGres+PostGIS+PgRouting`都安装好了方可进行数据库恢复
 
@@ -232,7 +280,9 @@ CREATE EXTENSION pgrouting;
 |[shenzhen_roads.sql](/SQL/sql/shenzhen_roads.sql)| 路网导航数据表    | 必须导入           |
 |[shenzhen_creat_network.sql](/SQL/sql/shenzhen_creat_network.sql)| 生成路网导航相关函数 | 最后执行           |
 
-### 4. 启动Geoserver
+### 5. 启动Geoserver
+
+**注意**：启动前需要安装[jdk 1.8](https://www.oracle.com/cn/java/technologies/downloads/#java8)
 
 - 双击[geoserver/bin/startup.bat](/geoserver/bin/startup.bat)
 
@@ -242,10 +292,10 @@ CREATE EXTENSION pgrouting;
 
 **注意**： 
 ```
-默认启动端口：28081
+默认启动端口：28085
 用户名：admin
 密码：geoserver
-启动地址：http://localhost:28081/geoserver
+启动地址：http://localhost:28085/geoserver
 ```
 
 ## 文件说明

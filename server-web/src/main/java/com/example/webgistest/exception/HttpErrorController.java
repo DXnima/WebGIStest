@@ -47,8 +47,8 @@ public class HttpErrorController implements ErrorController {
         return ServerResponse.createByErrorCodeMessage(response.getStatus(), msg);
     }
 
-    @Override
-    public String getErrorPath() {
-        return ERROR_PATH;
-    }
+    // @Override
+    // public String getErrorPath(HttpServletRequest request) {
+    //     return ERROR_PATH;
+    // }
 }

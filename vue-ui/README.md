@@ -29,8 +29,8 @@ npm run lint
 
 本项目默认相关端口
 ```
-后端端口号：28080
-Geoserver端口号：28081
+后端端口号：28081
+Geoserver端口号：28085
 ```
 **提示**：在[.env.development](/vue-ui/.env.development)和[.env.production](/vue-ui/.env.production)修改后端接口和Geoserver服务端口
 
