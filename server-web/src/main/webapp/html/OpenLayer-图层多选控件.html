@@ -1,60 +1,72 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
+
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>OpenLayer 图层多选控件</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.5.0/css/ol.css" type="text/css">
+    <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.5.0/css/ol.css" type="text/css">
     <script src="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.5.0/build/ol.js"></script>
     <style>
         * {
-            box-sizing:border-box
+            box-sizing: border-box
         }
-        body ,#map{
-            padding:0;
-            margin:0;
-            width:1900px;
-            height:980px
+
+        body,
+        #map {
+            padding: 0;
+            margin: 0;
+            width: 1900px;
+            height: 980px
         }
-         /* 图层控件层样式设置 */
-         .layerControl{
-            position:absolute;
-            bottom:5px;
-            min-width:200px;
-            max-height:250px; 
-            right:0px;  
-            top:5px;    
-            z-index:2001;   /*在地图容器中的层，要设置z-index的值让其显示在地图上层*/
-            color:#ffffff;
-            background-color:#4c4e5a;
-            border-width: 10px; /*边缘的宽度*/
-            border-radius: 10px;    /*圆角的大小 */ 
-            border-color: #000 #000 #000 #000;  /*边框颜色*/
+
+        /* 图层控件层样式设置 */
+        .layerControl {
+            position: absolute;
+            bottom: 5px;
+            min-width: 200px;
+            max-height: 250px;
+            right: 0px;
+            top: 5px;
+            z-index: 2001;
+            /*在地图容器中的层，要设置z-index的值让其显示在地图上层*/
+            color: #ffffff;
+            background-color: #4c4e5a;
+            border-width: 10px;
+            /*边缘的宽度*/
+            border-radius: 10px;
+            /*圆角的大小 */
+            border-color: #000 #000 #000 #000;
+            /*边框颜色*/
         }
-        .layerControl .title
-        {
-            font-weight:bold;
-            font-size:15px;
-            margin:10px;
+
+        .layerControl .title {
+            font-weight: bold;
+            font-size: 15px;
+            margin: 10px;
         }
-        .layerTree li
-        {
-             list-style:none; 
-             margin:5px 10px; 
+
+        .layerTree li {
+            list-style: none;
+            margin: 5px 10px;
         }
+
         /* 鼠标位置控件层样式设置 */
-        #mouse-position{
-            float:left;
-            position:absolute;
-            bottom:5px;
-            width:200px;
-            height:20px;         
-            z-index:2000;   /*在地图容器中的层，要设置z-index的值让其显示在地图上层*/
+        #mouse-position {
+            float: left;
+            position: absolute;
+            bottom: 5px;
+            width: 200px;
+            height: 20px;
+            z-index: 2000;
+            /*在地图容器中的层，要设置z-index的值让其显示在地图上层*/
         }
     </style>
 </head>
+
 <body>
-    <div id="map" >
-        <div id="mouse-position" ></div>
+    <div id="map">
+        <div id="mouse-position"></div>
         <div id="layerControl" class="layerControl">
             <div class="title"><label>图层列表</label></div>
             <ul id="layerTree" class="layerTree"></ul>
@@ -66,16 +78,16 @@
         var layerName = new Array();  //图层名称数组
         var layerVisibility = new Array();  //图层可见属性数组
         //OSM地图
-        function OSMmap(){
+        function OSMmap() {
             const openStreetMap = new ol.layer.Tile({
                 source: new ol.source.OSM(),
-                visible:true,
+                visible: true,
                 name: 'OSM地图'
-                })
+            })
             return openStreetMap;
         }
         //百度地图
-        function baiduMap(){
+        function baiduMap() {
             var projection = ol.proj.get("EPSG:3857");
             var resolutions = [];
             for (var i = 0; i < 19; i++) {
@@ -95,35 +107,35 @@
                     }
                     let z = tileCoord[0];
                     let x = tileCoord[1];
-                    let y = -tileCoord[2]-1;
-                    return "http://online1.map.bdimg.com/onlinelabel/?qt=tile&x=" + x + "&y=" + y + "&z=" + z +"&styles=pl&scaler=1&udt=20191119";
+                    let y = -tileCoord[2] - 1;
+                    return "http://online1.map.bdimg.com/onlinelabel/?qt=tile&x=" + x + "&y=" + y + "&z=" + z + "&styles=pl&scaler=1&udt=20191119";
                 },
             });
 
             const baiduMap = new ol.layer.Tile({
                 source: baidu_source,
-                visible:true,
+                visible: true,
                 name: '百度地图'
             })
             return baiduMap;
         }
 
         //天地图
-        function tianMap(){
+        function tianMap() {
             const tianMap = new ol.layer.Tile({
                 source: new ol.source.XYZ({
                     url: "http://t4.tianditu.com/DataServer?T=vec_w&x={x}&y={y}&l={z}&tk=49ea1deec0ffd88ef13a3f69987e9a63"
                 }),
-                visible:true,
+                visible: true,
                 name: '天地图'
             })
             return tianMap;
         }
- 
+
         //wmsImage服务
-        function wmsImage(){
-            let wmsImageSource=new ol.source.ImageWMS({
-                url: 'https://ahocevar.com/geoserver/wms', //WMS服务基地址
+        function wmsImage() {
+            let wmsImageSource = new ol.source.ImageWMS({
+                url: 'https://maps6.geosolutionsgroup.com/geoserver/wms', //WMS服务基地址
                 params: { 'LAYERS': 'topp:states' }, //图层参数
                 ratio: 1,
                 serverType: 'geoserver', //服务类型
@@ -131,29 +143,29 @@
             wmsImage = new ol.layer.Image({
                 extent: [-13884991, 2870341, -7455066, 6338219], //数据范围
                 source: wmsImageSource,
-                visible:true,
+                visible: true,
                 name: 'wmsImage地图'
             });
             return wmsImage;
         }
 
         //wmsTile服务
-        function wmsTile(){
+        function wmsTile() {
             let wmsTileSource = new ol.source.TileWMS({
-                url: 'https://ahocevar.com/geoserver/wms', //WMS服务地址
+                url: 'https://maps6.geosolutionsgroup.com/geoserver/wms', //WMS服务地址
                 params: { 'LAYERS': 'ne:ne_10m_admin_0_countries', 'TILED': true }, //图层等参数
                 serverType: 'geoserver'//服务类型
             });
             wmsTile = new ol.layer.Tile({
                 source: wmsTileSource,
-                visible:true,
+                visible: true,
                 name: 'wmsTile地图'
             });
             return wmsTile;
         }
 
         //wmsGrid服务
-        function wmsGrid(){
+        function wmsGrid() {
             //通过范围计算得到分辨率数组对象resolutions
             var projExtent = ol.proj.get('EPSG:3857').getExtent();
             var startResolution = ol.extent.getWidth(projExtent) / 256;
@@ -169,7 +181,7 @@
             });
             //使用ol.layer.Tile实例化WMS图层对象，设置ol.source.TileWMS的tileGrid参数
             let wmsGridSource = new ol.source.TileWMS({
-                url: 'https://ahocevar.com/geoserver/wms', //WMS服务地址
+                url: 'https://maps6.geosolutionsgroup.com/geoserver/wms', //WMS服务地址
                 params: { 'LAYERS': 'topp:states', 'TILED': true }, //图层等参数
                 serverType: 'geoserver', //服务类型
                 tileGrid: tileGrid  //瓦片网格对象参数（瓦片大小为512x256）
@@ -177,14 +189,14 @@
 
             wmsGrid = new ol.layer.Tile({
                 source: wmsGridSource,
-                visible:true,
+                visible: true,
                 name: 'wmsGrid地图'
             });
             return wmsGrid;
         }
 
         //WMTS服务
-        function wmtsMap(){
+        function wmtsMap() {
             //通过范围计算得到分辨率数组
             var projection = ol.proj.get('EPSG:3857');
             var projectionExtent = projection.getExtent();
@@ -198,11 +210,11 @@
             }
             var wmtsSource = new ol.source.WMTS({
                 attributions: // 数据源信息
-                'Tiles © <a href="https://services.arcgisonline.com/arcgis/rest/' +
-                'services/Demographics/USA_Population_Density/MapServer/">ArcGIS</a>',
+                    'Tiles © <a href="https://server.arcgisonline.com/ArcGIS/rest/' +
+                    'services/Demographics/USA_Population_Density/MapServer/">ArcGIS</a>',
                 url: //WMTS服务基地址
-                'https://services.arcgisonline.com/arcgis/rest/' +
-                'services/Demographics/USA_Population_Density/MapServer/WMTS/',
+                    'https://server.arcgisonline.com/ArcGIS/rest/' +
+                    'services/Demographics/USA_Population_Density/MapServer/WMTS/',
                 layer: '0',
                 matrixSet: 'EPSG:3857', //投影坐标系设置矩阵
                 format: 'image/png', //图片格式
@@ -220,17 +232,17 @@
             wmtsMap = new ol.layer.Tile({
                 opacity: 0.7, //图层透明度
                 source: wmtsSource,
-                visible:true,
+                visible: true,
                 name: 'wmtsMap地图'
             });
             return wmtsMap;
         }
-        
-         /**
-        * 加载图层列表数据
-        * @param {ol.Map} map 地图对象
-        * @param {string} id 图层列表容器ID
-        */
+
+        /**
+       * 加载图层列表数据
+       * @param {ol.Map} map 地图对象
+       * @param {string} id 图层列表容器ID
+       */
         function loadLayersControl(map, id) {
             var treeContent = document.getElementById(id); //图层目录容器
             var layers = map.getLayers(); //获取地图中所有图层
@@ -289,13 +301,13 @@
         }
 
         function init() {
-             //实例化Map对象加载地图
+            //实例化Map对象加载地图
             var map = new ol.Map({
-            target: 'map', //地图容器div的ID
-            //地图容器中加载的图层
-            layers: [OSMmap(), baiduMap(), tianMap(), wmsImage(), wmsTile(), wmsGrid(), wmtsMap()],
-            //地图视图设置
-            view: new ol.View({
+                target: 'map', //地图容器div的ID
+                //地图容器中加载的图层
+                layers: [OSMmap(), baiduMap(), tianMap(), wmsImage(), wmsTile(), wmsGrid(), wmtsMap()],
+                //地图视图设置
+                view: new ol.View({
                     center: [0, 0], //地图初始中心点
                     zoom: 2 //地图初始显示级别
                 })
@@ -305,4 +317,5 @@
         }
     </script>
 </body>
+
 </html>

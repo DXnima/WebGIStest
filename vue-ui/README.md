@@ -50,6 +50,12 @@ Geoserver端口号：28085
 
 ![Geoserver REST模块](image/4.png "Geoserver REST")
 
+**特别注意**:
+
+Geoserver REST模块页面没用显示图层原因，可能是后端没有配置Geoserver，在启动后端后在接口文档页接口文档页的Geoserver配置接口(`http://localhost:28081/webgisapi/doc.html`)，配置如下：
+
+![Geoserver配置](image/8.png "Geoserver配置")
+
 
 4. MaBox模块
 

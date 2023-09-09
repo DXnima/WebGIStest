@@ -183,7 +183,7 @@ export default {
       return new ImageLayer({
         extent: [-13884991, 2870341, -7455066, 6338219],
         source: new ImageWMS({
-          url: 'https://ahocevar.com/geoserver/wms',//WMS服务基地址
+          url: 'https://maps6.geosolutionsgroup.com/geoserver/wms',//WMS服务基地址
           params: { 'LAYERS': 'topp:states' },//图层参数
           ratio: 1,
           serverType: 'geoserver',//服务类型
@@ -195,7 +195,7 @@ export default {
     //wmsTile服务
     wmsTile() {
       let wmsTileSource = new TileWMS({
-        url: 'https://ahocelet.com/geoserver/wms', //WMS服务地址
+        url: 'https://maps6.geosolutionsgroup.com/geoserver/wms', //WMS服务地址
         params: { 'LAYERS': 'ne:ne_10m_admin_0_countries', 'TILED': true }, //图层等参数
         serverType: 'geoserver'//服务类型
       });
@@ -222,7 +222,7 @@ export default {
       });
       //使用TileLayer实例化WMS图层对象，设置TileWMS的tileGrid参数
       let wmsGridSource = new TileWMS({
-        url: 'https://ahocelet.com/geoserver/wms', //WMS服务地址
+        url: 'https://maps6.geosolutionsgroup.com/geoserver/wms', //WMS服务地址
         params: { 'LAYERS': 'topp:states', 'TILED': true }, //图层等参数
         serverType: 'geoserver', //服务类型
         tileGrid: tileGrid  //瓦片网格对象参数（瓦片大小为512x256）
@@ -248,10 +248,10 @@ export default {
       }
       let wmtsSource = new WMTS({
         attributions: // 数据源信息
-          'Tiles © <a href="https://services.arcgisonline.com/arcgis/rest/' +
+          'Tiles © <a href="https://server.arcgisonline.com/ArcGIS/rest/' +
           'services/Demographics/USA_Population_Density/MapServer/">ArcGIS</a>',
         url: //WMTS服务基地址
-          'https://services.arcgisonline.com/arcgis/rest/' +
+          'https://server.arcgisonline.com/ArcGIS/rest/' +
           'services/Demographics/USA_Population_Density/MapServer/WMTS/',
         layer: '0',
         matrixSet: 'EPSG:3857', //投影坐标系设置矩阵
@@ -284,7 +284,7 @@ export default {
         format: geojsonFormat,
         url: function (extent) {
           return (
-            'https://ahocelet.com/geoserver/wfs?service=WFS&' +
+            'https://maps6.geosolutionsgroup.com/geoserver/wfs?service=WFS&' +
             'version=1.1.0&request=GetFeature&typename=osm:water_areas&' +
             'outputFormat=application/json&srsname=EPSG:3857&' +
             'bbox=' + extent.join(',') + ',EPSG:3857'

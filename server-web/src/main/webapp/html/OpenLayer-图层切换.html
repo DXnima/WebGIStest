@@ -1,32 +1,36 @@
 ﻿<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
+
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>open layer</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.5.0/css/ol.css" type="text/css">
+    <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.5.0/css/ol.css" type="text/css">
     <script src="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.5.0/build/ol.js"></script>
     <style>
         * {
-            box-sizing:border-box
+            box-sizing: border-box
         }
+
         body {
-            padding:0;
-            margin:0;
-            width:1900px;
-            height:980px
+            padding: 0;
+            margin: 0;
+            width: 1900px;
+            height: 980px
         }
 
         .grid-container {
-            display:grid;
+            display: grid;
             grid-template-columns: 20vw 80vw;
             grid-template-rows: 100vh;
         }
 
         .sidebar {
-            margin-left:15px
+            margin-left: 15px
         }
     </style>
 </head>
+
 <body>
     <div class="grid-container">
         <div class="grid-1">
@@ -49,16 +53,16 @@
     <script type="text/javascript">
         window.onload = init;
         //OSM地图
-        function OSMmap(){
+        function OSMmap() {
             const openStreetMap = new ol.layer.Tile({
                 source: new ol.source.OSM(),
                 visible: true,
                 title: 'openStreetMap'
-                })
+            })
             return openStreetMap;
         }
         //百度地图
-        function baiduMap(){
+        function baiduMap() {
             var projection = ol.proj.get("EPSG:3857");
             var resolutions = [];
             for (var i = 0; i < 19; i++) {
@@ -78,8 +82,8 @@
                     }
                     let z = tileCoord[0];
                     let x = tileCoord[1];
-                    let y = -tileCoord[2]-1;
-                    return "http://online1.map.bdimg.com/onlinelabel/?qt=tile&x=" + x + "&y=" + y + "&z=" + z +"&styles=pl&scaler=1&udt=20191119";
+                    let y = -tileCoord[2] - 1;
+                    return "http://online1.map.bdimg.com/onlinelabel/?qt=tile&x=" + x + "&y=" + y + "&z=" + z + "&styles=pl&scaler=1&udt=20191119";
                 },
             });
 
@@ -92,10 +96,10 @@
         }
 
         //天地图
-        function tianMap(lyr){
+        function tianMap(lyr) {
             const tianMap = new ol.layer.Tile({
                 source: new ol.source.XYZ({
-                    url:"http://t0.tianditu.com/DataServer?T="+lyr+"&X={x}&Y={y}&L={z}&tk=16c5722fed64bcdbb390cc21a5548cf9"
+                    url: "http://t0.tianditu.com/DataServer?T=" + lyr + "&X={x}&Y={y}&L={z}&tk=16c5722fed64bcdbb390cc21a5548cf9"
                 }),
                 visible: false,
                 title: 'tianMap'
@@ -104,9 +108,9 @@
         }
 
         //wmsImage服务
-        function wmsImage(){
-            let wmsImageSource=new ol.source.ImageWMS({
-                url: 'https://ahocevar.com/geoserver/wms', //WMS服务基地址
+        function wmsImage() {
+            let wmsImageSource = new ol.source.ImageWMS({
+                url: 'https://maps6.geosolutionsgroup.com/geoserver/wms', //WMS服务基地址
                 params: { 'LAYERS': 'topp:states' }, //图层参数
                 ratio: 1,
                 serverType: 'geoserver', //服务类型
@@ -121,9 +125,9 @@
         }
 
         //wmsTile服务
-        function wmsTile(){
+        function wmsTile() {
             let wmsTileSource = new ol.source.TileWMS({
-                url: 'https://ahocevar.com/geoserver/wms', //WMS服务地址
+                url: 'https://maps6.geosolutionsgroup.com/geoserver/wms', //WMS服务地址
                 params: { 'LAYERS': 'ne:ne_10m_admin_0_countries', 'TILED': true }, //图层等参数
                 serverType: 'geoserver'//服务类型
             });
@@ -131,12 +135,12 @@
                 source: wmsTileSource,
                 visible: false,
                 title: 'wmsTile'
-            });  
+            });
             return wmsTile;
         }
 
         //wmsGrid服务
-        function wmsGrid(){
+        function wmsGrid() {
             //通过范围计算得到分辨率数组对象resolutions
             var projExtent = ol.proj.get('EPSG:3857').getExtent();
             var startResolution = ol.extent.getWidth(projExtent) / 256;
@@ -152,7 +156,7 @@
             });
             //使用ol.layer.Tile实例化WMS图层对象，设置ol.source.TileWMS的tileGrid参数
             let wmsGridSource = new ol.source.TileWMS({
-                url: 'https://ahocevar.com/geoserver/wms', //WMS服务地址
+                url: 'https://maps6.geosolutionsgroup.com/geoserver/wms', //WMS服务地址
                 params: { 'LAYERS': 'topp:states', 'TILED': true }, //图层等参数
                 serverType: 'geoserver', //服务类型
                 tileGrid: tileGrid  //瓦片网格对象参数（瓦片大小为512x256）
@@ -167,7 +171,7 @@
         }
 
         //WMTS服务
-        function wmtsMap(){
+        function wmtsMap() {
             //通过范围计算得到分辨率数组
             var projection = ol.proj.get('EPSG:3857');
             var projectionExtent = projection.getExtent();
@@ -181,11 +185,11 @@
             }
             var wmtsSource = new ol.source.WMTS({
                 attributions: // 数据源信息
-                'Tiles © <a href="https://services.arcgisonline.com/arcgis/rest/' +
-                'services/Demographics/USA_Population_Density/MapServer/">ArcGIS</a>',
+                    'Tiles © <a href="https://server.arcgisonline.com/ArcGIS/rest/' +
+                    'services/Demographics/USA_Population_Density/MapServer/">ArcGIS</a>',
                 url: //WMTS服务基地址
-                'https://services.arcgisonline.com/arcgis/rest/' +
-                'services/Demographics/USA_Population_Density/MapServer/WMTS/',
+                    'https://server.arcgisonline.com/ArcGIS/rest/' +
+                    'services/Demographics/USA_Population_Density/MapServer/WMTS/',
                 layer: '0',
                 matrixSet: 'EPSG:3857', //投影坐标系设置矩阵
                 format: 'image/png', //图片格式
@@ -209,7 +213,7 @@
             return wmtsMap;
         }
 
-        function wfsVector(){
+        function wfsVector() {
             var wfsLayer; //WFS图层数据
             var vectorSource;// 矢量图层数据源
 
@@ -220,10 +224,10 @@
                 format: geojsonFormat,
                 url: function (extent) {
                     return (
-                    'https://ahocevar.com/geoserver/wfs?service=WFS&' +
-                    'version=1.1.0&request=GetFeature&typename=osm:water_areas&' +
-                    'outputFormat=application/json&srsname=EPSG:3857&' +
-                    'bbox=' + extent.join(',') + ',EPSG:3857'
+                        'https://maps6.geosolutionsgroup.com/geoserver/wfs?service=WFS&' +
+                        'version=1.1.0&request=GetFeature&typename=osm:water_areas&' +
+                        'outputFormat=application/json&srsname=EPSG:3857&' +
+                        'bbox=' + extent.join(',') + ',EPSG:3857'
                     );
                 },
                 strategy: ol.loadingstrategy.bboxStrategy,
@@ -232,8 +236,8 @@
                 source: vectorSource,
                 style: new ol.style.Style({
                     stroke: new ol.style.Stroke({
-                    color: 'rgba(0, 0, 255, 1.0)',
-                    width: 2,
+                        color: 'rgba(0, 0, 255, 1.0)',
+                        width: 2,
                     }),
                 }),
                 visible: false,
@@ -242,11 +246,11 @@
             return vector;
         }
 
-        function wfsRaster(){
+        function wfsRaster() {
             var key = 'get_your_own_D6rA4zTHduk6KOKTXzGB';
             var attributions =
-            '<a href="https://www.maptiler.com/copyright/" target="_blank">&copy; MapTiler</a> ' +
-            '<a href="https://www.openstreetmap.org/copyright" target="_blank">&copy; OpenStreetMap contributors</a>';
+                '<a href="https://www.maptiler.com/copyright/" target="_blank">&copy; MapTiler</a> ' +
+                '<a href="https://www.openstreetmap.org/copyright" target="_blank">&copy; OpenStreetMap contributors</a>';
 
             var raster = new ol.layer.Tile({
                 source: new ol.source.XYZ({
@@ -271,7 +275,7 @@
                         source: new ol.source.OSM()
                     })
                 ],
-                target:'js-map'
+                target: 'js-map'
             })
 
             //图层组
@@ -282,17 +286,18 @@
             map.addLayer(baseLayerGroup);
 
             const baseElements = document.querySelectorAll('.sidebar > input[type=radio]');
-            for(let baseElement of baseElements){
-                baseElement.addEventListener("change", function(){
+            for (let baseElement of baseElements) {
+                baseElement.addEventListener("change", function () {
                     let baseLayerElementValue = this.value;
-                    baseLayerGroup.getLayers().forEach(function(element, index, array){
-                        let baseLayerTitle= element.get('title');
+                    baseLayerGroup.getLayers().forEach(function (element, index, array) {
+                        let baseLayerTitle = element.get('title');
                         element.setVisible(baseLayerTitle === baseLayerElementValue);
                         console.log(baseLayerTitle === baseLayerElementValue);
                     })
                 })
             }
-    }
+        }
     </script>
 </body>
+
 </html>
