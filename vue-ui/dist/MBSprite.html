@@ -25,40 +25,52 @@
             height: 100%;
         }
 
+        .upload,
+        .mbSprite {
+            overflow-y: auto;
+        }
+
         .but {
             height: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            padding: 80px 0;
+            /* display: flex; */
+            /* align-items: center; */
+            /* justify-content: center; */
         }
     </style>
 </head>
 
 <body>
     <div id="app">
-        <el-row style="height: 100%">
-            <el-col class="upload" :span="11">
+        <el-row style="height: 100%" v-loading="loading" element-loading-text="精灵图拼命生成中..."
+            element-loading-spinner="el-icon-loading" element-loading-background="rgba(0, 0, 0, 0.8)">
+            <el-col class="upload" :span="12" style="padding: 0 25px;">
                 <el-upload multiple action accept="image/*" :auto-upload="false" list-type="picture-card"
                     :on-change="handleChange" :on-preview="handlePreview" :on-remove="handleRemove">
                     <i class="el-icon-plus"></i>
-                    <div slot="tip" class="el-upload__tip">只能上传图片格式文件(png/jpeg/svg/ico等)，且不超过500kb</div>
+                    <div slot="tip" class="el-upload__tip">只能上传图片格式文件(png/jpeg/svg/ico等), 且单个图片不超过500kb</div>
                 </el-upload>
                 <el-dialog :visible.sync="dialogVisible">
                     <img width="100%" :src="dialogImageUrl" alt="">
                 </el-dialog>
             </el-col>
-            <el-col class="but" :span="2">
-                <el-button type="primary" @click="image">转换</el-button>
+            <el-col class="but" :span="1">
+                <el-row style="height: 5%">图像宽度:</el-row>
+                <el-row style="height: 75%">
+                    <el-slider v-model="allwidth" :marks="marks" :min="64" :max="1024" vertical height="500px"
+                        show-input></el-slider>
+                </el-row>
+                <el-row style="height: 14%"><el-button type="primary" @click="image">转换</el-button></el-row>
             </el-col>
             <el-col class="creat" :span="11">
-                <el-row style="height: 45%">
+                <el-row class="mbSprite" style="height: 50%">
                     <img :src="editURL" style="border:1px solid #6f6f6f">
                 </el-row>
-                <el-row style="height: 10%">
+                <el-row style="height: 5%">
                     <el-button type="primary" @click="downloadImg">下载图片</el-button>
                     <el-button type="primary" @click="downloadJSON">下载JSON</el-button>
                 </el-row>
-                <el-row style="height: 45%">
+                <el-row style="height: 30%">
                     <el-input type="textarea" :rows="18" placeholder="JSON内容" v-model="spritejson"></el-input>
                 </el-row>
             </el-col>
@@ -74,12 +86,20 @@
         el: '#app',
         data() {
             return {
+                allwidth: 512, //生成精灵图的宽度
+                marks: {
+                    64: '64',
+                    128: '128',
+                    256: '256',
+                    512: '512',
+                    1024: '1024',
+                },
+                loading: false, //加载
                 dialogImageUrl: '',
                 dialogVisible: false,
                 disabled: false,
                 fileList: [],
                 canvas: [],
-                paramList: [],//List<Param>
                 rowparams: [],//List<List<Param>>
                 editURL: '',
                 spritejson: ''
@@ -98,39 +118,13 @@
             async handleChange(file, fileList) {
                 //图片文件转base64
                 const imgfile = await this.img2base64(file.raw)
-                if (imgfile) {
-                    this.fileList.push(imgfile)
-                }
-            },
-            async image() {
-                let paramlist = [];
-                if (this.fileList.length === 0) return;
-                for (const file of this.fileList) {
-                    // 获取图片宽高
-                    const { image, width, height } = await this.getImage(file)
-                    let canvas = document.createElement('canvas');
-                    canvas.width = width;
-                    canvas.height = height;
-                    canvas.getContext("2d").drawImage(image, 0, 0);
-                    paramlist.push({
-                        name: file.name.split(".")[0], //去文件后缀
-                        x: 0, y: 0,
-                        width: width,
-                        height: height,
-                        canvas: canvas
-                    })
-                }
-                paramlist.sort(function (a, b) {
-                    return a.height - b.height
-                })
-                this.paramList = paramlist;
-                this.creatSprite(paramlist);
+                if (imgfile) this.fileList.push(imgfile)
             },
             img2base64(file) {
                 return new Promise(function (resolve, reject) {
                     let reader = new FileReader();
                     reader.readAsDataURL(file);
-                    reader.onload = function () {
+                    reader.onload = function (event) {
                         resolve({
                             name: file.name,
                             url: reader.result
@@ -157,9 +151,42 @@
                     };
                 });
             },
+            image() {
+                this.loading = true
+                const that = this
+                let paramlist = [];
+                if (this.fileList.length === 0) return;
+                const paramPromises = this.fileList.map(async (file) => {
+                    const { image, width, height } = await this.getImage(file);
+                    let canvas = document.createElement('canvas');
+                    canvas.width = width;
+                    canvas.height = height;
+                    canvas.getContext("2d").drawImage(image, 0, 0);
+                    return {
+                        name: file.name.split(".")[0],
+                        x: 0,
+                        y: 0,
+                        width: width,
+                        height: height,
+                        canvas: canvas
+                    };
+                });
+                Promise.all(paramPromises).then(res => {
+                    // 过滤为空数组
+                    paramlist = res.filter(item => item !== null)
+                    paramlist.sort(function (a, b) {
+                        return a.height - b.height;
+                    });
+                    that.creatSprite(paramlist);
+                }).catch(error => {
+                    console.error("Error processing images: ", error);
+                }).finally(() => {
+                    that.loading = false
+                });
+            },
             creatSprite(paramlist) {
-                //图片默认宽度为255
-                let allwidth = 255;
+                //图片默认宽度为1024
+                let allwidth = this.allwidth;
                 let rowparams = [], paramnowlist = [];
                 let countnum = 0;
                 for (let i = 0; i < paramlist.length; i++) {
@@ -187,7 +214,8 @@
                 rowparams[0].forEach(item => {
                     allwidth += item.width;
                 })
-                if (allwidth > 200) allwidth = 255;
+                if (allwidth > this.allwidth / 2) allwidth = this.allwidth
+                else allwidth = Math.pow(2, Math.ceil(Math.log2(allwidth)));
                 let spritejson = "{\n";
                 //开始画大图
                 let editMap = document.createElement('canvas');
@@ -227,6 +255,8 @@
             },
             getXY(canvas, x, y) {
                 let ctx = canvas.getContext("2d");
+                // 在调用getImageData之前设置willReadFrequently属性
+                ctx.willReadFrequently = true
                 // 获取画布上的图像像素矩阵
                 let imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
                 let w = imageData.width
@@ -253,14 +283,14 @@
                 // 将图片的src属性作为URL地址
                 let a = document.createElement('a')
                 let event = new MouseEvent('click')
-                a.download = 'sprite'
+                a.download = 'sprite@2x'
                 a.href = this.editURL
                 a.dispatchEvent(event);
             },
             downloadJSON() {
                 let pom = document.createElement('a');
                 pom.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(this.spritejson));
-                pom.setAttribute('download', 'sprite.json');
+                pom.setAttribute('download', 'sprite@2x.json');
                 if (document.createEvent) {
                     let event = document.createEvent('MouseEvents');
                     event.initEvent('click', true, true);
