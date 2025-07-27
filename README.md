@@ -24,6 +24,14 @@
 
 <h4 align="center">WebGIStest 是基于 Vue+SpringBoot </a> 使用开源GIS技术的相关用例功能实现项目。</h4>
 
+## CNB云原生启动
+1. fork 本仓库, https://cnb.cool/DXnima/WebGIStest
+2. 选择main分支，点击WebGIStest启动启动按钮，稍等片刻，即可开始！
+3. 进入VSCode，在终端输入 `sh run.sh` ,即可启动项目
+
+<img width="1032" height="590" alt="QQ20250727-142117" src="https://github.com/user-attachments/assets/d4f35979-5b44-4742-adf2-f149a1787453" />
+
+
 ## 项目地址
 - Gitee地址：https://gitee.com/dxnima/WebGIStest.git
 - Github地址：https://github.com/DXnima/WebGIStest.git
