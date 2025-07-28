@@ -1,5 +1,33 @@
 #!/bin/bash
 
+# 文件路径
+FILE_PATH="/webgistest/vue-ui/dist/maputnik/mvt_test.json"
+
+# 检查文件是否存在
+if [ ! -f "$FILE_PATH" ]; then
+  echo "错误: 文件不存在: $FILE_PATH"
+  exit 1
+fi
+
+# 使用sed替换URL
+# 使用不同的分隔符(#)来避免URL中的斜杠造成问题
+sed -i "s#http://localhost:28081/webgisapi/#${VUE_APP_BASE_API}#g" "$FILE_PATH"
+
+# 替换BASEURL
+JS_DIR="/webgistest/vue-ui/dist/js"
+echo "开始替换文件中的 URL..."
+for file in $(find "$JS_DIR" -type f); do
+    # 检查文件是否包含目标字符串
+    if grep -q "http://localhost:28081/webgisapi/" "$file"; then
+        # 使用 sed 替换字符串
+        sed -i "s#http://localhost:28081/webgisapi/#${VUE_APP_BASE_API}#g" "$file"
+    fi
+    if grep -q "http://localhost:28085/" "$file"; then
+        # 使用 sed 替换字符串
+        sed -i "s#http://localhost:28085/#${VUE_APP_GEOSERVER}#g" "$file"
+    fi
+done
+
 # 启动 PostgreSQL 服务
 service postgresql start
 echo "PostgreSQL started"

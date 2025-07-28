@@ -27,7 +27,7 @@
 ## CNB云原生启动
 1. fork 本仓库, https://cnb.cool/DXnima/WebGIStest
 2. 选择main分支，点击WebGIStest启动启动按钮，稍等片刻，即可开始！
-3. 进入VSCode，在终端输入 `sh run.sh` ,即可启动项目
+3. `使用 WebIDE 打开`，在WebIDE的终端输入 `sh run.sh` ,即可启动项目
 
 <img width="1032" height="590" alt="QQ20250727-142117" src="https://github.com/user-attachments/assets/d4f35979-5b44-4742-adf2-f149a1787453" />
 
@@ -112,10 +112,15 @@
 
 ### 1. Docker Hub拉取镜像安装
 ```shell
-# 拉取镜像
-docker pull dxnima/webgistest:latest
 # 启动容器
-docker run -p 28080:28080 -p 28081:28081 -p 28085:28085 --name webgistest -itd dxnima/webgistest:latest
+docker run -itd \
+    -p 28080:28080 \
+    -p 28081:28081 \
+    -p 28085:28085 \
+    --name webgistest \
+    -e VUE_APP_BASE_API="http://localhost:28081/webgisapi/" \
+    -e VUE_APP_GEOSERVER="http://localhost:28085/" \
+    docker.cnb.cool/dxnima/webgistest
 ```
 **容器启动后可以查看项目**：
 
@@ -125,7 +130,12 @@ docker run -p 28080:28080 -p 28081:28081 -p 28085:28085 --name webgistest -itd d
 
 geoserver打开：`http://localhost:28085/geoserver`, 用户名：`admin` 密码：`geoserver`
 
-**tips**：容器中还启动了postgres数据库，可以使用`-p 5432:5432`将postgres数据库映射出来
+**tips**：
+- 如果希望公网访问, 请修改环境变量`VUE_APP_BASE_API`、`VUE_APP_GEOSERVER`中的`localhost`为**服务器公网IP**
+- `Gerserver REST` -> `地图服务后台`功能使用
+  - 需要执行后端接口配置Geoserver信息
+  - 后端地址： `http://localhost:28085/geoserver#/1.0版本/1.配置接口/configGeoserverUsingPOST`
+- 容器中还启动了postgres数据库，可以使用`-p 5432:5432`将postgres数据库映射出来
 
 ### 2. 自行创建镜像并安装
 ```shell
